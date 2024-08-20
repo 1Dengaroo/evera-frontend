@@ -2,7 +2,6 @@ const prettierConfig = require('./.prettierrc.js')
 
 module.exports = {
   extends: [
-    'airbnb',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:import/typescript',
