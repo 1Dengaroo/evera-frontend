@@ -1,0 +1,7 @@
+**/node_modules/*
+**/.next/*
+**/_next/*
+**/next-env.d.ts
+*.min.js
+**/dist/*
+**/public/*
