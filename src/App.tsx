@@ -8,21 +8,26 @@ import Shop from './pages/Shop'
 import About from './pages/About'
 import Production from './pages/Production'
 import ProductShow from './pages/ProductShow'
+import CartPage from './pages/Cart'
+import { CartProvider } from './context/CartContext'
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route element={<Home />} path="/" />
-        <Route element={<FAQ />} path="/faq" />
-        <Route element={<Shop />} path="/shop" />
-        <Route element={<ProductShow />} path="/shop/:id" />{' '}
-        <Route element={<About />} path="/about" />
-        <Route element={<Production />} path="/production" />
-      </Routes>
-      <Footer />
-    </Router>
+    <CartProvider>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route element={<Home />} path="/" />
+          <Route element={<FAQ />} path="/faq" />
+          <Route element={<Shop />} path="/shop" />
+          <Route element={<ProductShow />} path="/shop/:id" />
+          <Route element={<About />} path="/about" />
+          <Route element={<Production />} path="/production" />
+          <Route element={<CartPage />} path="/cart" /> {/* Add Cart route */}
+        </Routes>
+        <Footer />
+      </Router>
+    </CartProvider>
   )
 }
 

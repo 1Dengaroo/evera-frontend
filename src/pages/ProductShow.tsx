@@ -1,19 +1,30 @@
-// src/pages/ProductShow.tsx
-
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Product, getProductById } from '../services/ProductService'
+import { useCart } from '../hooks/useCart'
 
 const ProductShow: React.FC = () => {
   const { id } = useParams<{ id: string }>()
   const [product, setProduct] = useState<Product | null>(null)
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
-  const [selectedSize, setSelectedSize] = useState<string | null>(null)
+  const [selectedSize, setSelectedSize] = useState<string>('')
   const [quantity, setQuantity] = useState<number>(1)
+  const { addItem } = useCart()
 
   const handleAddToCart = () => {
-    console.log('Add to cart')
-    console.log('quantity', quantity)
+    if (!product || (!selectedSize && product.sizes.length > 0)) {
+      alert('Please select a size before adding to cart')
+      return
+    }
+
+    addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      quantity,
+      size: selectedSize,
+      imageUrl: selectedImage || product.cover_image
+    })
   }
 
   useEffect(() => {
@@ -80,9 +91,10 @@ const ProductShow: React.FC = () => {
           </p>
           <input
             className="w-24 h-8 border border-black px-4 text-sm text-center mb-4 rounded-sm"
-            defaultValue={1}
+            value={quantity}
             onChange={(e) => setQuantity(Number(e.target.value))}
             type="number"
+            min="1"
           />
           <button
             className="w-full h-12 py-2 tracking-wider border border-black font-serif rounded-sm hover:bg-gray-100 mb-12"

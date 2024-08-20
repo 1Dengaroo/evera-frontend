@@ -3,7 +3,7 @@ import axios from 'axios'
 const API_URL = 'http://localhost:5000/api/v1/products'
 
 export interface Product {
-  id: number
+  id: string
   name: string
   description?: string
   price: number

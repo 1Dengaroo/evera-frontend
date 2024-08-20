@@ -14,7 +14,8 @@ const navItems: NavItem[] = [
   { label: 'Shop', href: '/shop' },
   { label: 'About', href: '/about' },
   { label: 'FAQ', href: '/faq' },
-  { label: 'Production', href: '/production' }
+  { label: 'Production', href: '/production' },
+  { label: 'Cart', href: '/cart' }
 ]
 
 // Separate component for individual navigation items
