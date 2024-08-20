@@ -1,8 +1,7 @@
-// src/pages/Shop.tsx
-
 import React, { useState, useEffect } from 'react';
 import { Section } from '../components/Section/Section';
 import { getProducts, Product } from '../services/ProductService';
+import ProductCard from '../components/Card/ProductCard';
 
 const Shop: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -16,16 +15,17 @@ const Shop: React.FC = () => {
   }, []);
 
   return (
-    <Section title="Shop Our Products" backgroundColor="bg-white">
-      <p>Explore our wide range of products designed to meet your needs.</p>
-      <h1>Product List</h1>
-      <ul>
+    <Section 
+      title="Discover All Products" 
+      titleClassName='text-4xl font-serif font-thin mt-8 mb-8'
+      backgroundColor="bg-white" 
+      shortHeight>
+      <p className='font-light mb-8'>SHOP ALL</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
         {products.map(product => (
-          <li key={product.id}>
-            {product.name} - ${product.price}
-          </li>
+          <ProductCard key={product.id} product={product} />
         ))}
-      </ul>
+      </div>
     </Section>
   );
 };

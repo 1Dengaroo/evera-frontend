@@ -7,7 +7,7 @@ import FAQ from './pages/FAQ';
 import Shop from './pages/Shop';
 import About from './pages/About';
 import Production from './pages/Production';
-import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
+import ProductShow from './pages/ProductShow';
 
 const App: React.FC = () => {
   return (
@@ -17,6 +17,7 @@ const App: React.FC = () => {
         <Route path="/" element={<Home />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/shop/:id" element={<ProductShow />} /> {/* Reuse shop route for product details */}
         <Route path="/about" element={<About />} />
         <Route path="/production" element={<Production />} />
       </Routes>
@@ -26,5 +27,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-
-
