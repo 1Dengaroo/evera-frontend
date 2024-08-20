@@ -13,6 +13,7 @@ const ProductShow: React.FC = () => {
 
   const handleAddToCart = () => {
     console.log('Add to cart')
+    console.log('quantity', quantity)
   }
 
   useEffect(() => {
@@ -29,8 +30,6 @@ const ProductShow: React.FC = () => {
   if (!product) {
     return <p>Loading...</p>
   }
-
-  console.log(product)
 
   return (
     <div className="container mx-auto p-4 mt-8">
