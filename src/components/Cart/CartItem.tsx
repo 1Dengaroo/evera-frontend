@@ -20,7 +20,7 @@ export const CartItem: React.FC<CartItemProps> = ({
   const { removeItem, updateQuantity } = useCart()
 
   return (
-    <div className="flex items-center justify-between p-4 border-b">
+    <div className="flex items-center justify-between space-x-16 p-6 border-b w-full">
       <div className="flex items-center">
         <img
           src={imageUrl}

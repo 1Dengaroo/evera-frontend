@@ -11,6 +11,8 @@ import ProductShow from './pages/ProductShow'
 import CartPage from './pages/Cart'
 import { CartProvider } from './context/CartContext'
 
+import Checkout from './pages/Checkout'
+
 const App: React.FC = () => {
   return (
     <CartProvider>
@@ -23,7 +25,8 @@ const App: React.FC = () => {
           <Route element={<ProductShow />} path="/shop/:id" />
           <Route element={<About />} path="/about" />
           <Route element={<Production />} path="/production" />
-          <Route element={<CartPage />} path="/cart" /> {/* Add Cart route */}
+          <Route element={<CartPage />} path="/cart" />
+          <Route element={<Checkout />} path="/checkout" />
         </Routes>
         <Footer />
       </Router>

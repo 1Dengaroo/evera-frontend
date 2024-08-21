@@ -1,34 +1,43 @@
 import React from 'react'
 import { useCart } from '../../hooks/useCart'
 import { CartItem } from './CartItem'
-import { calculateCartTotal } from '../../utils/calculateCartTotal'
+import { useNavigate } from 'react-router-dom'
 
 export const Cart: React.FC = () => {
-  const { items, clearCart } = useCart()
-
-  if (items.length === 0) {
-    return <p className="p-4 text-center">Your cart is empty</p>
-  }
+  const { items } = useCart()
+  const navigate = useNavigate()
 
   return (
-    <div className="p-4">
-      {items.map((item) => (
-        <CartItem key={item.id} {...item} />
-      ))}
-      <div className="mt-4">
-        <p className="text-lg font-semibold">
-          Total: ${calculateCartTotal(items).toFixed(2)}
-        </p>
-        <button
-          onClick={clearCart}
-          className="mt-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700"
-        >
-          Clear Cart
-        </button>
-        <button className="mt-2 ml-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">
-          Checkout
-        </button>
-      </div>
+    <div className="container mx-auto p-4">
+      {items.length === 0 ? (
+        <p>Your cart is empty</p>
+      ) : (
+        <div className="w-full">
+          {items.map((item) => (
+            <CartItem
+              key={item.id}
+              id={item.id}
+              name={item.name}
+              price={item.price}
+              size={item.size}
+              quantity={item.quantity}
+              imageUrl={item.imageUrl}
+            />
+          ))}
+        </div>
+      )}
+      <p className="text-right mt-4 pr-10 font-serif">
+        Total: $
+        {items.reduce((acc, item) => acc + item.price * item.quantity, 0)}
+      </p>
+      <button
+        className="bg-black text-white font-serif py-2 px-4 mt-4"
+        onClick={() => {
+          navigate('/checkout')
+        }}
+      >
+        Checkout
+      </button>
     </div>
   )
 }
