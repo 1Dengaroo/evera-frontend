@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useStripe, useElements } from '@stripe/react-stripe-js'
 import { PaymentElement, AddressElement } from '@stripe/react-stripe-js'
 import { CheckoutCartItem } from './CheckoutCartItem'
@@ -13,6 +13,15 @@ export const CheckoutForm: React.FC = () => {
 
   const [isProcessing, setIsProcessing] = useState(false)
   const [message, setMessage] = useState<string>('')
+  const [total, setTotal] = useState<number>(0)
+
+  useEffect(() => {
+    const fetchTotal = async () => {
+      const total = await calculateCartTotal(items)
+      setTotal(total || 0)
+    }
+    fetchTotal()
+  }, [])
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
@@ -45,14 +54,13 @@ export const CheckoutForm: React.FC = () => {
             key={item.id}
             id={item.id}
             name={item.name}
-            price={item.price}
             quantity={item.quantity}
             imageUrl={item.imageUrl}
           />
         ))}
       </div>
       <p className="text-right mt-4 pr-5 font-serif mb-16">
-        Total: ${calculateCartTotal(items).toFixed(2)}
+        Total: ${total.toFixed(2)}
       </p>
       <p className="text-md font-serif">Billing Information</p>
       <form id="payment-form" onSubmit={handleSubmit}>

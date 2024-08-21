@@ -1,5 +1,9 @@
 import { CartItem } from '../context/CartContext'
+import { getCartTotal } from '../services/ProductService'
 
-export function calculateCartTotal(items: CartItem[]): number {
-  return items.reduce((total, item) => total + item.price * item.quantity, 0)
+export async function calculateCartTotal(
+  items: CartItem[]
+): Promise<number | null> {
+  const total = await getCartTotal(items)
+  return total
 }

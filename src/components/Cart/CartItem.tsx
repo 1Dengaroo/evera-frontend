@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useCart } from '../../hooks/useCart'
+import { getProductPriceById } from '../../services/ProductService'
 
 interface CartItemProps {
   id: string
   name: string
-  price: number
   size: string
   quantity: number
   imageUrl: string
@@ -13,11 +13,24 @@ interface CartItemProps {
 export const CartItem: React.FC<CartItemProps> = ({
   id,
   name,
-  price,
   quantity,
   imageUrl
 }) => {
   const { removeItem, updateQuantity } = useCart()
+  const [price, setPrice] = useState<number | null>(null)
+
+  useEffect(() => {
+    const fetchPrice = async () => {
+      try {
+        const p = await getProductPriceById(id)
+        setPrice(p)
+      } catch {
+        setPrice(0)
+      }
+    }
+
+    fetchPrice()
+  }, [id])
 
   return (
     <div className="flex items-center justify-between space-x-16 p-6 border-b w-full">
@@ -30,7 +43,9 @@ export const CartItem: React.FC<CartItemProps> = ({
         <div className="ml-4">
           <h3 className="text-md font-serif">{name}</h3>
           <p className="text-xs font-serif text-gray-600">
-            ${Number(price).toFixed(2)}
+            {price !== null
+              ? `$${Number(price).toFixed(2)}`
+              : 'Loading price...'}
           </p>
         </div>
       </div>

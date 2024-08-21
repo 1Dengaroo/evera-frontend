@@ -30,7 +30,7 @@ const ProductShow: React.FC = () => {
   useEffect(() => {
     async function fetchProduct() {
       if (id) {
-        const productData = await getProductById(Number(id))
+        const productData = await getProductById(id)
         setProduct(productData)
         setSelectedImage(productData?.cover_image || null)
       }

@@ -1,19 +1,33 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { getProductPriceById } from '../../services/ProductService'
 
 interface CartItemProps {
   id: string
   name: string
-  price: number
   quantity: number
   imageUrl: string
 }
 
 export const CheckoutCartItem: React.FC<CartItemProps> = ({
+  id,
   name,
-  price,
   quantity,
   imageUrl
 }) => {
+  const [price, setPrice] = useState<number | null>(null)
+
+  useEffect(() => {
+    const fetchPrice = async () => {
+      try {
+        const p = await getProductPriceById(id)
+        setPrice(p)
+      } catch {
+        setPrice(0)
+      }
+    }
+    fetchPrice()
+  }, [])
+
   return (
     <>
       <div className="flex items-center justify-between space-x-16 p-6 border-b w-full">
@@ -30,7 +44,9 @@ export const CheckoutCartItem: React.FC<CartItemProps> = ({
           </div>
         </div>
         <p className="text-md font-serif">
-          ${Number(price * quantity).toFixed(2)}
+          {price !== null
+            ? `$${(price * quantity).toFixed(2)}`
+            : 'Loading price...'}
         </p>
       </div>
     </>

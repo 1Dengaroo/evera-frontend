@@ -31,7 +31,7 @@ const Payment = () => {
       const response = await axios.post(
         'http://localhost:5000/api/v1/orders/',
         {
-          amount: calculateCartTotal(items) * 100
+          items: items
         }
       )
       setClientSecret(response.data.client_secret)
