@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { Section } from '../components/Section/Section'
-import { getProducts, Product } from '../services/ProductService'
+import { useGetProducts } from '../hooks/Products/useGetProducts'
 import ProductCard from '../components/Card/ProductCard'
+import { Product } from '../types'
 
 const Shop: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([])
 
   useEffect(() => {
     async function fetchData() {
-      const result = await getProducts()
+      const result = await useGetProducts()
       setProducts(result)
     }
     fetchData()

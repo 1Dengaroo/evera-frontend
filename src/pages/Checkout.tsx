@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Section } from '../components/Section/Section'
 import axios from 'axios'
-import { useCart } from '../hooks/useCart'
-import { calculateCartTotal } from '../utils/calculateCartTotal'
+import { useCart } from '../hooks/Cart/useCart'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
 import { CheckoutForm } from '../components/Cart/CheckoutForm'
@@ -10,7 +9,7 @@ import { CheckoutForm } from '../components/Cart/CheckoutForm'
 const Payment = () => {
   const [stripePromise, setStripePromise] = useState<Promise<any> | null>(null)
   const [clientSecret, setClientSecret] = useState<string>('')
-  const { items, clearCart } = useCart()
+  const { items } = useCart()
 
   if (items.length === 0) {
     return (

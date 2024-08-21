@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useStripe, useElements } from '@stripe/react-stripe-js'
 import { PaymentElement, AddressElement } from '@stripe/react-stripe-js'
 import { CheckoutCartItem } from './CheckoutCartItem'
-import { useCart } from '../../hooks/useCart'
-import { calculateCartTotal } from '../../utils/calculateCartTotal'
+import { useCart } from '../../hooks/Cart/useCart'
+import { useGetCartTotal } from '../../hooks/Products/useGetCartTotal'
 
 export const CheckoutForm: React.FC = () => {
   const stripe = useStripe()
@@ -17,7 +17,7 @@ export const CheckoutForm: React.FC = () => {
 
   useEffect(() => {
     const fetchTotal = async () => {
-      const total = await calculateCartTotal(items)
+      const total = await useGetCartTotal(items)
       setTotal(total || 0)
     }
     fetchTotal()

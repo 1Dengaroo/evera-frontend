@@ -1,13 +1,5 @@
 import React, { createContext, useReducer, useEffect, ReactNode } from 'react'
-
-export interface CartItem {
-  id: string
-  name: string
-  size: string
-  quantity: number
-  imageUrl: string
-}
-
+import { CartItem } from '../types'
 export interface CartState {
   items: CartItem[]
 }

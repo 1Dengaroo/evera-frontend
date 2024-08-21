@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { useCart } from '../../hooks/useCart'
-import { getProductPriceById } from '../../services/ProductService'
+import { useCart } from '../../hooks/Cart/useCart'
+import { useGetProductPriceById } from '../../hooks/Products/useGetProductPriceById'
 
 interface CartItemProps {
   id: string
@@ -22,7 +22,7 @@ export const CartItem: React.FC<CartItemProps> = ({
   useEffect(() => {
     const fetchPrice = async () => {
       try {
-        const p = await getProductPriceById(id)
+        const p = await useGetProductPriceById(id)
         setPrice(p)
       } catch {
         setPrice(0)

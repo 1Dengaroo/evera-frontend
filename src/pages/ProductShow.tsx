@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { Product, getProductById } from '../services/ProductService'
-import { useCart } from '../hooks/useCart'
+import { useGetProductById } from '../hooks/Products/useGetProductById'
+import { useCart } from '../hooks/Cart/useCart'
+import { Product } from '../types'
 
 const ProductShow: React.FC = () => {
   const { id } = useParams<{ id: string }>()
@@ -30,7 +31,7 @@ const ProductShow: React.FC = () => {
   useEffect(() => {
     async function fetchProduct() {
       if (id) {
-        const productData = await getProductById(id)
+        const productData = await useGetProductById(id)
         setProduct(productData)
         setSelectedImage(productData?.cover_image || null)
       }

@@ -1,7 +1,7 @@
 // src/components/ProductCard.tsx
 
 import React from 'react'
-import { Product } from '../../services/ProductService'
+import { Product } from '../../types'
 import { useNavigate } from 'react-router-dom'
 
 interface ProductCardProps {

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { useCart } from '../../hooks/useCart'
+import { useCart } from '../../hooks/Cart/useCart'
 import { CartItem } from './CartItem'
 import { useNavigate } from 'react-router-dom'
-import { calculateCartTotal } from '../../utils/calculateCartTotal'
+import { useGetCartTotal } from '../../hooks/Products/useGetCartTotal'
 
 export const Cart: React.FC = () => {
   const { items } = useCart()
@@ -11,7 +11,7 @@ export const Cart: React.FC = () => {
 
   useEffect(() => {
     const fetchTotal = async () => {
-      const total = await calculateCartTotal(items)
+      const total = await useGetCartTotal(items)
       setTotal(total || 0)
     }
     fetchTotal()
