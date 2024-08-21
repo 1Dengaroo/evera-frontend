@@ -21,7 +21,6 @@ const ProductShow: React.FC = () => {
     addItem({
       id: product.id,
       name: product.name,
-      price: product.price,
       quantity,
       size: selectedSize,
       imageUrl: selectedImage || product.cover_image

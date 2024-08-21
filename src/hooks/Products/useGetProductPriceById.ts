@@ -1,13 +1,12 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:5000/api/v1/products'
-
 export const useGetProductPriceById = async (
   id: string
 ): Promise<number | null> => {
   try {
-    const response = await axios.get(`${API_URL}/${id}/get_price_by_id`)
-    return response.data.price
+    const url = `${process.env.REACT_APP_API_URL}/products/${id}/get_price_by_id`
+    const response = await axios.get(url)
+    return Number(response.data.price)
   } catch {
     return null
   }

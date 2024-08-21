@@ -1,13 +1,12 @@
 import axios from 'axios'
 import { CartItem } from '../../types/'
 
-const API_URL = 'http://localhost:5000/api/v1/products'
-
 export const useGetCartTotal = async (
   items: CartItem[]
 ): Promise<number | null> => {
   try {
-    const response = await axios.post(`${API_URL}/get_cart_total`, {
+    const url = `${process.env.REACT_APP_API_URL}/products/get_cart_total`
+    const response = await axios.post(url, {
       items: items
     })
     return Number(response.data.total)

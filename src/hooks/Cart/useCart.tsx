@@ -8,7 +8,6 @@ export function useCart() {
     id: string
     name: string
     size: string
-    price: number
     quantity: number
     imageUrl: string
   }) {

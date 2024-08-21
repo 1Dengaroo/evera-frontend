@@ -43,9 +43,7 @@ export const CartItem: React.FC<CartItemProps> = ({
         <div className="ml-4">
           <h3 className="text-md font-serif">{name}</h3>
           <p className="text-xs font-serif text-gray-600">
-            {price !== null
-              ? `$${Number(price).toFixed(2)}`
-              : 'Loading price...'}
+            {price !== null ? `$${price.toFixed(2)}` : 'Loading price...'}
           </p>
         </div>
       </div>
