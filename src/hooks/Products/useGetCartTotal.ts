@@ -5,7 +5,7 @@ export const useGetCartTotal = async (
   items: CartItem[]
 ): Promise<number | null> => {
   try {
-    const url = `${process.env.REACT_APP_API_URL}/products/get_cart_total`
+    const url = `${process.env.REACT_APP_API_URL}/products/cart_total`
     const response = await axios.post(url, {
       items: items
     })
