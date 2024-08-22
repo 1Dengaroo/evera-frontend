@@ -5,6 +5,7 @@ import { useCart } from '../hooks/Cart/useCart'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
 import { CheckoutForm } from '../components/Cart/CheckoutForm'
+import { useGetStripePublicKey } from '../hooks/Payments/useGetStripePublicKey'
 
 const Payment = () => {
   const [stripePromise, setStripePromise] = useState<Promise<any> | null>(null)
@@ -20,9 +21,12 @@ const Payment = () => {
   }
 
   useEffect(() => {
-    const pKey =
-      'pk_test_51Ppx4nRx549mv7EGWPmnwyciCBRvjFSTTQNcu0smjgyBD2zvZUoFeOoF94kFizpecuWW3wCbogVRi4QIMam8GCsZ00YzGWrQ26'
-    setStripePromise(loadStripe(pKey))
+    const fetchStripeKey = async () => {
+      const p = await useGetStripePublicKey()
+      setStripePromise(loadStripe(p))
+    }
+
+    fetchStripeKey()
   }, [])
 
   useEffect(() => {

@@ -30,7 +30,7 @@ export const CartItem: React.FC<CartItemProps> = ({
     }
 
     fetchPrice()
-  }, [id])
+  }, [])
 
   return (
     <div className="flex items-center justify-between space-x-16 p-6 border-b w-full">
