@@ -1,56 +1,48 @@
 import React, { useState, useEffect } from 'react'
 import { Section } from '../components/Section/Section'
-import axios from 'axios'
 import { useCart } from '../hooks/Cart/useCart'
-import { loadStripe } from '@stripe/stripe-js'
-import { Elements } from '@stripe/react-stripe-js'
-import { CheckoutForm } from '../components/Cart/CheckoutForm'
+import { loadStripe, Stripe } from '@stripe/stripe-js'
 import { useGetStripePublicKey } from '../hooks/Payments/useGetStripePublicKey'
+import { useCreateStripeCheckoutSession } from '../hooks/Payments/useCreateStripeCheckoutSession'
 
-const Payment = () => {
-  const [stripePromise, setStripePromise] = useState<Promise<any> | null>(null)
-  const [clientSecret, setClientSecret] = useState<string>('')
+const Payment: React.FC = () => {
+  const [stripe, setStripe] = useState<Stripe | null>(null)
   const { items } = useCart()
 
   if (items.length === 0) {
-    return (
-      <div className="text-center">
-        <p>Your cart is empty</p>
-      </div>
-    )
+    return <>Your cart is empty</>
   }
 
   useEffect(() => {
-    const fetchStripeKey = async () => {
-      const p = await useGetStripePublicKey()
-      setStripePromise(loadStripe(p))
+    const fetchStripeKeyAndInit = async () => {
+      const publicKey = await useGetStripePublicKey()
+      const stripeInstance = await loadStripe(publicKey)
+      setStripe(stripeInstance)
     }
 
-    fetchStripeKey()
+    fetchStripeKeyAndInit()
   }, [])
 
   useEffect(() => {
-    const fetchClientSecret = async () => {
-      const response = await axios.post(
-        'http://localhost:5000/api/v1/orders/',
-        {
-          items: items
-        }
-      )
-      setClientSecret(response.data.client_secret)
-    }
-    fetchClientSecret()
-  }, [])
+    const initializeCheckout = async () => {
+      if (!stripe || items.length === 0) return
 
-  return (
-    <>
-      {stripePromise && clientSecret && (
-        <Elements stripe={stripePromise} options={{ clientSecret }}>
-          <CheckoutForm />
-        </Elements>
-      )}
-    </>
-  )
+      const sessionId = await useCreateStripeCheckoutSession(items)
+
+      if (sessionId) {
+        const { error } = await stripe.redirectToCheckout({ sessionId })
+        if (error) {
+          console.error('Stripe Checkout error:', error)
+        }
+      }
+    }
+
+    if (stripe) {
+      initializeCheckout()
+    }
+  }, [stripe])
+
+  return null
 }
 
 const Checkout: React.FC = () => {

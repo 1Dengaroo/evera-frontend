@@ -9,6 +9,10 @@ export const Cart: React.FC = () => {
   const navigate = useNavigate()
   const [total, setTotal] = useState<number>(0)
 
+  if (items.length === 0) {
+    return <>Your cart is empty</>
+  }
+
   useEffect(() => {
     const fetchTotal = async () => {
       const total = await useGetCartTotal(items)
@@ -19,22 +23,18 @@ export const Cart: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4">
-      {items.length === 0 ? (
-        <p>Your cart is empty</p>
-      ) : (
-        <div className="w-full">
-          {items.map((item) => (
-            <CartItem
-              key={item.id}
-              id={item.id}
-              name={item.name}
-              size={item.size}
-              quantity={item.quantity}
-              imageUrl={item.imageUrl}
-            />
-          ))}
-        </div>
-      )}
+      <div className="w-full">
+        {items.map((item) => (
+          <CartItem
+            key={item.id}
+            id={item.id}
+            name={item.name}
+            size={item.size}
+            quantity={item.quantity}
+            imageUrl={item.imageUrl}
+          />
+        ))}
+      </div>
       <p className="text-right mt-4 pr-10 font-serif">
         Total: ${total.toFixed(2)}
       </p>
