@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { CartItem } from '../../types/'
+import { setAuthToken } from '../Users/setAuthToken'
 
 export const useCreateStripeCheckoutSession = async (
   items: CartItem[]
@@ -11,6 +12,10 @@ export const useCreateStripeCheckoutSession = async (
     }))
 
     const url = `${process.env.REACT_APP_API_URL}/orders`
+    const token = localStorage.getItem('token')
+    if (token) {
+      setAuthToken(token)
+    }
 
     const response = await axios.post(url, {
       items: filteredItems
