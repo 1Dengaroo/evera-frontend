@@ -12,11 +12,9 @@ export const useCreateStripeCheckoutSession = async (
     }))
 
     const url = `${process.env.REACT_APP_API_URL}/orders`
-    const token = localStorage.getItem('token')
-    if (token) {
-      setAuthToken(token)
-    }
-
+    const token = localStorage.getItem('jwtToken')
+    setAuthToken(token)
+    
     const response = await axios.post(url, {
       items: filteredItems
     })
