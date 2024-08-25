@@ -9,8 +9,6 @@ const About: React.FC = () => {
       shortHeight
     >
       <div className="max-w-3xl mx-auto px-4 lg:px-8">
-        {' '}
-        {/* Container to limit text width */}
         <p className="mb-4 font-light">
           Nothing comes from nowhere. Evera is founded on the principle of
           iteration and building on what came before; finding ideas and

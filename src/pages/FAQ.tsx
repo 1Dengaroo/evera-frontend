@@ -1,16 +1,58 @@
-// src/pages/FAQ.tsx
-
 import React from 'react'
 import { Section } from '../components/Section/Section'
 
 const FAQ: React.FC = () => {
   return (
-    <Section backgroundColor="bg-white" title="Frequently Asked Questions">
-      <ul>
-        <li>What is your return policy?</li>
-        <li>How can I track my order?</li>
-        <li>Do you offer international shipping?</li>
-      </ul>
+    <Section
+      title="Frequently Asked Questions"
+      titleClassName="text-4xl font-serif my-8 pt-8"
+      shortHeight
+    >
+      <div className="max-w-3xl mx-auto px-4 lg:px-8 pt-8">
+        <div className="mb-12">
+          <h3 className="text-xl font-serif mb-2">What is Evera?</h3>
+          <p className="font-light">
+            Evera is a brand built on the principle of iteration and creativity.
+            We focus on finding ideas and inspiration from anything and
+            anywhere, creating products and experiences that resonate with a
+            community of like-minded individuals.
+          </p>
+        </div>
+
+        <div className="mb-12">
+          <h3 className="text-xl font-serif mb-2">
+            How can I purchase products?
+          </h3>
+          <p className="font-light">
+            You can browse and purchase our products directly from our Shop
+            page. Simply add the items you wish to purchase to your cart and
+            proceed to checkout when you&apos;re ready.
+          </p>
+        </div>
+
+        <div className="mb-12">
+          <h3 className="text-xl font-serif mb-2">
+            What is your return policy?
+          </h3>
+          <p className="font-light">
+            We offer a 30-day return policy on all of our products. If
+            you&apos;re not satisfied with your purchase, you can return it for
+            a full refund within 30 days of receiving your order. Please refer
+            to our Return Policy page for more details.
+          </p>
+        </div>
+
+        <div className="mb-12">
+          <h3 className="text-xl font-serif mb-2">
+            How can I contact customer support?
+          </h3>
+          <p className="font-light">
+            You can contact our customer support team by visiting our Contact Us
+            page. We&apos;re here to assist you with any questions or concerns
+            you may have.
+          </p>
+        </div>
+      </div>
     </Section>
   )
 }

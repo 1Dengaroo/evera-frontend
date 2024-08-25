@@ -17,3 +17,31 @@ export interface Product {
   sizes: string[]
   quantity: number
 }
+
+export interface UserCredentials {
+  email: string
+  password: string
+  name?: string
+}
+
+export interface User {
+  id: number
+  email: string
+  name: string
+}
+
+export interface NavItem {
+  label: string
+  href: string
+}
+
+export interface AuthContextType {
+  isAuthenticated: boolean
+  login: (token: string, user: any) => void
+  logout: () => void
+}
+
+export interface UserLoginResponse {
+  success: boolean
+  data: any
+}
