@@ -27,6 +27,7 @@ const NavLinks: React.FC<{ isMobile?: boolean }> = ({ isMobile }) => {
   }
 
   if (isAuthenticated) {
+    dynamicNavItems.push({ label: 'Orders', href: '/orders' })
     dynamicNavItems.push({ label: 'Logout', href: '#' })
   } else {
     dynamicNavItems.push({ label: 'Login', href: '/login' })

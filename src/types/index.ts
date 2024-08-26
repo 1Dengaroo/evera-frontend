@@ -45,3 +45,44 @@ export interface UserLoginResponse {
   success: boolean
   data: any
 }
+
+export interface Order {
+  id: string
+  email: string
+  paid: boolean
+  created_at: string
+  updated_at: string
+  price: number
+  order_items: OrderItem[]
+  delivery?: Delivery
+}
+
+export interface OrderItem {
+  product_id: number
+  quantity: number
+  product: Product
+}
+
+export interface Product {
+  name: string
+  price: number
+}
+
+export interface Delivery {
+  email: string
+  status: string
+  tracking_information?: string
+  created_at: string
+  updated_at: string
+  address: Address
+}
+
+export interface Address {
+  name: string
+  line1: string
+  line2?: string
+  city: string
+  state: string
+  postal_code: string
+  country: string
+}

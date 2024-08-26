@@ -12,9 +12,10 @@ import { CartProvider } from './context/CartContext'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import { AuthProvider } from './context/AuthContext'
-// import ProtectedRoutes from './components/Authentication/ProtectedRoute'
+import ProtectedRoutes from './components/Authentication/ProtectedRoute'
 import PublicRoutes from './components/Authentication/PublicRoute'
 import Checkout from './pages/Checkout'
+import Orders from './pages/Orders'
 
 const App: React.FC = () => {
   return (
@@ -36,6 +37,10 @@ const App: React.FC = () => {
                 <Route element={<PublicRoutes />}>
                   <Route element={<Login />} path="/login" />
                   <Route element={<Signup />} path="/signup" />
+                </Route>
+
+                <Route element={<ProtectedRoutes />}>
+                  <Route element={<Orders />} path="/orders" />
                 </Route>
               </Routes>
             </div>
