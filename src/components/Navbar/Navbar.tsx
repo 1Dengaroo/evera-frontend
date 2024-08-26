@@ -39,7 +39,7 @@ const NavLinks: React.FC<{ isMobile?: boolean }> = ({ isMobile }) => {
       {dynamicNavItems.map((item) => (
         <Link
           key={item.label}
-          className={`px-2 text-gray-700 hover:text-gray-900 ${
+          className={`px-2 text-sm hover:underline text-gray-700 hover:text-gray-900 ${
             isMobile ? 'block' : 'inline-block'
           }`}
           to={item.label === 'Logout' ? '#' : item.href}

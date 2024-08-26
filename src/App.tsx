@@ -16,37 +16,40 @@ import ProtectedRoutes from './components/Authentication/ProtectedRoute'
 import PublicRoutes from './components/Authentication/PublicRoute'
 import Checkout from './pages/Checkout'
 import Orders from './pages/Orders'
+import { NotificationProvider } from './context/NotificationContext'
 
 const App: React.FC = () => {
   return (
     <AuthProvider>
       <CartProvider>
-        <div className="flex flex-col min-h-screen">
-          <Router>
-            <Navbar />
-            <div className="flex-grow">
-              <Routes>
-                <Route element={<Home />} path="/" />
-                <Route element={<FAQ />} path="/faq" />
-                <Route element={<Shop />} path="/shop" />
-                <Route element={<ProductShow />} path="/shop/:id" />
-                <Route element={<About />} path="/about" />
-                <Route element={<CartPage />} path="/cart" />
-                <Route element={<Checkout />} path="/checkout" />
+        <NotificationProvider>
+          <div className="flex flex-col min-h-screen">
+            <Router>
+              <Navbar />
+              <div className="flex-grow">
+                <Routes>
+                  <Route element={<Home />} path="/" />
+                  <Route element={<FAQ />} path="/faq" />
+                  <Route element={<Shop />} path="/shop" />
+                  <Route element={<ProductShow />} path="/shop/:id" />
+                  <Route element={<About />} path="/about" />
+                  <Route element={<CartPage />} path="/cart" />
+                  <Route element={<Checkout />} path="/checkout" />
 
-                <Route element={<PublicRoutes />}>
-                  <Route element={<Login />} path="/login" />
-                  <Route element={<Signup />} path="/signup" />
-                </Route>
+                  <Route element={<PublicRoutes />}>
+                    <Route element={<Login />} path="/login" />
+                    <Route element={<Signup />} path="/signup" />
+                  </Route>
 
-                <Route element={<ProtectedRoutes />}>
-                  <Route element={<Orders />} path="/orders" />
-                </Route>
-              </Routes>
-            </div>
-            <Footer />
-          </Router>
-        </div>
+                  <Route element={<ProtectedRoutes />}>
+                    <Route element={<Orders />} path="/orders" />
+                  </Route>
+                </Routes>
+              </div>
+              <Footer />
+            </Router>
+          </div>
+        </NotificationProvider>
       </CartProvider>
     </AuthProvider>
   )

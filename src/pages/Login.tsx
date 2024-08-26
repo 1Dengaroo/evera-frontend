@@ -2,18 +2,21 @@ import React, { useState } from 'react'
 import { useUserLogin } from '../hooks/Users/useUserLogin'
 import { useNavigate } from 'react-router-dom'
 import { Section } from '../components/Section/Section'
+import { useNotification } from '../context/NotificationContext'
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState<string | null>(null)
   const { handleLogin } = useUserLogin()
   const navigate = useNavigate()
+  const { showNotification } = useNotification()
+  const [error, setError] = useState<string | null>(null)
 
   const onSubmit = async () => {
     const { success } = await handleLogin({ email, password })
     if (success) {
       navigate('/')
+      showNotification('Logged in successfully', 'success')
     } else {
       setError('Invalid email or password')
     }
@@ -22,24 +25,38 @@ const Login: React.FC = () => {
   return (
     <Section
       title="Login"
-      titleClassName="text-4xl font-serif my-8"
+      titleClassName="text-4xl font-serif my-8 w-full mt-12"
+      descriptionClassName="w-full"
       shortHeight
     >
-      <div>
-        {error && <p>{error}</p>}
+      <div className="flex flex-col items-center w-full">
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
+          className="p-2 mb-4 w-96 border border-black placeholder:text-xs"
         />
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
+          className="p-2 mb-4 w-96 border border-black placeholder:text-xs"
         />
-        <button onClick={onSubmit}>Login</button>
+        <button
+          className="bg-black text-white font-serif py-2 px-4"
+          onClick={onSubmit}
+        >
+          Login
+        </button>
+        <button
+          className="text-center mt-4 cursor-pointer text-sm font-serif tracking-wide underline font-light"
+          onClick={() => navigate('/signup')}
+        >
+          Create an account
+        </button>
+        {error && <p className="text-red-500 text-center mt-4">{error}</p>}
       </div>
     </Section>
   )

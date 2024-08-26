@@ -86,3 +86,10 @@ export interface Address {
   postal_code: string
   country: string
 }
+
+export interface NotificationProps {
+  message: string
+  type?: 'success' | 'error' | 'info' | 'warning'
+  duration?: number // duration in milliseconds
+  onClose: () => void
+}

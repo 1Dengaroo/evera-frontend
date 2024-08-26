@@ -7,9 +7,9 @@ interface SectionProps {
   id?: string
   backgroundColor?: string
   backgroundImage?: string
-  titleClassName?: string // Custom class for title
-  descriptionClassName?: string // Custom class for description (children)
-  shortHeight?: boolean // New prop to make height shorter when no background image
+  titleClassName?: string
+  descriptionClassName?: string
+  shortHeight?: boolean
 }
 
 export const Section: React.FC<SectionProps> = ({
@@ -19,9 +19,9 @@ export const Section: React.FC<SectionProps> = ({
   id,
   backgroundColor = 'bg-white',
   backgroundImage,
-  titleClassName = 'text-2xl font-bold text-gray-900 mb-6', // Default styling for title
-  descriptionClassName = '', // Default styling for description
-  shortHeight = false // Default to false, meaning normal height
+  titleClassName = 'text-2xl font-bold text-gray-900 mb-6',
+  descriptionClassName = '',
+  shortHeight = false
 }) => {
   const backgroundStyles = backgroundImage
     ? {
