@@ -1,6 +1,7 @@
-import React, { createContext, useState, useContext } from 'react'
+import React, { createContext, useState, useContext, useEffect } from 'react'
 import { AuthContextType } from '../types'
 import axios from 'axios'
+import { isJwtExpired } from '../utils/auth/isJwtExpired'
 
 export const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
@@ -14,6 +15,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [isAuthenticated, setIsAuthenticated] = useState(
     !!localStorage.getItem('jwtToken')
   )
+
+  useEffect(() => {
+    if (localStorage.getItem('jwtToken')) {
+      const token: string = localStorage.getItem('jwtToken') || ''
+      if (isJwtExpired(token)) {
+        logout()
+      }
+    }
+  }, [])
 
   const login = (token: string, user: any) => {
     setIsAuthenticated(true)
