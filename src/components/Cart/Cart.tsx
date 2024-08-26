@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useCart } from '../../hooks/Cart/useCart'
 import { CartItem } from './CartItem'
 import { useNavigate } from 'react-router-dom'
 import { useGetCartTotal } from '../../hooks/Products/useGetCartTotal'
+import { AuthContext } from '../../context/AuthContext'
 
 export const Cart: React.FC = () => {
   const { items } = useCart()
   const navigate = useNavigate()
   const [total, setTotal] = useState<number>(0)
+  const { isAuthenticated } = useContext(AuthContext)
 
   if (items.length === 0) {
     return <>Your cart is empty</>
@@ -38,14 +40,35 @@ export const Cart: React.FC = () => {
       <p className="text-right mt-4 pr-10 font-serif">
         Total: ${total.toFixed(2)}
       </p>
-      <button
-        className="bg-black text-white font-serif py-2 px-4 mt-4"
-        onClick={() => {
-          navigate('/checkout')
-        }}
-      >
-        Checkout
-      </button>
+      {!isAuthenticated ? (
+        <>
+          <button
+            className="bg-black text-white font-serif py-2 px-4 mt-8"
+            onClick={() => {
+              navigate('/login')
+            }}
+          >
+            Login and track your orders
+          </button>
+          <div
+            className="text-center mt-4 hover:underline cursor-pointer text-sm"
+            onClick={() => navigate('/checkout')}
+          >
+            Checkout as guest
+          </div>
+        </>
+      ) : (
+        <>
+          <button
+            className="bg-black text-white font-serif py-2 px-4 mt-8"
+            onClick={() => {
+              navigate('/checkout')
+            }}
+          >
+            Checkout
+          </button>
+        </>
+      )}
     </div>
   )
 }

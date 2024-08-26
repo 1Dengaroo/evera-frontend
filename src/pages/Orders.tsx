@@ -35,7 +35,7 @@ const Orders: React.FC = () => {
                 </span>
               </div>
               <p className="text-gray-600">
-                <strong>Email:</strong> {order.email}
+                <strong>Order Email:</strong> {order.email}
               </p>
               <p className="text-gray-600">
                 <strong>Total Price:</strong> ${(order.price / 100).toFixed(2)}
