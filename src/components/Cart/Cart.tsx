@@ -11,17 +11,17 @@ export const Cart: React.FC = () => {
   const [total, setTotal] = useState<number>(0)
   const { isAuthenticated } = useContext(AuthContext)
 
-  if (items.length === 0) {
-    return <>Your cart is empty</>
-  }
-
   useEffect(() => {
     const fetchTotal = async () => {
       const total = await useGetCartTotal(items)
       setTotal(total || 0)
     }
     fetchTotal()
-  }, [])
+  }, [items])
+
+  if (items.length === 0) {
+    return <>Your cart is empty</>
+  }
 
   return (
     <div className="container mx-auto p-4">

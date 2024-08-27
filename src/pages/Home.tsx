@@ -53,7 +53,7 @@ const Home: React.FC = () => {
         backgroundColor="bg-white"
         descriptionClassName="text-lg text-gray-800"
         title="New Arrivals"
-        titleClassName="text-4xl font-serif font-thin text-gray-900 mb-4 tracking-wide"
+        titleClassName="text-4xl font-serif font-thin text-gray-900 mb-4 tracking-wide mb-8"
         shortHeight
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">

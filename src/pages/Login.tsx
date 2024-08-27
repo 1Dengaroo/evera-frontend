@@ -50,12 +50,20 @@ const Login: React.FC = () => {
         >
           Login
         </button>
-        <button
-          className="text-center mt-4 cursor-pointer text-sm font-serif tracking-wide underline font-light"
-          onClick={() => navigate('/signup')}
-        >
-          Create an account
-        </button>
+        <div className="flex flex-col items-center mt-4">
+          <button
+            className="text-sm font-serif underline cursor-pointer"
+            onClick={() => navigate('/reset-password')}
+          >
+            Forgot Password?
+          </button>
+          <button
+            className="text-sm font-serif underline cursor-pointer mt-2"
+            onClick={() => navigate('/signup')}
+          >
+            Create an account
+          </button>
+        </div>
         {error && <p className="text-red-500 text-center mt-4">{error}</p>}
       </div>
     </Section>

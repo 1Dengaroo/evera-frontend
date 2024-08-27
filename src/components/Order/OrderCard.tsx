@@ -6,7 +6,7 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onEditClick }) => {
     <div className="border rounded-lg p-6 shadow-lg bg-white space-y-6">
       {/* Order Header */}
       <div className="flex justify-between items-center border-b pb-4">
-        <h3 className="text-xl font-semibold">Order #{order.id}</h3>
+        <h3 className="text-xl font-semibold">Order ID: {order.id}</h3>
         <span
           className={`px-3 py-1 rounded-full text-sm ${
             order.paid

@@ -21,6 +21,8 @@ import Dashboard from './pages/Dashboard'
 import { NotFound } from './pages/404'
 import { OrderCancel } from './pages/OrderCancel'
 import { OrderSuccess } from './pages/OrderSuccess'
+import PasswordResetRequest from './components/Authentication/PasswordResetRequest'
+import PasswordReset from './components/Authentication/PasswordReset'
 
 const App: React.FC = () => {
   return (
@@ -46,6 +48,11 @@ const App: React.FC = () => {
                   <Route element={<PublicRoutes />}>
                     <Route element={<Login />} path="/login" />
                     <Route element={<Signup />} path="/signup" />
+                    <Route
+                      element={<PasswordResetRequest />}
+                      path="/reset-password"
+                    />
+                    <Route element={<PasswordReset />} path="/password/edit" />
                   </Route>
 
                   <Route element={<ProtectedRoutes />}>
