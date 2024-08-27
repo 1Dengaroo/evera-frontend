@@ -1,12 +1,6 @@
-// src/components/ProductCard.tsx
-
 import React from 'react'
-import { Product } from '../../types'
 import { useNavigate } from 'react-router-dom'
-
-interface ProductCardProps {
-  product: Product
-}
+import { ProductCardProps } from '../../types'
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const price = Number(product.price)
@@ -18,7 +12,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <div
-      className="rounded-lg shadow-sm hover:shadow-lg transition-shadow"
+      className="group rounded-lg shadow-sm hover:shadow-lg transition-shadow"
       onClick={handleClick}
     >
       <img
@@ -26,7 +20,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         className="w-full h-84 object-cover mb-2 rounded"
         src={product.cover_image}
       />
-      <h2 className="text-md font-serif px-4">{product.name}</h2>
+      <h2 className="text-md font-serif px-4 group-hover:underline">
+        {product.name}
+      </h2>
       <p className="text-gray-500 font-serif font-thin tracking-wider text-sm px-4 mb-2">
         Evera
       </p>

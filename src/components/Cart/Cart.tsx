@@ -51,7 +51,7 @@ export const Cart: React.FC = () => {
             Login and track your orders
           </button>
           <div
-            className="text-center mt-4 hover:underline cursor-pointer text-sm"
+            className="text-center mt-4 hover:underline cursor-pointer"
             onClick={() => navigate('/checkout')}
           >
             Checkout as guest

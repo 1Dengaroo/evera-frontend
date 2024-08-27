@@ -15,19 +15,19 @@ export const Footer: React.FC = () => {
               className="text-sm text-gray-600 hover:text-black mx-2"
               href="/shop"
             >
-              Shop
+              Products
             </a>
             <a
               className="text-sm text-gray-600 hover:text-black mx-2"
-              href="/contact"
+              href="/orders"
             >
-              Contact
+              Orders
             </a>
             <a
               className="text-sm text-gray-600 hover:text-black mx-2"
-              href="/about"
+              href="/faq"
             >
-              About Us
+              FAQ
             </a>
           </div>
 

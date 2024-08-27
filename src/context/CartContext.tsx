@@ -60,16 +60,16 @@ function cartReducer(state: CartState, action: CartAction): CartState {
   }
 }
 
-// Create context
 export const CartContext = createContext<{
   state: CartState
   dispatch: React.Dispatch<CartAction>
+  getCartSize: () => number
 }>({
   state: initialState,
-  dispatch: () => null
+  dispatch: () => null,
+  getCartSize: () => 0
 })
 
-// Context provider
 export const CartProvider: React.FC<{ children: ReactNode }> = ({
   children
 }) => {
@@ -82,8 +82,12 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
     localStorage.setItem('cart', JSON.stringify(state))
   }, [state])
 
+  const getCartSize = () => {
+    return state.items.reduce((total, item) => total + item.quantity, 0)
+  }
+
   return (
-    <CartContext.Provider value={{ state, dispatch }}>
+    <CartContext.Provider value={{ state, dispatch, getCartSize }}>
       {children}
     </CartContext.Provider>
   )

@@ -1,12 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Section } from '../components/Section/Section'
 import { useNavigate } from 'react-router-dom'
+import { useGetFrontPageProducts } from '../hooks/Products/useGetFrontPageProducts'
+import ProductCard from '../components/Card/ProductCard'
+import { Product } from '../types'
 
 const Home: React.FC = () => {
   const navigate = useNavigate()
+  const [products, setProducts] = React.useState<Product[]>([])
 
   const user = localStorage.getItem('user')
   const parsedUser = user ? JSON.parse(user) : null
+
+  useEffect(() => {
+    async function fetchData() {
+      const result = await useGetFrontPageProducts()
+      setProducts(result)
+    }
+    fetchData()
+  }, [])
 
   const handleShopButtonClick = () => {
     navigate('/shop')
@@ -41,11 +53,14 @@ const Home: React.FC = () => {
         backgroundColor="bg-white"
         descriptionClassName="text-lg text-gray-800"
         title="New Arrivals"
-        titleClassName="text-4xl font-serif font-thin text-gray-900 mb-4"
+        titleClassName="text-4xl font-serif font-thin text-gray-900 mb-4 tracking-wide"
         shortHeight
       >
-        <p>Discover our latest products.</p>
-        <p>Handpicked just for you.</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
       </Section>
       <Section
         backgroundImage="images/home_2.webp"

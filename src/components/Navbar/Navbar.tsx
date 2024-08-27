@@ -1,56 +1,8 @@
-import React, { useContext, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { AuthContext } from '../../context/AuthContext'
-import { useUserLogout } from '../../hooks/Users/useUserLogout'
-import { NavItem } from '../../types'
-
-const navItems: NavItem[] = [
-  { label: 'Shop', href: '/shop' },
-  { label: 'About', href: '/about' },
-  { label: 'FAQ', href: '/faq' },
-  { label: 'Cart', href: '/cart' }
-]
-
-const NavLinks: React.FC<{ isMobile?: boolean }> = ({ isMobile }) => {
-  const { isAuthenticated } = useContext(AuthContext)
-  const { handleLogout } = useUserLogout()
-  const navigate = useNavigate()
-
-  const dynamicNavItems = [...navItems]
-
-  const onLogout = async () => {
-    const success = await handleLogout()
-
-    if (success) {
-      navigate('/')
-    }
-  }
-
-  if (isAuthenticated) {
-    dynamicNavItems.push({ label: 'Orders', href: '/orders' })
-    dynamicNavItems.push({ label: 'Logout', href: '#' })
-  } else {
-    dynamicNavItems.push({ label: 'Login', href: '/login' })
-    dynamicNavItems.push({ label: 'Signup', href: '/signup' })
-  }
-
-  return (
-    <>
-      {dynamicNavItems.map((item) => (
-        <Link
-          key={item.label}
-          className={`px-2 text-sm hover:underline text-gray-700 hover:text-gray-900 ${
-            isMobile ? 'block' : 'inline-block'
-          }`}
-          to={item.label === 'Logout' ? '#' : item.href}
-          onClick={item.label === 'Logout' ? onLogout : undefined}
-        >
-          {item.label}
-        </Link>
-      ))}
-    </>
-  )
-}
+// src/components/Navbar/Navbar.tsx
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import LeftNavLinks from './LeftNavLinks'
+import RightNavLinks from './RightNavLinks'
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -59,42 +11,61 @@ export const Navbar: React.FC = () => {
     setIsOpen(!isOpen)
   }
 
+  const closeMenu = () => {
+    setIsOpen(false)
+  }
+
   return (
     <nav className="bg-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex justify-between h-16">
+          {/* Left side: Logo and Left Nav Links */}
           <div className="flex items-center">
-            <div className="text-xl font-serif text-gray-900">
+            <div className="text-2xl font-serif text-gray-900 mr-8">
               <Link to="/">Evera</Link>
+            </div>
+            <div className="hidden md:flex space-x-4">
+              <LeftNavLinks />
             </div>
           </div>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-4">
-            <NavLinks />
+          {/* Right side: Right Nav Links */}
+          <div className="hidden md:flex items-center space-x-4">
+            <RightNavLinks />
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex md:hidden">
+          {/* Mobile menu button */}
+          <div className="flex md:hidden items-center">
             <button
-              aria-expanded={isOpen}
-              aria-label="Toggle navigation"
-              className="text-gray-900 focus:outline-none"
               onClick={toggleMenu}
+              type="button"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-900 transition duration-150 ease-in-out"
+              aria-controls="mobile-menu"
+              aria-expanded={isOpen}
             >
               <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+                className="block h-6 w-6"
                 xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
               >
-                <path
-                  d={isOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16m-7 6h7'}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                />
+                {isOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16m-7 6h7"
+                  />
+                )}
               </svg>
             </button>
           </div>
@@ -102,11 +73,19 @@ export const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`${isOpen ? 'block' : 'hidden'} md:hidden`}>
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <NavLinks isMobile />
+      <div
+        className={`${
+          isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+        } overflow-hidden md:hidden transition-all duration-300 ease-in-out transform-gpu`}
+        id="mobile-menu"
+      >
+        <div className="px-2 pt-2 pb-3 space-y-1">
+          <LeftNavLinks isMobile onClick={closeMenu} />
+          <RightNavLinks isMobile onClick={closeMenu} />
         </div>
       </div>
     </nav>
   )
 }
+
+export default Navbar

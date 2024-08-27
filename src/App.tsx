@@ -17,6 +17,10 @@ import PublicRoutes from './components/Authentication/PublicRoute'
 import Checkout from './pages/Checkout'
 import Orders from './pages/Orders'
 import { NotificationProvider } from './context/NotificationContext'
+import Dashboard from './pages/Dashboard'
+import { NotFound } from './pages/404'
+import { OrderCancel } from './pages/OrderCancel'
+import { OrderSuccess } from './pages/OrderSuccess'
 
 const App: React.FC = () => {
   return (
@@ -35,6 +39,9 @@ const App: React.FC = () => {
                   <Route element={<About />} path="/about" />
                   <Route element={<CartPage />} path="/cart" />
                   <Route element={<Checkout />} path="/checkout" />
+                  <Route element={<Orders />} path="/orders" />
+                  <Route element={<OrderCancel />} path="/orders/cancel" />
+                  <Route element={<OrderSuccess />} path="/orders/success" />
 
                   <Route element={<PublicRoutes />}>
                     <Route element={<Login />} path="/login" />
@@ -42,8 +49,10 @@ const App: React.FC = () => {
                   </Route>
 
                   <Route element={<ProtectedRoutes />}>
-                    <Route element={<Orders />} path="/orders" />
+                    <Route element={<Dashboard />} path="/dashboard" />
                   </Route>
+
+                  <Route path="*" element={<NotFound />} />
                 </Routes>
               </div>
               <Footer />

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useGetProductById } from '../hooks/Products/useGetProductById'
 import { useCart } from '../hooks/Cart/useCart'
 import { Product } from '../types'
+import { useNotification } from '../context/NotificationContext'
 
 const ProductShow: React.FC = () => {
   const { id } = useParams<{ id: string }>()
@@ -11,10 +12,11 @@ const ProductShow: React.FC = () => {
   const [selectedSize, setSelectedSize] = useState<string>('')
   const [quantity, setQuantity] = useState<number>(1)
   const { addItem } = useCart()
+  const { showNotification } = useNotification()
 
   const handleAddToCart = () => {
     if (!product || (!selectedSize && product.sizes.length > 0)) {
-      alert('Please select a size before adding to cart')
+      showNotification('Please select a size', 'error')
       return
     }
 
@@ -25,6 +27,7 @@ const ProductShow: React.FC = () => {
       size: selectedSize,
       imageUrl: selectedImage || product.cover_image
     })
+    showNotification('Item added to cart', 'success')
   }
 
   useEffect(() => {
