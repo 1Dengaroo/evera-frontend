@@ -3,7 +3,7 @@ import { useGetProducts } from '../../hooks/Dashboard/useGetProducts'
 import { Product } from '../../types'
 import ProductCard from '../Card/ProductCard'
 import ProductForm from './ProductEditForm'
-import FilterForm from '../Filter/FilterForm' // Import the FilterForm
+import FilterForm from '../Filter/FilterForm'
 
 const ProductsList: React.FC = () => {
   const [isEditingProduct, setIsEditingProduct] = useState<string | null>(null)
@@ -70,7 +70,8 @@ const ProductsList: React.FC = () => {
       product_type: product.product_type,
       quantity: product.quantity || 9999,
       cover_image: product.cover_image,
-      sub_images: product.sub_images || []
+      sub_images: product.sub_images || [],
+      sizes: product.sizes || []
     })
   }
 

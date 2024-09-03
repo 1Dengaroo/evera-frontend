@@ -59,6 +59,26 @@ const ProductForm: React.FC<ProductFormProps> = ({
     setEditForm((prevForm: any) => ({ ...prevForm, sub_images: newSubImages }))
   }
 
+  const handleSizeChange = (index: number, value: string) => {
+    const newSizes = [...editForm.sizes]
+    newSizes[index] = value
+    setEditForm((prevForm: any) => ({ ...prevForm, sizes: newSizes }))
+  }
+
+  const addSizeField = () => {
+    setEditForm((prevForm: any) => ({
+      ...prevForm,
+      sizes: [...prevForm.sizes, '']
+    }))
+  }
+
+  const removeSizeField = (index: number) => {
+    const newSizes = editForm.sizes.filter(
+      (_: string, i: number) => i !== index
+    )
+    setEditForm((prevForm: any) => ({ ...prevForm, sizes: newSizes }))
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const updatedProduct = await useUpdateProduct(product.id, editForm)
@@ -206,6 +226,35 @@ const ProductForm: React.FC<ProductFormProps> = ({
           className="px-4 py-2 text-blue-500 hover:underline"
         >
           Add Sub-Image
+        </button>
+      </div>
+
+      <div className="mb-4">
+        <label className="block mb-2 font-semibold">Sizes</label>
+        {editForm.sizes.map((size: string, index: number) => (
+          <div key={index} className="flex items-center mb-2">
+            <input
+              type="text"
+              value={size}
+              onChange={(e) => handleSizeChange(index, e.target.value)}
+              className="border px-4 py-2 w-full mr-2"
+              placeholder={`Size ${index + 1}`}
+            />
+            <button
+              type="button"
+              onClick={() => removeSizeField(index)}
+              className="px-4 py-2 text-red-500 hover:underline"
+            >
+              Remove
+            </button>
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={addSizeField}
+          className="px-4 py-2 text-blue-500 hover:underline"
+        >
+          Add Size
         </button>
       </div>
 

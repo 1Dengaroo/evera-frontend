@@ -45,6 +45,21 @@ const ProductCreateForm: React.FC = () => {
     setForm({ ...form, sub_images: newSubImages })
   }
 
+  const handleSizeChange = (index: number, value: string) => {
+    const newSizes = [...form.sizes]
+    newSizes[index] = value
+    setForm({ ...form, sizes: newSizes })
+  }
+
+  const addSizeField = () => {
+    setForm({ ...form, sizes: [...form.sizes, ''] })
+  }
+
+  const removeSizeField = (index: number) => {
+    const newSizes = form.sizes.filter((_, i) => i !== index)
+    setForm({ ...form, sizes: newSizes })
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const createdProduct = await useCreateProduct(form)
@@ -209,6 +224,35 @@ const ProductCreateForm: React.FC = () => {
             className="px-4 py-2 text-blue-500 hover:underline"
           >
             Add Sub-Image
+          </button>
+        </div>
+
+        <div className="mb-4">
+          <h4 className="text-lg font-semibold mb-2">Sizes</h4>
+          {form.sizes.map((size, index) => (
+            <div key={index} className="flex mb-2">
+              <input
+                type="text"
+                value={size}
+                onChange={(e) => handleSizeChange(index, e.target.value)}
+                className="border px-4 py-2 w-full"
+                placeholder={`Size ${index + 1}`}
+              />
+              <button
+                type="button"
+                onClick={() => removeSizeField(index)}
+                className="px-4 py-2 text-red-500 hover:underline"
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={addSizeField}
+            className="px-4 py-2 text-blue-500 hover:underline"
+          >
+            Add Size
           </button>
         </div>
 
