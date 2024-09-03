@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { ProductFormProps } from '../../types'
-import { useUpdateProduct } from '../../hooks/Dashboard/useUpdateProducts'
+import { useUpdateProduct } from '../../hooks/Dashboard/useUpdateProduct'
 import { useNotification } from '../../context/NotificationContext'
 
 const ProductForm: React.FC<ProductFormProps> = ({
@@ -20,7 +20,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
       cover_image: product.cover_image || '',
       sub_images: product.sub_images || [''],
       sizes: product.sizes || ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-      quantity: product.quantity || 0
+      quantity: product.quantity || 9999
     })
   }, [product, setEditForm])
 
@@ -66,6 +66,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
       showNotification('Failed to update product', 'error')
       return
     }
+
     showNotification('Product updated successfully', 'success')
     handleUpdateSuccess(updatedProduct)
     setIsEditing(null)
@@ -81,7 +82,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
       cover_image: product.cover_image || '',
       sub_images: product.sub_images || [''],
       sizes: product.sizes || ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-      quantity: product.quantity || 0
+      quantity: product.quantity || 9999
     })
     setIsEditing(null)
   }
@@ -147,6 +148,21 @@ const ProductForm: React.FC<ProductFormProps> = ({
           <option value="men">Men</option>
           <option value="women">Women</option>
         </select>
+      </div>
+
+      <div className="mb-4">
+        <label htmlFor="quantity" className="block mb-2 font-semibold">
+          Quantity
+        </label>
+        <input
+          type="number"
+          id="quantity"
+          name="quantity"
+          value={editForm.quantity}
+          onChange={handleChange}
+          className="border px-4 py-2 w-full"
+          placeholder="Enter product quantity"
+        />
       </div>
 
       <div className="mb-4">

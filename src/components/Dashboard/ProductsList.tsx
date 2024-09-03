@@ -3,16 +3,11 @@ import { useGetProducts } from '../../hooks/Dashboard/useGetProducts'
 import { Product } from '../../types'
 import ProductCard from '../Card/ProductCard'
 import ProductForm from './ProductEditForm'
-import { ProductsListProps } from '../../types'
+import FilterForm from '../Filter/FilterForm' // Import the FilterForm
 
-const ProductsList: React.FC<ProductsListProps> = ({
-  handleProductUpdateSuccess,
-  handleProductEditClick,
-  isEditingProduct,
-  editProductForm,
-  setEditProductForm,
-  setIsEditing
-}) => {
+const ProductsList: React.FC = () => {
+  const [isEditingProduct, setIsEditingProduct] = useState<string | null>(null)
+  const [editProductForm, setEditProductForm] = useState<any>({})
   const [products, setProducts] = useState<Product[]>([])
   const [productFilters, setProductFilters] = useState({
     name: '',
@@ -56,60 +51,62 @@ const ProductsList: React.FC<ProductsListProps> = ({
     setProducts(fetchedProducts)
   }
 
+  const handleProductUpdateSuccess = (updatedProduct: Product) => {
+    setProducts((prevProducts) =>
+      prevProducts.map((product) =>
+        product.id === updatedProduct.id ? updatedProduct : product
+      )
+    )
+    setIsEditingProduct(null)
+  }
+
+  const handleProductEditClick = (product: Product) => {
+    setIsEditingProduct(product.id)
+    setEditProductForm({
+      name: product.name,
+      description: product.description,
+      price: product.price,
+      active: product.active,
+      product_type: product.product_type,
+      quantity: product.quantity || 9999,
+      cover_image: product.cover_image,
+      sub_images: product.sub_images || []
+    })
+  }
+
   return (
     <div>
       <h2 className="text-3xl text-center mb-6 font-serif mt-16">
         Your Products
       </h2>
 
-      <form onSubmit={handleProductFilterSubmit} className="mb-6">
-        <div className="flex space-x-4">
-          <input
-            type="text"
-            name="name"
-            placeholder="Filter by Name"
-            value={productFilters.name}
-            onChange={handleProductFilterChange}
-            className="border px-4 py-2 w-full placeholder:text-sm"
-          />
-          <select
-            name="active"
-            value={productFilters.active}
-            onChange={handleProductFilterChange}
-            className="border px-4 py-2 w-full"
-          >
-            <option value="">All</option>
-            <option value="true">Active</option>
-            <option value="false">Inactive</option>
-          </select>
-          <input
-            type="date"
-            name="startDate"
-            value={productFilters.startDate}
-            onChange={handleProductFilterChange}
-            className="border px-4 py-2 w-full"
-          />
-          <input
-            type="date"
-            name="endDate"
-            value={productFilters.endDate}
-            onChange={handleProductFilterChange}
-            className="border px-4 py-2 w-full"
-          />
-          <select
-            name="sortByDate"
-            value={productFilters.sortByDate}
-            onChange={handleProductFilterChange}
-            className="border px-4 py-2 w-full"
-          >
-            <option value="asc">Sort by earliest</option>
-            <option value="desc">Sort by newest</option>
-          </select>
-          <button type="submit" className="bg-black text-white px-4 text-sm">
-            Apply
-          </button>
-        </div>
-      </form>
+      <FilterForm
+        filters={productFilters}
+        onFilterChange={handleProductFilterChange}
+        onFilterSubmit={handleProductFilterSubmit}
+        fields={[
+          { name: 'name', type: 'text', placeholder: 'Filter by Name' },
+          {
+            name: 'active',
+            type: 'select',
+            options: [
+              { value: '', label: 'All' },
+              { value: 'true', label: 'Active' },
+              { value: 'false', label: 'Inactive' }
+            ]
+          },
+          { name: 'startDate', type: 'date' },
+          { name: 'endDate', type: 'date' },
+          {
+            name: 'sortByDate',
+            type: 'select',
+            options: [
+              { value: 'asc', label: 'Sort by earliest' },
+              { value: 'desc', label: 'Sort by newest' }
+            ]
+          }
+        ]}
+      />
 
       {products.length === 0 ? (
         <p className="text-center text-gray-600">You have no products.</p>
@@ -123,7 +120,7 @@ const ProductsList: React.FC<ProductsListProps> = ({
                   editForm={editProductForm}
                   setEditForm={setEditProductForm}
                   handleUpdateSuccess={handleProductUpdateSuccess}
-                  setIsEditing={setIsEditing}
+                  setIsEditing={setIsEditingProduct}
                 />
               ) : (
                 <ProductCard

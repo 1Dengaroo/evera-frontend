@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
 import { useCreateProduct } from '../../hooks/Dashboard/useCreateProduct'
 import { useNotification } from '../../context/NotificationContext'
-import { ProductCreateFormProps } from '../../types'
 
-const ProductCreateForm: React.FC<ProductCreateFormProps> = ({
-  handleCreateSuccess
-}) => {
+const ProductCreateForm: React.FC = () => {
   const [form, setForm] = useState({
     name: '',
     description: '',
@@ -15,7 +12,7 @@ const ProductCreateForm: React.FC<ProductCreateFormProps> = ({
     cover_image: '',
     sub_images: [''],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    quantity: 0
+    quantity: 9999
   })
   const { showNotification } = useNotification()
 
@@ -52,7 +49,6 @@ const ProductCreateForm: React.FC<ProductCreateFormProps> = ({
     e.preventDefault()
     const createdProduct = await useCreateProduct(form)
     if (createdProduct) {
-      handleCreateSuccess(createdProduct)
       setForm({
         name: '',
         description: '',
@@ -62,7 +58,7 @@ const ProductCreateForm: React.FC<ProductCreateFormProps> = ({
         cover_image: '',
         sub_images: [''],
         sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-        quantity: 0
+        quantity: 9999
       })
       showNotification('Product created successfully', 'success')
     } else {
@@ -110,7 +106,7 @@ const ProductCreateForm: React.FC<ProductCreateFormProps> = ({
 
         <div className="mb-4">
           <label htmlFor="price" className="block mb-2 font-semibold">
-            Price
+            Price (USD)
           </label>
           <input
             type="number"
@@ -140,6 +136,22 @@ const ProductCreateForm: React.FC<ProductCreateFormProps> = ({
             <option value="men">Men</option>
             <option value="women">Women</option>
           </select>
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="quantity" className="block mb-2 font-semibold">
+            Quantity
+          </label>
+          <input
+            type="number"
+            id="quantity"
+            name="quantity"
+            value={form.quantity}
+            onChange={handleChange}
+            className="border px-4 py-2 w-full"
+            placeholder="Enter product quantity"
+            required
+          />
         </div>
 
         <div className="mb-4">

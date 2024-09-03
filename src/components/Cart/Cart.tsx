@@ -29,7 +29,7 @@ export const Cart: React.FC = () => {
   }, [items])
 
   if (items.length === 0) {
-    return <>Your cart is empty</>
+    return <p className="text-center mt-8">Your cart is empty</p>
   }
 
   return (

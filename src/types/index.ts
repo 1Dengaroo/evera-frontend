@@ -145,19 +145,6 @@ export interface ProductFormProps {
   setIsEditing: React.Dispatch<React.SetStateAction<string | null>>
 }
 
-export interface ProductCreateFormProps {
-  handleCreateSuccess: (newProduct: Product) => void
-}
-
-export interface ProductsListProps {
-  handleProductUpdateSuccess: (updatedProduct: Product) => void
-  handleProductEditClick: (product: Product) => void
-  isEditingProduct: string | null
-  editProductForm: any
-  setEditProductForm: React.Dispatch<any>
-  setIsEditing: React.Dispatch<React.SetStateAction<string | null>>
-}
-
 export interface CartItemProps {
   id: string
   name: string
