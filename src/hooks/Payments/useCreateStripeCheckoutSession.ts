@@ -8,7 +8,8 @@ export const useCreateStripeCheckoutSession = async (
   try {
     const filteredItems = items.map((item) => ({
       id: item.id,
-      quantity: item.quantity
+      quantity: item.quantity,
+      size: item.size
     }))
 
     const url = `${process.env.REACT_APP_API_URL}/orders`

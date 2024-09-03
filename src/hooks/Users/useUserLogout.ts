@@ -9,10 +9,8 @@ export const useUserLogout = () => {
   const handleLogout = async (): Promise<boolean> => {
     try {
       const url = `${process.env.REACT_APP_API_URL}/logout`
-
       const token = localStorage.getItem('jwtToken')
       setAuthToken(token)
-
       await axios.delete(url)
       logout()
       return true

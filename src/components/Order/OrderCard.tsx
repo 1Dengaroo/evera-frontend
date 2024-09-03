@@ -49,7 +49,11 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onEditClick }) => {
               key={item.product_id}
               className="flex justify-between text-gray-700"
             >
-              <span>{item.product.name}</span>
+              <span>
+                {item.size
+                  ? item.product.name + ' (' + item.size + ')'
+                  : item.product.name}
+              </span>
               <span>
                 Quantity: {item.quantity}, Price: ${item.product.price}
               </span>

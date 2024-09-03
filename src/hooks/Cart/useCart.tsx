@@ -14,12 +14,12 @@ export function useCart() {
     dispatch({ type: 'ADD_ITEM', payload: item })
   }
 
-  function removeItem(id: string) {
-    dispatch({ type: 'REMOVE_ITEM', payload: id })
+  function removeItem(id: string, size: string) {
+    dispatch({ type: 'REMOVE_ITEM', payload: { id, size } })
   }
 
-  function updateQuantity(id: string, quantity: number) {
-    dispatch({ type: 'UPDATE_QUANTITY', payload: { id, quantity } })
+  function updateQuantity(id: string, size: string, quantity: number) {
+    dispatch({ type: 'UPDATE_QUANTITY', payload: { id, size, quantity } })
   }
 
   function clearCart() {

@@ -16,6 +16,7 @@ export interface Product {
   sub_images: string[]
   sizes: string[]
   quantity: number
+  product_type: string
 }
 
 export interface UserCredentials {
@@ -61,6 +62,7 @@ export interface OrderItem {
   product_id: number
   quantity: number
   product: Product
+  size: string
 }
 
 export interface Product {
@@ -132,4 +134,34 @@ export interface AdminGetOrdersParams {
 
 export interface ProductCardProps {
   product: Product
+  onEditClick?: () => void // Optional edit handler for admin view
+}
+
+export interface ProductFormProps {
+  product: Product
+  editForm: any
+  setEditForm: React.Dispatch<React.SetStateAction<any>>
+  handleUpdateSuccess: (updatedProduct: Product) => void
+  setIsEditing: React.Dispatch<React.SetStateAction<string | null>>
+}
+
+export interface ProductCreateFormProps {
+  handleCreateSuccess: (newProduct: Product) => void
+}
+
+export interface ProductsListProps {
+  handleProductUpdateSuccess: (updatedProduct: Product) => void
+  handleProductEditClick: (product: Product) => void
+  isEditingProduct: string | null
+  editProductForm: any
+  setEditProductForm: React.Dispatch<any>
+  setIsEditing: React.Dispatch<React.SetStateAction<string | null>>
+}
+
+export interface CartItemProps {
+  id: string
+  name: string
+  size: string
+  quantity: number
+  imageUrl: string
 }

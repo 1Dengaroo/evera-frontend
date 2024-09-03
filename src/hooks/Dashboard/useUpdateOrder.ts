@@ -16,8 +16,7 @@ export const useUpdateOrder = async ({
       }
     })
     return response.data
-  } catch (error) {
-    console.error('Error updating order:', error)
+  } catch {
     return null
   }
 }

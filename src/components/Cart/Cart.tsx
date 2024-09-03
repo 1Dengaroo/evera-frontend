@@ -4,18 +4,27 @@ import { CartItem } from './CartItem'
 import { useNavigate } from 'react-router-dom'
 import { useGetCartTotal } from '../../hooks/Products/useGetCartTotal'
 import { AuthContext } from '../../context/AuthContext'
+import { useValidateCart } from '../../hooks/Products/useValidateCart'
 
 export const Cart: React.FC = () => {
   const { items } = useCart()
   const navigate = useNavigate()
   const [total, setTotal] = useState<number>(0)
   const { isAuthenticated } = useContext(AuthContext)
+  const [cartIsValid, setCartIsValid] = useState<boolean>(false)
 
   useEffect(() => {
     const fetchTotal = async () => {
       const total = await useGetCartTotal(items)
       setTotal(total || 0)
     }
+
+    const validateCart = async () => {
+      const { valid } = await useValidateCart(items)
+      !valid ? setCartIsValid(false) : setCartIsValid(true)
+    }
+
+    validateCart()
     fetchTotal()
   }, [items])
 
@@ -42,31 +51,39 @@ export const Cart: React.FC = () => {
       </p>
       {!isAuthenticated ? (
         <>
-          <button
-            className="bg-black text-white font-serif py-2 px-4 mt-8"
-            onClick={() => {
-              navigate('/login')
-            }}
-          >
-            Login and track your orders
-          </button>
-          <div
-            className="text-center mt-4 hover:underline cursor-pointer"
-            onClick={() => navigate('/checkout')}
-          >
-            Checkout as guest
-          </div>
+          {cartIsValid && (
+            <div className="w-full flex flex-col items-center">
+              <button
+                className="bg-black text-white font-serif py-2 px-4 mt-8"
+                onClick={() => {
+                  navigate('/login')
+                }}
+              >
+                Login and track your orders
+              </button>
+              <div
+                className="text-center mt-4 hover:underline cursor-pointer"
+                onClick={() => navigate('/checkout')}
+              >
+                Checkout as guest
+              </div>
+            </div>
+          )}
         </>
       ) : (
         <>
-          <button
-            className="bg-black text-white font-serif py-2 px-4 mt-8"
-            onClick={() => {
-              navigate('/checkout')
-            }}
-          >
-            Checkout
-          </button>
+          {cartIsValid && (
+            <div className="w-full flex flex-col items-center">
+              <button
+                className="bg-black text-white font-serif py-2 px-4 mt-8"
+                onClick={() => {
+                  navigate('/checkout')
+                }}
+              >
+                Checkout
+              </button>
+            </div>
+          )}
         </>
       )}
     </div>
