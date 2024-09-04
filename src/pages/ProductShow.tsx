@@ -77,7 +77,7 @@ const ProductShow: React.FC = () => {
             {product.name}
           </h1>
           <p className="text-md font-serif font-light text-gray-700 mb-4">
-            ${Number(product.price).toFixed(2)} USD
+            ${Number(product.price / 100).toFixed(2)} USD
           </p>
           {product.sizes.length > 0 && (
             <p className="text-sm font-serif font-thin text-gray-700 mb-4">

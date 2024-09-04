@@ -121,7 +121,7 @@ const ProductCreateForm: React.FC = () => {
 
         <div className="mb-4">
           <label htmlFor="price" className="block mb-2 font-semibold">
-            Price (USD)
+            Price In Cents (USD)
           </label>
           <input
             type="number"

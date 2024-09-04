@@ -55,7 +55,8 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onEditClick }) => {
                   : item.product.name}
               </span>
               <span>
-                Quantity: {item.quantity}, Price: ${item.product.price}
+                Quantity: {item.quantity}, Price: $
+                {(item.product.price / 100).toFixed(2)}
               </span>
             </li>
           ))}

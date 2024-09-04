@@ -33,7 +33,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onEditClick }) => {
         Evera
       </p>
       <p className="text-gray-700 mb-4 text-sm font-serif font-light px-4">
-        ${Number(product.price).toFixed(2)}
+        ${Number(product.price / 100).toFixed(2)}
       </p>
       {onEditClick && (
         <button

@@ -140,7 +140,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
 
       <div className="mb-4">
         <label htmlFor="price" className="block mb-2 font-semibold">
-          Price
+          Price In Cents (USD)
         </label>
         <input
           type="number"

@@ -51,7 +51,7 @@ export const CartItem: React.FC<CartItemProps> = ({
             {error
               ? error
               : price !== null
-                ? `$${price.toFixed(2)}`
+                ? `$${(price / 100).toFixed(2)}`
                 : 'Loading price...'}
           </p>
         </div>
