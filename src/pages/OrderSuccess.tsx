@@ -41,22 +41,22 @@ export const OrderSuccess: React.FC = () => {
   }
 
   return (
-    <>
+    <div className="px-4">
       <h2 className="text-4xl font-serif my-8 text-center mt-12">
         Order Success
       </h2>
-      <p className="w-1/2 text-lg justify-center mx-auto mt-8 text-center">
+      <p className="md:w-1/2 text-lg justify-center mx-auto mt-8 text-center">
         Thank you for your purchase! You can continue shopping or check your
         email for further details. You should also receive an email confirmation
         shortly with your order details.
       </p>
-      <div className="w-1/2 justify-center mx-auto mt-8">
+      <div className="md:w-1/2 justify-center mx-auto mt-8">
         {order ? (
           <OrderCard order={order} />
         ) : (
           <p className="text-center">No order details available.</p>
         )}
       </div>
-    </>
+    </div>
   )
 }

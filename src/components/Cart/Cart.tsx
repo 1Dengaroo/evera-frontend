@@ -33,7 +33,7 @@ export const Cart: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mt-8">
       <div className="w-full">
         {items.map((item) => (
           <CartItem

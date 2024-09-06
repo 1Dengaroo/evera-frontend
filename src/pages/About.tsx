@@ -10,16 +10,17 @@ const About: React.FC = () => {
     >
       <div className="max-w-3xl mx-auto px-4 lg:px-8">
         <p className="mb-4 font-light">
-          Nothing comes from nowhere. Evera is founded on the principle of
-          iteration and building on what came before; finding ideas and
-          inspiration from anything and anywhere.
+          At Evera, we believe that every idea has a source. Our foundation is
+          built on the principle of iteration—constantly evolving and drawing
+          inspiration from what came before. We seek ideas everywhere, knowing
+          that innovation often comes from unexpected places.
         </p>
         <p className="font-light">
-          Our originality comes from play - always looking around us and in
-          between - exploring new connections and simply creating what we enjoy.
-          Influenced by the plethora of incredible work and people around us,
-          Evera hopes to build a community of like-minded individuals hungry to
-          create and inspire.
+          Our originality is rooted in playfulness, always exploring new
+          connections and finding joy in the creative process. Inspired by the
+          incredible work and people around us, we strive to cultivate a
+          community of like-minded individuals who are passionate about
+          creating, learning, and inspiring one another.
         </p>
       </div>
     </Section>
