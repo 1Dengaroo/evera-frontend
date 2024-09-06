@@ -15,7 +15,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
       name: product.name || '',
       description: product.description || '',
       price: product.price || 0,
-      active: product.active || true,
+      active: product.active === undefined ? true : product.active,
       product_type: product.product_type || 'unisex',
       cover_image: product.cover_image || '',
       sub_images: product.sub_images || [''],
