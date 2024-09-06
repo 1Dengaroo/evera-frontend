@@ -8,6 +8,10 @@ module.exports = {
       fontFamily: {
         sans: ['"Open Sans"', 'sans-serif'],
       },
+      spacing: {
+        '108': '27rem',
+        '116': '29rem',
+      },
     },
   },
   plugins: []
