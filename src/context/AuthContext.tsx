@@ -2,6 +2,7 @@ import React, { createContext, useState, useContext, useEffect } from 'react'
 import { AuthContextType } from '../types'
 import axios from 'axios'
 import { isJwtExpired } from '../utils/auth/isJwtExpired'
+import { useNotification } from './NotificationContext'
 
 export const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
@@ -12,6 +13,7 @@ export const AuthContext = createContext<AuthContextType>({
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children
 }) => {
+  const { showNotification } = useNotification()
   const [isAuthenticated, setIsAuthenticated] = useState(
     !!localStorage.getItem('jwtToken')
   )
@@ -37,6 +39,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.removeItem('jwtToken')
     localStorage.removeItem('user')
     delete axios.defaults.headers.common['Authorization']
+    showNotification('You have been logged out', 'info', 5000)
   }
 
   return (

@@ -26,9 +26,9 @@ import PasswordReset from './components/Authentication/PasswordReset'
 
 const App: React.FC = () => {
   return (
-    <AuthProvider>
+    <NotificationProvider>
       <CartProvider>
-        <NotificationProvider>
+        <AuthProvider>
           <div className="flex flex-col min-h-screen">
             <Router>
               <Navbar />
@@ -65,9 +65,9 @@ const App: React.FC = () => {
               <Footer />
             </Router>
           </div>
-        </NotificationProvider>
+        </AuthProvider>
       </CartProvider>
-    </AuthProvider>
+    </NotificationProvider>
   )
 }
 

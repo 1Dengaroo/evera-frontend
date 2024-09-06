@@ -14,8 +14,9 @@ export const useUserLogout = () => {
       await axios.delete(url)
       logout()
       return true
-    } catch {
-      return false
+    } catch (error: any) {
+      logout()
+      return true
     }
   }
 
