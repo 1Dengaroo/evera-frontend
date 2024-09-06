@@ -29,6 +29,12 @@ export const Footer: React.FC = () => {
             >
               FAQ
             </a>
+            <a
+              className="text-sm text-gray-600 hover:text-black mx-2"
+              href="mailto:support@everafashion.com"
+            >
+              Support
+            </a>
           </div>
 
           {/* Social Media Icons Section */}

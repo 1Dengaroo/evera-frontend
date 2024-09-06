@@ -47,9 +47,16 @@ const FAQ: React.FC = () => {
             How can I contact customer support?
           </h3>
           <p className="font-light">
-            You can contact our customer support team by visiting our Contact Us
-            page. We&apos;re here to assist you with any questions or concerns
-            you may have.
+            You can contact our customer support team by emailing us directly at
+            <a
+              href="mailto:support@everafashion.com"
+              className="text-blue-500 hover:underline"
+            >
+              {' '}
+              support@everafashion.com
+            </a>
+            . We&apos;re here to assist you with any questions or concerns you
+            may have.
           </p>
         </div>
       </div>
