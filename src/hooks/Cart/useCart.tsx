@@ -2,7 +2,8 @@ import { useContext } from 'react'
 import { CartContext } from '../../context/CartContext'
 
 export function useCart() {
-  const { state, dispatch } = useContext(CartContext)
+  const { state, dispatch, showSideCart, showSideCartView, hideSideCartView } =
+    useContext(CartContext)
 
   function addItem(item: {
     id: string
@@ -12,6 +13,7 @@ export function useCart() {
     imageUrl: string
   }) {
     dispatch({ type: 'ADD_ITEM', payload: item })
+    showSideCartView()
   }
 
   function removeItem(id: string, size: string) {
@@ -31,6 +33,9 @@ export function useCart() {
     addItem,
     removeItem,
     updateQuantity,
-    clearCart
+    clearCart,
+    showSideCart,
+    showSideCartView,
+    hideSideCartView
   }
 }

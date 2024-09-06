@@ -1,5 +1,12 @@
-import React, { createContext, useReducer, useEffect, ReactNode } from 'react'
+import React, {
+  createContext,
+  useReducer,
+  useEffect,
+  ReactNode,
+  useState
+} from 'react'
 import { CartItem } from '../types'
+
 export interface CartState {
   items: CartItem[]
 }
@@ -71,10 +78,16 @@ export const CartContext = createContext<{
   state: CartState
   dispatch: React.Dispatch<CartAction>
   getCartSize: () => number
+  showSideCart: boolean
+  showSideCartView: () => void
+  hideSideCartView: () => void
 }>({
   state: initialState,
   dispatch: () => null,
-  getCartSize: () => 0
+  getCartSize: () => 0,
+  showSideCart: false,
+  showSideCartView: () => {},
+  hideSideCartView: () => {}
 })
 
 export const CartProvider: React.FC<{ children: ReactNode }> = ({
@@ -85,6 +98,8 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
     return localData ? JSON.parse(localData) : initialState
   })
 
+  const [showSideCart, setShowSideCart] = useState<boolean>(false)
+
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(state))
   }, [state])
@@ -93,8 +108,25 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
     return state.items.reduce((total, item) => total + item.quantity, 0)
   }
 
+  const showSideCartView = () => {
+    setShowSideCart(true)
+  }
+
+  const hideSideCartView = () => {
+    setShowSideCart(false)
+  }
+
   return (
-    <CartContext.Provider value={{ state, dispatch, getCartSize }}>
+    <CartContext.Provider
+      value={{
+        state,
+        dispatch,
+        getCartSize,
+        showSideCart,
+        showSideCartView,
+        hideSideCartView
+      }}
+    >
       {children}
     </CartContext.Provider>
   )

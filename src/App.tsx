@@ -23,6 +23,7 @@ import { OrderCancel } from './pages/OrderCancel'
 import { OrderSuccess } from './pages/OrderSuccess'
 import PasswordResetRequest from './components/Authentication/PasswordResetRequest'
 import PasswordReset from './components/Authentication/PasswordReset'
+import { SideCart } from './components/Cart/SideCart'
 
 const App: React.FC = () => {
   return (
@@ -32,6 +33,8 @@ const App: React.FC = () => {
           <div className="flex flex-col min-h-screen">
             <Router>
               <Navbar />
+              <SideCart />
+
               <div className="flex-grow">
                 <Routes>
                   <Route element={<Home />} path="/" />
