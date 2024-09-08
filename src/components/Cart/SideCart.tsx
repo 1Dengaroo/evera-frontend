@@ -30,7 +30,6 @@ export const SideCart: React.FC = () => {
 
   return (
     <>
-      {/* Dark backdrop */}
       {showSideCart && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-10"
@@ -38,20 +37,19 @@ export const SideCart: React.FC = () => {
         ></div>
       )}
 
-      {/* Side Cart */}
       <div
         className={`fixed top-0 right-0 h-screen md:w-116 w-96 bg-white shadow-lg p-4 z-20 overflow-y-auto transform transition-transform duration-300 ease-in-out ${
           showSideCart ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         <button
-          className="absolute top-4 right-4 text-black text-xl font-bold"
+          className="absolute top-4 right-4 text-black text-2xl font-bold font-thin"
           onClick={hideSideCartView}
         >
           &times;
         </button>
 
-        <h2 className="text-lg font-bold">Your Cart</h2>
+        <h2 className="text-xl font-normal tracking-widest">Your Cart</h2>
 
         {items.length === 0 ? (
           <p>Your cart is empty.</p>
@@ -64,13 +62,14 @@ export const SideCart: React.FC = () => {
               size={item.size}
               quantity={item.quantity}
               imageUrl={item.imageUrl}
+              showMobileLayout={true}
             />
           ))
         )}
 
         {items.length > 0 && (
           <>
-            <p className="text-right mt-4 pr-10 font-serif">
+            <p className="text-right mt-4 pr-10">
               Total: ${(total / 100).toFixed(2)}
             </p>
 
@@ -103,7 +102,7 @@ export const SideCart: React.FC = () => {
               <>
                 {cartIsValid && (
                   <button
-                    className="bg-black text-white font-serif py-2 px-4 mt-4 w-full"
+                    className="bg-black text-white py-2 px-4 mt-4 w-full"
                     onClick={() => {
                       hideSideCartView()
                       navigate('/checkout')

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useGetCartTotal } from '../../hooks/Products/useGetCartTotal'
 import { AuthContext } from '../../context/AuthContext'
 import { useValidateCart } from '../../hooks/Products/useValidateCart'
+import { ButtonOne } from '../Button/ButtonOne'
 
 export const Cart: React.FC = () => {
   const { items } = useCart()
@@ -33,7 +34,7 @@ export const Cart: React.FC = () => {
   }
 
   return (
-    <div className="container mt-8">
+    <div className="container">
       <div className="w-full">
         {items.map((item) => (
           <CartItem
@@ -74,14 +75,13 @@ export const Cart: React.FC = () => {
         <>
           {cartIsValid && (
             <div className="w-full flex flex-col items-center">
-              <button
-                className="bg-black text-white font-serif py-2 px-4 mt-8"
+              <ButtonOne
+                className="mt-8"
+                label="Checkout"
                 onClick={() => {
                   navigate('/checkout')
                 }}
-              >
-                Checkout
-              </button>
+              />
             </div>
           )}
         </>

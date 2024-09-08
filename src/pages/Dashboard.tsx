@@ -42,7 +42,7 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-4 mt-8">
+    <div className="mx-auto md:px-16 p-4 mt-8">
       <h2 className="text-4xl text-center mb-6 font-serif">Dashboard</h2>
       <div className="flex space-x-4 justify-center mb-6">
         <button

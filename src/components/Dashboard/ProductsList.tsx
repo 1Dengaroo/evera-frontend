@@ -112,7 +112,7 @@ const ProductsList: React.FC = () => {
       {products.length === 0 ? (
         <p className="text-center text-gray-600">You have no products.</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {products.map((product) => (
             <div key={product.id}>
               {isEditingProduct === product.id ? (

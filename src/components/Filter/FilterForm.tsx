@@ -1,5 +1,6 @@
 import React from 'react'
 import { FilterFormProps } from './types'
+import { ButtonOne } from '../Button/ButtonOne'
 
 const FilterForm: React.FC<FilterFormProps> = ({
   filters,
@@ -41,12 +42,7 @@ const FilterForm: React.FC<FilterFormProps> = ({
             )
           }
         })}
-        <button
-          type="submit"
-          className="bg-black text-white px-3 py-1 text-xs rounded"
-        >
-          Apply
-        </button>
+        <ButtonOne className="text-xs rounded" label="Apply" type="submit" />
       </div>
     </form>
   )

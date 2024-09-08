@@ -24,13 +24,13 @@ export const Navbar: React.FC = () => {
             <div className="text-2xl font-serif text-gray-900 mr-8">
               <Link to="/">Evera</Link>
             </div>
-            <div className="hidden md:flex space-x-4">
+            <div className="hidden md:flex space-x-4 mt-1">
               <LeftNavLinks />
             </div>
           </div>
 
           {/* Right side: Right Nav Links */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-4 mt-1">
             <RightNavLinks />
           </div>
 

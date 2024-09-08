@@ -1,127 +1,135 @@
 import React from 'react'
 import { OrderCardProps } from '../../types'
+import { ButtonOne } from '../Button/ButtonOne'
 
-const OrderCard: React.FC<OrderCardProps> = ({ order, onEditClick }) => {
-  return (
-    <div className="border rounded-lg p-6 shadow-lg bg-white space-y-6">
-      {/* Order Header */}
-      <div className="flex justify-between items-center border-b pb-4">
-        <h3 className="text-xl font-semibold">Order ID: {order.id}</h3>
-        <span
-          className={`px-3 py-1 rounded-full text-sm ${
-            order.paid
-              ? 'bg-green-200 text-green-800'
-              : 'bg-red-200 text-red-800'
-          }`}
-        >
-          {order.paid ? 'Paid' : 'Not Paid'}
-        </span>
-      </div>
+const OrderStatusBadge: React.FC<{ paid: boolean }> = ({ paid }) => (
+  <span
+    className={`inline-block px-6 py-2 rounded-full text-sm font-semibold tracking-wider transition-colors duration-300 ${
+      paid ? 'bg-green-100' : 'bg-red-200'
+    }`}
+  >
+    {paid ? 'Paid' : 'Not Paid'}
+  </span>
+)
 
-      {/* Order Details */}
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <p className="text-gray-700">
-            <strong>Order Email:</strong> {order.email}
-          </p>
-          <p className="text-gray-700">
-            <strong>Total Price:</strong> ${(order.price / 100).toFixed(2)}
-          </p>
-        </div>
-        <div>
-          <p className="text-gray-700">
-            <strong>Order Date:</strong>{' '}
-            {new Date(order.created_at).toLocaleString()}
-          </p>
-          <p className="text-gray-700">
-            <strong>Last Updated:</strong>{' '}
-            {new Date(order.updated_at).toLocaleString()}
-          </p>
-        </div>
-      </div>
+const OrderDetailItem: React.FC<{ label: string; value: string }> = ({
+  label,
+  value
+}) => (
+  <p className="text-gray-800 font-light leading-relaxed">
+    <strong className="font-medium text-gray-600">{label}:</strong> {value}
+  </p>
+)
 
-      {/* Order Items */}
-      <div>
-        <h4 className="text-lg font-semibold mb-2">Order Items</h4>
-        <ul className="space-y-1">
-          {order.order_items.map((item) => (
-            <li
-              key={item.product_id}
-              className="flex justify-between text-gray-700"
-            >
-              <span>
-                {item.size
-                  ? item.product.name + ' (' + item.size + ')'
-                  : item.product.name}
-              </span>
-              <span>
-                Quantity: {item.quantity}, Price: $
-                {(item.product.price / 100).toFixed(2)}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </div>
+const OrderItem: React.FC<{ item: any }> = ({ item }) => (
+  <li className="flex justify-between text-gray-900 border-b border-gray-300 py-3 last:border-b-0">
+    <span className="font-light">
+      {item.size ? `${item.product.name} (${item.size})` : item.product.name}
+    </span>
+    <span className="font-light">
+      Quantity: {item.quantity}, Price: ${(item.product.price / 100).toFixed(2)}
+    </span>
+  </li>
+)
 
-      {/* Delivery Information */}
-      {order.delivery && (
-        <div>
-          <h4 className="text-lg font-semibold mb-2">Delivery Information</h4>
-          <div className="space-y-2">
-            <p className="text-gray-700">
-              <strong>Status:</strong> {order.delivery.status}
-            </p>
-            <p className="text-gray-700">
-              <strong>Tracking Info:</strong>{' '}
-              {order.delivery.tracking_information || 'N/A'}
-            </p>
-            <p className="text-gray-700">
-              <strong>Delivery Email:</strong> {order.delivery.email}
-            </p>
-            <p className="text-gray-700">
-              <strong>Delivery Date:</strong>{' '}
-              {new Date(order.delivery.created_at).toLocaleString()}
-            </p>
-          </div>
-
-          {/* Address Information */}
-          {order.delivery.address && (
-            <div className="mt-4 border-t pt-4">
-              <h5 className="font-semibold mb-2">Delivery Address</h5>
-              <p className="text-gray-700">
-                {order.delivery.address.name}
-                <br />
-                {order.delivery.address.line1}
-                <br />
-                {order.delivery.address.line2 && (
-                  <>
-                    {order.delivery.address.line2}
-                    <br />
-                  </>
-                )}
-                {order.delivery.address.city}, {order.delivery.address.state}{' '}
-                {order.delivery.address.postal_code}
-                <br />
-                {order.delivery.address.country}
-              </p>
-            </div>
-          )}
-        </div>
+const DeliveryAddress: React.FC<{ address: any }> = ({ address }) => (
+  <div className="mt-6 border-t border-gray-300 pt-4">
+    <h5 className="font-semibold text-gray-700 mb-2 tracking-wide">
+      Delivery Address
+    </h5>
+    <p className="text-gray-900 font-light">
+      {address.name}
+      <br />
+      {address.line1}
+      {address.line2 && (
+        <>
+          <br />
+          {address.line2}
+        </>
       )}
+      <br />
+      {address.city}, {address.state} {address.postal_code}
+      <br />
+      {address.country}
+    </p>
+  </div>
+)
 
-      {/* Edit Button */}
-      {onEditClick && (
-        <div className="text-right">
-          <button
-            onClick={onEditClick}
-            className="bg-black text-white tracking-wide py-2 px-4 text-sm rounded"
-          >
-            Edit Order
-          </button>
-        </div>
-      )}
+const OrderCard: React.FC<OrderCardProps> = ({ order, onEditClick }) => (
+  <div className="mb-4 border rounded-3xl p-10 shadow-lg bg-white space-y-10 max-w-4xl mx-auto transition-all duration-500 hover:shadow-2xl">
+    <div className="flex justify-between items-center border-b pb-6 border-gray-300">
+      <h3 className="text-2xl font-thin text-gray-900">Order #{order.id}</h3>
+      <OrderStatusBadge paid={order.paid} />
     </div>
-  )
-}
+
+    <div className="grid grid-cols-2 gap-8">
+      <div>
+        <OrderDetailItem label="Order Email" value={order.email} />
+        <OrderDetailItem
+          label="Total Price"
+          value={`$${(order.price / 100).toFixed(2)}`}
+        />
+      </div>
+      <div>
+        <OrderDetailItem
+          label="Order Date"
+          value={new Date(order.created_at).toLocaleString()}
+        />
+        <OrderDetailItem
+          label="Last Updated"
+          value={new Date(order.updated_at).toLocaleString()}
+        />
+      </div>
+    </div>
+
+    <div>
+      <h4 className="text-xl font-semibold text-gray-900 tracking-wide">
+        Order Items
+      </h4>
+      <ul className="divide-y divide-gray-300">
+        {order.order_items.map((item) => (
+          <OrderItem key={item.product_id} item={item} />
+        ))}
+      </ul>
+    </div>
+
+    {order.delivery && (
+      <div>
+        <h4 className="text-xl font-semibold text-gray-900 tracking-wide mb-4">
+          Delivery Information
+        </h4>
+        <div className="space-y-4">
+          <OrderDetailItem label="Status" value={order.delivery.status} />
+          <OrderDetailItem
+            label="Tracking Info"
+            value={order.delivery.tracking_information || 'N/A'}
+          />
+          <OrderDetailItem
+            label="Delivery Email"
+            value={order.delivery.email}
+          />
+          <OrderDetailItem
+            label="Delivery Date"
+            value={new Date(order.delivery.created_at).toLocaleString()}
+          />
+        </div>
+
+        {order.delivery.address && (
+          <DeliveryAddress address={order.delivery.address} />
+        )}
+      </div>
+    )}
+
+    {onEditClick && (
+      <div className="text-right">
+        <ButtonOne
+          className="text-sm font-medium text-white bg-gray-900 hover:bg-gray-700 transition-colors duration-300 px-6 py-3 rounded-full shadow-md"
+          label="Edit Order"
+          onClick={onEditClick}
+        />
+      </div>
+    )}
+  </div>
+)
 
 export default OrderCard

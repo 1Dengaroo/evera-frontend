@@ -4,6 +4,7 @@ import { useGetProductById } from '../hooks/Products/useGetProductById'
 import { useCart } from '../hooks/Cart/useCart'
 import { Product } from '../types'
 import { useNotification } from '../context/NotificationContext'
+import { QuantityInput } from '../components/Input/QuantityInput'
 
 const ProductShow: React.FC = () => {
   const { id } = useParams<{ id: string }>()
@@ -13,6 +14,17 @@ const ProductShow: React.FC = () => {
   const [quantity, setQuantity] = useState<number>(1)
   const { addItem } = useCart()
   const { showNotification } = useNotification()
+
+  useEffect(() => {
+    async function fetchProduct() {
+      if (id) {
+        const productData = await useGetProductById(id)
+        setProduct(productData)
+        setSelectedImage(productData?.cover_image || null)
+      }
+    }
+    fetchProduct()
+  }, [id])
 
   const handleAddToCart = () => {
     if (!product || (!selectedSize && product.sizes.length > 0)) {
@@ -30,16 +42,15 @@ const ProductShow: React.FC = () => {
     showNotification('Item added to cart', 'success')
   }
 
-  useEffect(() => {
-    async function fetchProduct() {
-      if (id) {
-        const productData = await useGetProductById(id)
-        setProduct(productData)
-        setSelectedImage(productData?.cover_image || null)
-      }
+  const handleQuantityIncrement = () => {
+    setQuantity(quantity + 1)
+  }
+
+  const handleQuantityDecrement = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1)
     }
-    fetchProduct()
-  }, [id])
+  }
 
   if (!product) {
     return (
@@ -98,12 +109,12 @@ const ProductShow: React.FC = () => {
           <p className="text-sm font-serif font-thin text-gray-700 mb-2">
             Quantity
           </p>
-          <input
-            className="w-24 h-8 border border-black px-4 text-sm text-center mb-4 rounded-sm"
+          <QuantityInput
+            className="mb-2 border-black"
             value={quantity}
-            onChange={(e) => setQuantity(Number(e.target.value))}
-            type="number"
-            min="1"
+            onIncrement={handleQuantityIncrement}
+            onDecrement={handleQuantityDecrement}
+            onChange={setQuantity}
           />
           <button
             className="w-full h-12 py-2 tracking-wider border border-black font-serif rounded-sm hover:bg-gray-100 mb-12"

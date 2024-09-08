@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useCreateProduct } from '../../hooks/Dashboard/useCreateProduct'
 import { useNotification } from '../../context/NotificationContext'
+import { ButtonOne } from '../Button/ButtonOne'
+import { UnderlineButton } from '../Button/UnderlineButton'
 
 const ProductCreateForm: React.FC = () => {
   const [form, setForm] = useState({
@@ -82,7 +84,7 @@ const ProductCreateForm: React.FC = () => {
   }
 
   return (
-    <>
+    <div className="max-w-4xl mx-auto">
       <h2 className="text-3xl text-center mb-6 font-serif mt-8">
         Create New Product
       </h2>
@@ -209,22 +211,18 @@ const ProductCreateForm: React.FC = () => {
                 className="border px-4 py-2 w-full"
                 placeholder={`Sub-Image URL ${index + 1}`}
               />
-              <button
-                type="button"
+              <UnderlineButton
+                label="Remove"
                 onClick={() => removeSubImageField(index)}
-                className="px-4 py-2 text-red-500 hover:underline"
-              >
-                Remove
-              </button>
+                className="font-serif tracking-wide ml-2 text-sm"
+              />
             </div>
           ))}
-          <button
-            type="button"
+          <UnderlineButton
+            className="font-serif ml-2 tracking-wide"
+            label="Add Sub-Image"
             onClick={addSubImageField}
-            className="px-4 py-2 text-blue-500 hover:underline"
-          >
-            Add Sub-Image
-          </button>
+          />
         </div>
 
         <div className="mb-4">
@@ -238,29 +236,27 @@ const ProductCreateForm: React.FC = () => {
                 className="border px-4 py-2 w-full"
                 placeholder={`Size ${index + 1}`}
               />
-              <button
-                type="button"
+              <UnderlineButton
+                label="Remove"
                 onClick={() => removeSizeField(index)}
-                className="px-4 py-2 text-red-500 hover:underline"
-              >
-                Remove
-              </button>
+                className="font-serif tracking-wide ml-2 text-sm"
+              />
             </div>
           ))}
-          <button
-            type="button"
+          <UnderlineButton
+            label="Add Size"
             onClick={addSizeField}
-            className="px-4 py-2 text-blue-500 hover:underline"
-          >
-            Add Size
-          </button>
+            className="font-serif tracking-wide ml-2"
+          />
         </div>
 
-        <button type="submit" className="bg-black text-white px-4 py-2">
-          Create Product
-        </button>
+        <ButtonOne
+          type="submit"
+          label="Create Product"
+          className="bg-black text-white px-4 py-2"
+        />
       </form>
-    </>
+    </div>
   )
 }
 

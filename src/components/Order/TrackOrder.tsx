@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useTrackOrder } from '../../hooks/Orders/useTrackOrder'
 import { Order } from '../../types'
 import OrderCard from './OrderCard'
+import { ButtonOne } from '../Button/ButtonOne'
 
 const TrackOrder: React.FC = () => {
   const [orderId, setOrderId] = useState('')
@@ -23,12 +24,13 @@ const TrackOrder: React.FC = () => {
           value={orderId}
           onChange={(e) => setOrderId(e.target.value)}
         />
-        <button
-          className="bg-black text-white text-sm font-serif py-2 px-4 rounded-r"
+        <ButtonOne
+          className="text-sm"
+          label="Track Order"
           onClick={handleTrackOrder}
         >
           Track Order
-        </button>
+        </ButtonOne>
       </div>
       {order && <OrderCard order={order} />}
     </div>

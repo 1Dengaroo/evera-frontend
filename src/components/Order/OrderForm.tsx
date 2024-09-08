@@ -1,6 +1,8 @@
 import React from 'react'
 import { useUpdateOrder } from '../../hooks/Dashboard/useUpdateOrder'
 import { OrderFormProps } from '../../types'
+import { ButtonOne } from '../Button/ButtonOne'
+import { UnderlineButton } from '../Button/UnderlineButton'
 
 const OrderForm: React.FC<OrderFormProps> = ({
   order,
@@ -156,20 +158,23 @@ const OrderForm: React.FC<OrderFormProps> = ({
             />
           </p>
         </div>
-        <button
+        <ButtonOne
+          label="Save Changes"
+          onClick={handleSubmit}
+          className="mt-4 mr-4 text-sm"
+        />
+        {/* <button
           type="button"
           onClick={handleSubmit}
           className="mt-4 bg-black text-white text-sm py-2 px-4 rounded"
         >
           Save Changes
-        </button>
-        <button
-          type="button"
+        </button> */}
+        <UnderlineButton
+          label="Cancel"
           onClick={() => setIsEditing(null)}
-          className="mt-4 ml-2 text-sm text-gray-600 ml-4"
-        >
-          Cancel
-        </button>
+          className="mt-4 ml-2 text-sm font-serif tracking-wide"
+        />
       </form>
     </>
   )

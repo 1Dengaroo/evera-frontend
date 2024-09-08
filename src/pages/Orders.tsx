@@ -26,7 +26,7 @@ const Orders: React.FC = () => {
         orders.length === 0 ? (
           <p className="text-center text-gray-600">You have no orders.</p>
         ) : (
-          <div className="grid grid-cols-1 gap-6">
+          <div className="">
             {orders.map((order) => (
               <OrderCard key={order.id} order={order} />
             ))}

@@ -3,13 +3,20 @@ import { useCart } from '../../hooks/Cart/useCart'
 import { useGetProductPriceById } from '../../hooks/Products/useGetProductPriceById'
 import { useValidateProduct } from '../../hooks/Products/useValidateProduct'
 import { CartItemProps } from '../../types'
+import { QuantityInput } from '../Input/QuantityInput'
+import { UnderlineButton } from '../Button/UnderlineButton'
 
-export const CartItem: React.FC<CartItemProps> = ({
+interface ExtendedCartItemProps extends CartItemProps {
+  showMobileLayout?: boolean
+}
+
+export const CartItem: React.FC<ExtendedCartItemProps> = ({
   id,
   name,
   size,
   quantity,
-  imageUrl
+  imageUrl,
+  showMobileLayout = false // Add prop to control layout
 }) => {
   const { removeItem, updateQuantity } = useCart()
   const [price, setPrice] = useState<number | null>(null)
@@ -35,16 +42,30 @@ export const CartItem: React.FC<CartItemProps> = ({
     fetchPrice()
   }, [id, quantity])
 
+  const handleIncrement = () => {
+    updateQuantity(id, size, quantity + 1)
+  }
+
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      updateQuantity(id, size, quantity - 1)
+    }
+  }
+
+  const handleQuantityChange = (newValue: number) => {
+    updateQuantity(id, size, newValue)
+  }
+
   return (
-    <div className="flex items-center justify-between py-4 md:p-4 border-b w-full">
-      <div className="flex items-center">
+    <div className="flex items-start md:items-center justify-between py-12 px-2 border-b w-full">
+      <div className="flex items-start items-center">
         <img
           src={imageUrl}
           alt={name}
-          className="w-16 h-16 object-cover rounded-lg"
+          className="w-32 h-44 object-cover rounded-md"
         />
-        <div className="ml-6">
-          <h3 className="text-lg font-semibold">
+        <div className="ml-6 h-full">
+          <h3 className="text-md font-thin tracking-wider font-serif">
             {size ? `${name} (${size})` : name}
           </h3>
           <p className={`text-sm ${error ? 'text-red-600' : 'text-gray-500'}`}>
@@ -54,22 +75,39 @@ export const CartItem: React.FC<CartItemProps> = ({
                 ? `$${(price / 100).toFixed(2)}`
                 : 'Loading price...'}
           </p>
+          {/* Mobile Layout */}
+          <div
+            className={`flex items-center mt-4 ${showMobileLayout ? 'block' : 'md:hidden'}`}
+          >
+            <QuantityInput
+              value={quantity}
+              onIncrement={handleIncrement}
+              onDecrement={handleDecrement}
+              onChange={handleQuantityChange}
+            />
+            <UnderlineButton
+              label="Remove"
+              onClick={() => removeItem(id, size)}
+              className="ml-4 tracking-wider text-sm font-serif"
+            />
+          </div>
         </div>
       </div>
-      <div className="flex items-center">
-        <input
-          type="number"
+      {/* Desktop Layout */}
+      <div
+        className={`hidden ${showMobileLayout ? 'hidden' : 'md:flex'} items-center`}
+      >
+        <QuantityInput
           value={quantity}
-          min="1"
-          onChange={(e) => updateQuantity(id, size, parseInt(e.target.value))}
-          className="w-12 h-8 text-center border rounded-md text-sm"
+          onIncrement={handleIncrement}
+          onDecrement={handleDecrement}
+          onChange={handleQuantityChange}
         />
-        <button
+        <UnderlineButton
+          label="Remove"
           onClick={() => removeItem(id, size)}
-          className="ml-4 text-red-600 hover:text-red-800"
-        >
-          Remove
-        </button>
+          className="ml-4 tracking-wider text-sm font-serif"
+        />
       </div>
     </div>
   )

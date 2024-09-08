@@ -56,7 +56,7 @@ const Home: React.FC = () => {
         titleClassName="text-4xl font-serif font-thin text-gray-900 mb-4 tracking-wide mb-8"
         shortHeight
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

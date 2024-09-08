@@ -1,5 +1,6 @@
 import React from 'react'
 import { Section } from '../components/Section/Section'
+import { UnderlineButton } from '../components/Button/UnderlineButton'
 
 const FAQ: React.FC = () => {
   return (
@@ -53,7 +54,10 @@ const FAQ: React.FC = () => {
               className="text-blue-500 hover:underline"
             >
               {' '}
-              support@everafashion.com
+              <UnderlineButton
+                label="support@everafashion.com"
+                className="text-blue-500"
+              />
             </a>
             . We&apos;re here to assist you with any questions or concerns you
             may have.
