@@ -8,7 +8,7 @@ export const NotFound: React.FC = () => {
   return (
     <Section
       title="404 Not Found"
-      titleClassName="text-4xl font-serif my-8 mt-12"
+      titleClassName="text-3xl font-thin tracking-wide my-8 mt-12"
       shortHeight
     >
       <div className="flex flex-col items-center w-full">

@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import { useValidateCart } from '../../hooks/Products/useValidateCart'
 import { useGetCartTotal } from '../../hooks/Products/useGetCartTotal'
 import { AuthContext } from '../../context/AuthContext'
+import { UnderlineButton } from '../Button/UnderlineButton'
+import { ButtonOne } from '../Button/ButtonOne'
 
 export const SideCart: React.FC = () => {
   const { items, showSideCart, hideSideCartView } = useCart()
@@ -77,24 +79,22 @@ export const SideCart: React.FC = () => {
               <>
                 {cartIsValid && (
                   <div className="w-full flex flex-col items-center">
-                    <button
-                      className="bg-black text-white font-serif py-2 px-4 mt-8"
+                    <ButtonOne
+                      className="mt-8"
+                      label="Login and track your order"
                       onClick={() => {
                         hideSideCartView()
                         navigate('/login')
                       }}
-                    >
-                      Login to Checkout
-                    </button>
-                    <div
-                      className="text-center mt-4 hover:underline cursor-pointer"
+                    />
+                    <UnderlineButton
+                      label="Checkout as guest"
+                      className="text-sm cursor-pointer mt-2"
                       onClick={() => {
                         hideSideCartView()
                         navigate('/checkout')
                       }}
-                    >
-                      Checkout as guest
-                    </div>
+                    />
                   </div>
                 )}
               </>

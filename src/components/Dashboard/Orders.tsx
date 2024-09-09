@@ -75,7 +75,9 @@ const OrdersComponent: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <h2 className="text-3xl text-center mb-6 font-serif mt-8">Your Orders</h2>
+      <h2 className="text-3xl text-center mb-6 font-thin tracking-wide mt-8">
+        Your Orders
+      </h2>
 
       <FilterForm
         filters={orderFilters}

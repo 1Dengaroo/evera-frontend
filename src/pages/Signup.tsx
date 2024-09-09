@@ -3,6 +3,7 @@ import { useUserSignup } from '../hooks/Users/useUserSignup'
 import { Section } from '../components/Section/Section'
 import { useNavigate } from 'react-router-dom'
 import { useNotification } from '../context/NotificationContext'
+import { ButtonOne } from '../components/Button/ButtonOne'
 
 const Signup: React.FC = () => {
   const [name, setName] = useState<string | undefined>(undefined)
@@ -25,7 +26,7 @@ const Signup: React.FC = () => {
   return (
     <Section
       title="Sign Up"
-      titleClassName="text-4xl font-serif my-8 mt-12"
+      titleClassName="text-3xl font-thin tracking-wide my-8 mt-12"
       shortHeight
     >
       <div className="flex flex-col items-center w-full">
@@ -50,12 +51,11 @@ const Signup: React.FC = () => {
           onChange={(e) => setPassword(e.target.value)}
           className="p-2 mb-4 w-96 border border-black placeholder:text-xs"
         />
-        <button
+        <ButtonOne
+          label="Sign Up"
           onClick={handleSignup}
-          className="bg-black text-white font-serif py-2 px-4"
-        >
-          Sign Up
-        </button>
+          className="px-6 text-sm"
+        />
       </div>
       {error && <p className="text-red-500 text-center mt-4">{error}</p>}
     </Section>

@@ -43,7 +43,9 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="mx-auto md:px-16 p-4 mt-8">
-      <h2 className="text-4xl text-center mb-6 font-serif">Dashboard</h2>
+      <h2 className="text-3xl text-center mb-6 font-thin tracking-wide">
+        Dashboard
+      </h2>
       <div className="flex space-x-4 justify-center mb-6">
         <button
           className={`px-4 py-1 rounded ${selectedTab === 'orders' ? 'bg-gray-800 text-white' : 'border border-black'}`}

@@ -4,6 +4,7 @@ import { useResetPassword } from '../../hooks/Users/usePasswordReset'
 import { Section } from '../Section/Section'
 import { useNotification } from '../../context/NotificationContext'
 import { useNavigate } from 'react-router-dom'
+import { ButtonOne } from '../Button/ButtonOne'
 
 const PasswordReset: React.FC = () => {
   const [password, setPassword] = useState('')
@@ -31,7 +32,7 @@ const PasswordReset: React.FC = () => {
   return (
     <Section
       title="Reset Password"
-      titleClassName="text-4xl font-serif my-8 w-full mt-12"
+      titleClassName="text-3xl font-thin tracking-wide my-8 w-full mt-12"
       descriptionClassName="w-full"
       shortHeight
     >
@@ -53,12 +54,11 @@ const PasswordReset: React.FC = () => {
           placeholder="Confirm Password"
           className="p-2 mb-4 w-96 border border-black placeholder:text-xs"
         />
-        <button
-          className="bg-black text-white font-serif py-2 px-4"
+        <ButtonOne
           type="submit"
-        >
-          Reset Password
-        </button>
+          label="Reset Password"
+          className="px-6 text-sm"
+        />
       </form>
     </Section>
   )

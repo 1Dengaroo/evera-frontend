@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useRequestPasswordReset } from '../../hooks/Users/usePasswordResetRequest'
 import { Section } from '../Section/Section'
 import { useNotification } from '../../context/NotificationContext'
+import { ButtonOne } from '../Button/ButtonOne'
 
 const PasswordResetRequest: React.FC = () => {
   const [email, setEmail] = useState('')
@@ -25,7 +26,7 @@ const PasswordResetRequest: React.FC = () => {
   return (
     <Section
       title="Reset Password"
-      titleClassName="text-4xl font-serif my-8 w-full mt-12"
+      titleClassName="text-3xl font-thin tracking-wide my-8 w-full mt-12"
       descriptionClassName="w-full"
       shortHeight
     >
@@ -41,13 +42,11 @@ const PasswordResetRequest: React.FC = () => {
           className="p-2 mb-4 w-96 border border-black placeholder:text-xs"
           required
         />
-        <button
-          className="bg-black text-white font-serif py-2 px-4 text-sm"
-          type="submit"
-          disabled={loading}
-        >
-          {loading ? 'Sending...' : 'Send Reset Instructions'}
-        </button>
+        <ButtonOne
+          label={loading ? 'Loading...' : 'Send Password Reset'}
+          onClick={handleSubmit}
+          className="px-6 text-sm"
+        />
       </form>
     </Section>
   )

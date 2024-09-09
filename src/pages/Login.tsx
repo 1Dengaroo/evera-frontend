@@ -3,6 +3,8 @@ import { useUserLogin } from '../hooks/Users/useUserLogin'
 import { useNavigate } from 'react-router-dom'
 import { Section } from '../components/Section/Section'
 import { useNotification } from '../context/NotificationContext'
+import { UnderlineButton } from '../components/Button/UnderlineButton'
+import { ButtonOne } from '../components/Button/ButtonOne'
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('')
@@ -25,7 +27,7 @@ const Login: React.FC = () => {
   return (
     <Section
       title="Login"
-      titleClassName="text-4xl font-serif my-8 w-full mt-12"
+      titleClassName="text-3xl font-thin tracking-wide my-8 w-full mt-12"
       descriptionClassName="w-full"
       shortHeight
     >
@@ -44,25 +46,18 @@ const Login: React.FC = () => {
           placeholder="Password"
           className="p-2 mb-4 w-96 border border-black placeholder:text-xs"
         />
-        <button
-          className="bg-black text-white font-serif py-2 px-4"
-          onClick={onSubmit}
-        >
-          Login
-        </button>
+        <ButtonOne label="Login" onClick={onSubmit} className="px-6 text-sm" />
         <div className="flex flex-col items-center mt-4">
-          <button
-            className="text-sm font-serif underline cursor-pointer"
+          <UnderlineButton
+            label="Forgot password?"
+            className="text-sm cursor-pointer mb-2"
             onClick={() => navigate('/reset-password')}
-          >
-            Forgot Password?
-          </button>
-          <button
-            className="text-sm font-serif underline cursor-pointer mt-2"
+          />
+          <UnderlineButton
+            label="Create an account"
+            className="text-sm cursor-pointer"
             onClick={() => navigate('/signup')}
-          >
-            Create an account
-          </button>
+          />
         </div>
         {error && <p className="text-red-500 text-center mt-4">{error}</p>}
       </div>

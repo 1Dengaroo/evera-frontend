@@ -6,6 +6,7 @@ import { useGetCartTotal } from '../../hooks/Products/useGetCartTotal'
 import { AuthContext } from '../../context/AuthContext'
 import { useValidateCart } from '../../hooks/Products/useValidateCart'
 import { ButtonOne } from '../Button/ButtonOne'
+import { UnderlineButton } from '../Button/UnderlineButton'
 
 export const Cart: React.FC = () => {
   const { items } = useCart()
@@ -54,20 +55,18 @@ export const Cart: React.FC = () => {
         <>
           {cartIsValid && (
             <div className="w-full flex flex-col items-center">
-              <button
-                className="bg-black text-white font-serif py-2 px-4 mt-8"
+              <ButtonOne
+                className="mt-8"
+                label="Login and track your order"
                 onClick={() => {
                   navigate('/login')
                 }}
-              >
-                Login and track your orders
-              </button>
-              <div
-                className="text-center mt-4 hover:underline cursor-pointer"
+              />
+              <UnderlineButton
+                label="Checkout as guest"
+                className="text-sm cursor-pointer mt-2"
                 onClick={() => navigate('/checkout')}
-              >
-                Checkout as guest
-              </div>
+              />
             </div>
           )}
         </>

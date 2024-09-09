@@ -77,7 +77,7 @@ const ProductsList: React.FC = () => {
 
   return (
     <div>
-      <h2 className="text-3xl text-center mb-6 font-serif mt-16">
+      <h2 className="text-3xl text-center mb-6 font-thin tracking-wide mt-16">
         Your Products
       </h2>
 

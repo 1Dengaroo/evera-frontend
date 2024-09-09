@@ -49,7 +49,7 @@ const Checkout: React.FC = () => {
   return (
     <Section
       title="Checkout"
-      titleClassName="text-4xl font-serif my-8"
+      titleClassName="text-3xl font-thin tracking-wide my-8"
       shortHeight
     >
       <div>

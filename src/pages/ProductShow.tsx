@@ -89,9 +89,7 @@ const ProductShow: React.FC = () => {
   if (!product) {
     return (
       <div className="flex justify-center">
-        <p className="center font-serif text-xl my-16">
-          (<strong>404</strong>) Item not active or not found
-        </p>
+        <p className="center text-xl my-16">Item not active or not found</p>
       </div>
     )
   }

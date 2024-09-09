@@ -163,17 +163,10 @@ const OrderForm: React.FC<OrderFormProps> = ({
           onClick={handleSubmit}
           className="mt-4 mr-4 text-sm"
         />
-        {/* <button
-          type="button"
-          onClick={handleSubmit}
-          className="mt-4 bg-black text-white text-sm py-2 px-4 rounded"
-        >
-          Save Changes
-        </button> */}
         <UnderlineButton
           label="Cancel"
           onClick={() => setIsEditing(null)}
-          className="mt-4 ml-2 text-sm font-serif tracking-wide"
+          className="mt-4 ml-2 text-sm tracking-wide"
         />
       </form>
     </>

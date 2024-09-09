@@ -85,7 +85,7 @@ const ProductCreateForm: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <h2 className="text-3xl text-center mb-6 font-serif mt-8">
+      <h2 className="text-3xl text-center mb-6 font-thin tracking-wide mt-8">
         Create New Product
       </h2>
 
@@ -214,12 +214,12 @@ const ProductCreateForm: React.FC = () => {
               <UnderlineButton
                 label="Remove"
                 onClick={() => removeSubImageField(index)}
-                className="font-serif tracking-wide ml-2 text-sm"
+                className="tracking-wide ml-2 text-sm"
               />
             </div>
           ))}
           <UnderlineButton
-            className="font-serif ml-2 tracking-wide"
+            className="ml-2 tracking-wide text-blue-500"
             label="Add Sub-Image"
             onClick={addSubImageField}
           />
@@ -239,14 +239,14 @@ const ProductCreateForm: React.FC = () => {
               <UnderlineButton
                 label="Remove"
                 onClick={() => removeSizeField(index)}
-                className="font-serif tracking-wide ml-2 text-sm"
+                className="tracking-wide ml-2 text-sm"
               />
             </div>
           ))}
           <UnderlineButton
             label="Add Size"
             onClick={addSizeField}
-            className="font-serif tracking-wide ml-2"
+            className="tracking-wide ml-2 text-blue-500"
           />
         </div>
 
