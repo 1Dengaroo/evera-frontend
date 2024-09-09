@@ -10,7 +10,7 @@ export const ButtonOne: React.FC<ButtonOneProps> = ({
   return (
     <button
       type={type}
-      className={`bg-black text-white font-serif py-2 px-4 ${className}`}
+      className={`bg-black text-white py-2 px-4 ${className}`}
       {...props}
     >
       {label}

@@ -1,15 +1,10 @@
 // NotificationContext.tsx
 import React, { createContext, useContext, useState } from 'react'
 import Notification from '../components/Notification/Notification'
-import { NotificationProps } from '../types'
-
-type NotificationContextType = {
-  showNotification: (
-    message: string,
-    type?: NotificationProps['type'],
-    duration?: number
-  ) => void
-}
+import {
+  NotificationProps,
+  NotificationContextType
+} from '../components/Notification/types'
 
 const NotificationContext = createContext<NotificationContextType | undefined>(
   undefined

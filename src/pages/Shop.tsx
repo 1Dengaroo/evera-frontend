@@ -19,7 +19,7 @@ const Shop: React.FC = () => {
     <Section
       backgroundColor="bg-white"
       title="Discover All Products"
-      titleClassName="text-4xl font-serif font-thin mt-8 mb-8"
+      titleClassName="text-3xl tracking-wide font-thin mt-8 mb-8"
       shortHeight
     >
       <p className="font-light mb-8">SHOP ALL</p>

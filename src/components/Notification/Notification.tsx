@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { NotificationProps } from '../../types'
+import { NotificationProps } from './types'
 
 const Notification: React.FC<NotificationProps> = ({
   message,
@@ -29,7 +29,7 @@ const Notification: React.FC<NotificationProps> = ({
 
   return (
     <div
-      className={`fixed top-8 left-1/2 transform -translate-x-1/2 p-4 rounded-lg border bg-white ${getStyles()} z-10`}
+      className={`fixed top-8 left-1/2 transform -translate-x-1/2 p-4 rounded-lg border bg-white ${getStyles()} z-50`}
     >
       <p>{message}</p>
     </div>

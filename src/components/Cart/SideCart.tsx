@@ -38,7 +38,7 @@ export const SideCart: React.FC = () => {
       )}
 
       <div
-        className={`fixed top-0 right-0 h-screen md:w-116 w-96 bg-white shadow-lg p-4 z-20 overflow-y-auto transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-16 right-0 h-screen md:w-116 w-96 bg-white shadow-lg p-4 pb-36 z-20 overflow-y-auto transform transition-transform duration-300 ease-in-out ${
           showSideCart ? 'translate-x-0' : 'translate-x-full'
         }`}
       >

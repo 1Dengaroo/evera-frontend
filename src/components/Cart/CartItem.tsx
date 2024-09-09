@@ -65,7 +65,7 @@ export const CartItem: React.FC<ExtendedCartItemProps> = ({
           className="w-32 h-44 object-cover rounded-md"
         />
         <div className="ml-6 h-full">
-          <h3 className="text-md font-thin tracking-wider font-serif">
+          <h3 className="text-md font-thin tracking-wider">
             {size ? `${name} (${size})` : name}
           </h3>
           <p className={`text-sm ${error ? 'text-red-600' : 'text-gray-500'}`}>
@@ -88,7 +88,7 @@ export const CartItem: React.FC<ExtendedCartItemProps> = ({
             <UnderlineButton
               label="Remove"
               onClick={() => removeItem(id, size)}
-              className="ml-4 tracking-wider text-sm font-serif"
+              className="ml-4 tracking-wider text-sm"
             />
           </div>
         </div>
@@ -106,7 +106,7 @@ export const CartItem: React.FC<ExtendedCartItemProps> = ({
         <UnderlineButton
           label="Remove"
           onClick={() => removeItem(id, size)}
-          className="ml-4 tracking-wider text-sm font-serif"
+          className="ml-4 tracking-wider text-sm"
         />
       </div>
     </div>

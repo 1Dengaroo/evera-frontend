@@ -47,7 +47,7 @@ export const Cart: React.FC = () => {
           />
         ))}
       </div>
-      <p className="text-right mt-4 pr-10 font-serif">
+      <p className="text-right mt-4 pr-10">
         Total: ${(total / 100).toFixed(2)}
       </p>
       {!isAuthenticated ? (

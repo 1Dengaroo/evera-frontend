@@ -6,12 +6,12 @@ const FAQ: React.FC = () => {
   return (
     <Section
       title="Frequently Asked Questions"
-      titleClassName="text-4xl font-serif my-8 pt-8"
+      titleClassName="text-3xl tracking-wide font-thin my-8 pt-8"
       shortHeight
     >
       <div className="max-w-3xl mx-auto px-4 lg:px-8 pt-8">
         <div className="mb-12">
-          <h3 className="text-xl font-serif mb-2">What is Evera?</h3>
+          <h3 className="text-xl tracking-wide mb-2">What is Evera?</h3>
           <p className="font-light">
             Evera is a brand built on the principle of iteration and creativity.
             We focus on finding ideas and inspiration from anything and
@@ -21,7 +21,7 @@ const FAQ: React.FC = () => {
         </div>
 
         <div className="mb-12">
-          <h3 className="text-xl font-serif mb-2">
+          <h3 className="text-xl tracking-wide mb-2">
             How can I purchase products?
           </h3>
           <p className="font-light">
@@ -32,7 +32,7 @@ const FAQ: React.FC = () => {
         </div>
 
         <div className="mb-12">
-          <h3 className="text-xl font-serif mb-2">
+          <h3 className="text-xl tracking-wide mb-2">
             What is your return policy?
           </h3>
           <p className="font-light">
@@ -44,7 +44,7 @@ const FAQ: React.FC = () => {
         </div>
 
         <div className="mb-12">
-          <h3 className="text-xl font-serif mb-2">
+          <h3 className="text-xl tracking-wide mb-2">
             How can I contact customer support?
           </h3>
           <p className="font-light">

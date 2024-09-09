@@ -43,7 +43,7 @@ const Home: React.FC = () => {
           </p>
         )}
         <button
-          className="mt-6 bg-white text-black font-serif py-2 px-4 rounded shadow hover:bg-gray-200 transition duration-300"
+          className="mt-6 bg-white text-black tracking-wide py-2 px-4 rounded shadow hover:bg-gray-200 transition duration-300"
           onClick={handleShopButtonClick}
         >
           Shop Now
@@ -53,7 +53,7 @@ const Home: React.FC = () => {
         backgroundColor="bg-white"
         descriptionClassName="text-lg text-gray-800"
         title="New Arrivals"
-        titleClassName="text-4xl font-serif font-thin text-gray-900 mb-4 tracking-wide mb-8"
+        titleClassName="text-2xl font-thin text-gray-900 mb-4 tracking-wider mb-8"
         shortHeight
       >
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
@@ -65,10 +65,10 @@ const Home: React.FC = () => {
       <Section
         backgroundImage="images/home_2.webp"
         title="Evera's Story"
-        titleClassName="text-5xl font-serif font-thin text-white pb-4"
+        titleClassName="text-5xl font-serif font-thin text-white pb-4 mb-12"
       >
         <button
-          className="mt-6 bg-white text-black font-serif py-2 px-4 rounded shadow hover:bg-gray-200 transition duration-300"
+          className="mt-6 bg-white text-black tracking-wide py-2 px-4 rounded shadow hover:bg-gray-200 transition duration-300"
           onClick={handleAboutButtonClick}
         >
           Our Story

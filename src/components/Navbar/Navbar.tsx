@@ -16,12 +16,12 @@ export const Navbar: React.FC = () => {
   }
 
   return (
-    <nav className="bg-white shadow-md">
+    <nav className="bg-white shadow-md fixed top-0 w-full z-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Left side: Logo and Left Nav Links */}
           <div className="flex items-center">
-            <div className="text-2xl font-serif text-gray-900 mr-8">
+            <div className="text-2xl font-serif text-gray-900 mr-8 tracking-widest">
               <Link to="/">Evera</Link>
             </div>
             <div className="hidden md:flex space-x-4 mt-1">

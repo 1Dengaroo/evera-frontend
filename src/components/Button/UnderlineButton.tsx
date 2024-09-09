@@ -10,7 +10,7 @@ export const UnderlineButton: React.FC<UnderlineButtonProps> = ({
   return (
     <button
       type={type}
-      className={`relative inline-block text-current group ${className}`}
+      className={`relative inline-block group ${className}`}
       {...props}
     >
       <span
