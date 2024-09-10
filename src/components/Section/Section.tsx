@@ -5,7 +5,6 @@ interface SectionProps {
   children: ReactNode
   className?: string
   id?: string
-  backgroundColor?: string
   backgroundImage?: string
   titleClassName?: string
   descriptionClassName?: string
@@ -17,7 +16,6 @@ export const Section: React.FC<SectionProps> = ({
   children,
   className = '',
   id,
-  backgroundColor = 'bg-white',
   backgroundImage,
   titleClassName = 'text-2xl font-bold text-gray-900 mb-6',
   descriptionClassName = '',
@@ -25,41 +23,33 @@ export const Section: React.FC<SectionProps> = ({
 }) => {
   const backgroundStyles = backgroundImage
     ? {
-        backgroundImage: `url(${backgroundImage})`,
+        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.7) 100%), url(${backgroundImage})`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        backgroundColor: backgroundColor
+        backgroundPosition: 'center'
       }
     : {}
 
   const heightClasses = backgroundImage
     ? 'min-h-[70vh] sm:min-h-[70vh] lg:min-h-[90vh]'
     : shortHeight
-      ? 'min-h-[30vh] sm:min-h-[30vh] lg:min-h-[40vh]' // Shorter height when no background image
+      ? 'min-h-[30vh] sm:min-h-[30vh] lg:min-h-[40vh]'
       : 'min-h-[70vh] sm:min-h-[70vh] lg:min-h-[90vh]'
 
   return (
     <section
       aria-labelledby={id ? `${id}-heading` : undefined}
-      className={`relative ${className} ${heightClasses} py-8 px-4 sm:px-6 lg:px-8 flex items-center justify-center`}
+      className={`relative py-8 px-4 sm:px-6 lg:px-8 flex items-center justify-center ${className} ${heightClasses}`}
       id={id}
       style={backgroundStyles}
     >
       <div className="text-center">
         {title && (
-          <h2
-            className={titleClassName} // Apply custom title class
-            id={id ? `${id}-heading` : undefined}
-          >
+          <h2 className={titleClassName} id={id ? `${id}-heading` : undefined}>
             {title}
           </h2>
         )}
-        <div className={descriptionClassName}>
-          {' '}
-          {/* Apply custom description class */}
-          {children}
-        </div>
+        <div className={descriptionClassName}> {children}</div>
       </div>
     </section>
   )

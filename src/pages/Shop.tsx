@@ -17,7 +17,6 @@ const Shop: React.FC = () => {
 
   return (
     <Section
-      backgroundColor="bg-white"
       title="Discover All Products"
       titleClassName="text-3xl tracking-wide font-thin mt-8 mb-8"
       shortHeight

@@ -12,31 +12,46 @@ const OrderStatusBadge: React.FC<{ paid: boolean }> = ({ paid }) => (
   </span>
 )
 
-const OrderDetailItem: React.FC<{ label: string; value: string }> = ({
-  label,
-  value
-}) => (
-  <p className="text-gray-800 font-light leading-relaxed">
-    <strong className="font-medium text-gray-600">{label}:</strong> {value}
+const OrderDetailItem: React.FC<{
+  label: string
+  value: string
+  className?: string
+}> = ({ label, value, className }) => (
+  <p className={`text-gray-800 font-light leading-relaxed ${className}`}>
+    {label}: {value}
   </p>
 )
 
 const OrderItem: React.FC<{ item: any }> = ({ item }) => (
-  <li className="flex justify-between text-gray-900 border-b border-gray-300 py-3 last:border-b-0">
-    <span className="font-light">
-      {item.size ? `${item.product.name} (${item.size})` : item.product.name}
-    </span>
-    <span className="font-light">
-      Quantity: {item.quantity}, Price: ${(item.product.price / 100).toFixed(2)}
-    </span>
-  </li>
+  <div className="flex items-start items-center justify-between py-6 border-b w-full">
+    <div className="flex items-start items-center">
+      <img
+        src={item.product.cover_image}
+        alt={item.name}
+        className="w-24 h-32 object-cover rounded-md mb-2"
+      />
+      <div className="ml-6">
+        <h3 className="text-md font-thin tracking-wider">
+          {item.size
+            ? `${item.product.name} (${item.size})`
+            : item.product.name}
+        </h3>
+        <p className="text-sm text-gray-500">
+          ${(item.product.price / 100).toFixed(2)} x {item.quantity}
+        </p>
+      </div>
+    </div>
+    <div className="ml-auto md:text-right text-left">
+      ${((item.product.price / 100) * item.quantity).toFixed(2)}
+    </div>
+  </div>
 )
 
 const DeliveryAddress: React.FC<{ address: any }> = ({ address }) => (
-  <div className="mt-6 border-t border-gray-300 pt-4">
-    <h5 className="font-semibold text-gray-700 mb-2 tracking-wide">
+  <>
+    <h4 className="text-lg font-thin text-gray-900 tracking-wide mb-4">
       Delivery Address
-    </h5>
+    </h4>
     <p className="text-gray-900 font-light">
       {address.name}
       <br />
@@ -52,7 +67,7 @@ const DeliveryAddress: React.FC<{ address: any }> = ({ address }) => (
       <br />
       {address.country}
     </p>
-  </div>
+  </>
 )
 
 const OrderCard: React.FC<OrderCardProps> = ({ order, onEditClick }) => (
@@ -62,28 +77,8 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onEditClick }) => (
       <OrderStatusBadge paid={order.paid} />
     </div>
 
-    <div className="grid grid-cols-2 gap-8">
-      <div>
-        <OrderDetailItem label="Order Email" value={order.email} />
-        <OrderDetailItem
-          label="Total Price"
-          value={`$${(order.price / 100).toFixed(2)}`}
-        />
-      </div>
-      <div>
-        <OrderDetailItem
-          label="Order Date"
-          value={new Date(order.created_at).toLocaleString()}
-        />
-        <OrderDetailItem
-          label="Last Updated"
-          value={new Date(order.updated_at).toLocaleString()}
-        />
-      </div>
-    </div>
-
     <div>
-      <h4 className="text-xl font-semibold text-gray-900 tracking-wide">
+      <h4 className="text-lg font-thin text-gray-900 tracking-wide">
         Order Items
       </h4>
       <ul className="divide-y divide-gray-300">
@@ -93,30 +88,63 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onEditClick }) => (
       </ul>
     </div>
 
+    <div>
+      <OrderDetailItem
+        className="md:text-right text-left"
+        label="Subtotal"
+        value={`$${(order.subtotal / 100).toFixed(2)}`}
+      />
+      <OrderDetailItem
+        className="md:text-right text-left"
+        label="Shipping"
+        value={`$${(order.amount_shipping / 100).toFixed(2)}`}
+      />
+      <OrderDetailItem
+        className="md:text-right text-left"
+        label="Tax"
+        value={`$${(order.amount_tax / 100).toFixed(2)}`}
+      />
+      <OrderDetailItem
+        className="md:text-right text-left"
+        label="Total"
+        value={`$${(
+          (order.subtotal + order.amount_shipping + order.amount_tax) /
+          100
+        ).toFixed(2)}`}
+      />
+    </div>
+
     {order.delivery && (
-      <div>
-        <h4 className="text-xl font-semibold text-gray-900 tracking-wide mb-4">
-          Delivery Information
-        </h4>
-        <div className="space-y-4">
-          <OrderDetailItem label="Status" value={order.delivery.status} />
+      <div className="flex flex-col md:flex-row justify-between">
+        {order.delivery.address && (
+          <div className="md:w-1/2 mb-4 md:mb-0">
+            <DeliveryAddress address={order.delivery.address} />
+          </div>
+        )}
+
+        <div className="md:w-1/2 md:text-right text-left">
+          <h4 className="text-lg font-thin text-gray-900 tracking-wide mb-4">
+            Delivery Information
+          </h4>
           <OrderDetailItem
-            label="Tracking Info"
+            className="md:text-right text-left"
+            label="Status"
+            value={
+              order.delivery.status[0].toUpperCase() +
+              order.delivery.status.slice(1)
+            }
+          />
+          <OrderDetailItem
+            className="md:text-right text-left"
+            label="Tracking Information"
             value={order.delivery.tracking_information || 'N/A'}
           />
           <OrderDetailItem
-            label="Delivery Email"
+            className="md:text-right text-left"
+            label="Email"
             value={order.delivery.email}
           />
-          <OrderDetailItem
-            label="Delivery Date"
-            value={new Date(order.delivery.created_at).toLocaleString()}
-          />
         </div>
-
-        {order.delivery.address && (
-          <DeliveryAddress address={order.delivery.address} />
-        )}
       </div>
     )}
 

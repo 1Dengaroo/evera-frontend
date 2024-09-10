@@ -16,7 +16,7 @@ export const CartItem: React.FC<ExtendedCartItemProps> = ({
   size,
   quantity,
   imageUrl,
-  showMobileLayout = false // Add prop to control layout
+  showMobileLayout = false
 }) => {
   const { removeItem, updateQuantity } = useCart()
   const [price, setPrice] = useState<number | null>(null)

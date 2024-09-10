@@ -53,7 +53,9 @@ export interface Order {
   paid: boolean
   created_at: string
   updated_at: string
-  price: number
+  subtotal: number
+  amount_shipping: number
+  amount_tax: number
   order_items: OrderItem[]
   delivery?: Delivery
 }
@@ -68,6 +70,7 @@ export interface OrderItem {
 export interface Product {
   name: string
   price: number
+  cover_image: string
 }
 
 export interface Delivery {

@@ -9,9 +9,6 @@ const Home: React.FC = () => {
   const navigate = useNavigate()
   const [products, setProducts] = React.useState<Product[]>([])
 
-  const user = localStorage.getItem('user')
-  const parsedUser = user ? JSON.parse(user) : null
-
   useEffect(() => {
     async function fetchData() {
       const result = await useGetFrontPageProducts()
@@ -32,16 +29,11 @@ const Home: React.FC = () => {
     <>
       <Section
         backgroundImage="images/home_1.webp"
-        descriptionClassName="text-md font-extralight text-white"
+        descriptionClassName="text-md font-thin text-white"
         title="Evera"
-        titleClassName="text-6xl font-serif font-thin tracking-wide text-white mb-4"
+        titleClassName="text-6xl font-serif font-thin tracking-widest text-white mb-4"
       >
         <p>Elegance redefined</p>
-        {parsedUser && (
-          <p className="mt-4 text-lg text-white">
-            Welcome{parsedUser.name ? `, ${parsedUser.name}` : ''}
-          </p>
-        )}
         <button
           className="mt-6 bg-white text-black tracking-wide py-2 px-4 rounded shadow hover:bg-gray-200 transition duration-300"
           onClick={handleShopButtonClick}
@@ -50,7 +42,6 @@ const Home: React.FC = () => {
         </button>
       </Section>
       <Section
-        backgroundColor="bg-white"
         descriptionClassName="text-lg text-gray-800"
         title="New Arrivals"
         titleClassName="text-2xl font-thin text-gray-900 mb-4 tracking-wider mb-8"
@@ -65,10 +56,10 @@ const Home: React.FC = () => {
       <Section
         backgroundImage="images/home_2.webp"
         title="Evera's Story"
-        titleClassName="text-5xl font-serif font-thin text-white pb-4 mb-12"
+        titleClassName="text-5xl font-serif font-thin text-white pb-4 mb-12 tracking-wide"
       >
         <button
-          className="mt-6 bg-white text-black tracking-wide py-2 px-4 rounded shadow hover:bg-gray-200 transition duration-300"
+          className="bg-white text-black tracking-wide py-2 px-4 rounded shadow hover:bg-gray-200 transition duration-300"
           onClick={handleAboutButtonClick}
         >
           Our Story

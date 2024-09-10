@@ -48,9 +48,14 @@ export const Cart: React.FC = () => {
           />
         ))}
       </div>
-      <p className="text-right mt-4 pr-10">
-        Total: ${(total / 100).toFixed(2)}
+      <p className="text-right mt-4">Subtotal: ${(total / 100).toFixed(2)}</p>
+      <p className="text-right">
+        Tax: <span className="text-gray-500 italic">TBD</span>
       </p>
+      <p className="text-right">
+        Shipping: <span className="text-gray-500 italic">TBD</span>
+      </p>
+      <p className="text-right mt-2">Total: ${(total / 100).toFixed(2)}</p>
       {!isAuthenticated ? (
         <>
           {cartIsValid && (
