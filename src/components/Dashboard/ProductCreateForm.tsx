@@ -16,6 +16,7 @@ const ProductCreateForm: React.FC = () => {
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     quantity: 9999
   })
+
   const { showNotification } = useNotification()
 
   const handleChange = (
@@ -89,9 +90,15 @@ const ProductCreateForm: React.FC = () => {
         Create New Product
       </h2>
 
-      <form onSubmit={handleSubmit} className="border p-4 rounded mb-6">
-        <div className="mb-4">
-          <label htmlFor="name" className="block mb-2 font-semibold">
+      <form
+        onSubmit={handleSubmit}
+        className="mb-4 border rounded-3xl p-10 shadow-lg bg-white space-y-6 transition-all duration-500 hover:shadow-2xl"
+      >
+        <div className="mb-6">
+          <label
+            htmlFor="name"
+            className="block text-gray-600 font-semibold mb-1"
+          >
             Product Name
           </label>
           <input
@@ -100,14 +107,17 @@ const ProductCreateForm: React.FC = () => {
             name="name"
             value={form.name}
             onChange={handleChange}
-            className="border px-4 py-2 w-full"
+            className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
             placeholder="Enter product name"
             required
           />
         </div>
 
-        <div className="mb-4">
-          <label htmlFor="description" className="block mb-2 font-semibold">
+        <div className="mb-6">
+          <label
+            htmlFor="description"
+            className="block text-gray-600 font-semibold mb-1"
+          >
             Product Description
           </label>
           <textarea
@@ -115,14 +125,17 @@ const ProductCreateForm: React.FC = () => {
             name="description"
             value={form.description}
             onChange={handleChange}
-            className="border px-4 py-2 w-full"
+            className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
             placeholder="Enter product description"
             required
           />
         </div>
 
-        <div className="mb-4">
-          <label htmlFor="price" className="block mb-2 font-semibold">
+        <div className="mb-6">
+          <label
+            htmlFor="price"
+            className="block text-gray-600 font-semibold mb-1"
+          >
             Price In Cents (USD)
           </label>
           <input
@@ -131,14 +144,17 @@ const ProductCreateForm: React.FC = () => {
             name="price"
             value={form.price}
             onChange={handleChange}
-            className="border px-4 py-2 w-full"
+            className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
             placeholder="Enter product price"
             required
           />
         </div>
 
-        <div className="mb-4">
-          <label htmlFor="product_type" className="block mb-2 font-semibold">
+        <div className="mb-6">
+          <label
+            htmlFor="product_type"
+            className="block text-gray-600 font-semibold mb-1"
+          >
             Product Type
           </label>
           <select
@@ -146,7 +162,7 @@ const ProductCreateForm: React.FC = () => {
             name="product_type"
             value={form.product_type}
             onChange={handleChange}
-            className="border px-4 py-2 w-full"
+            className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
             required
           >
             <option value="unisex">Unisex</option>
@@ -155,8 +171,11 @@ const ProductCreateForm: React.FC = () => {
           </select>
         </div>
 
-        <div className="mb-4">
-          <label htmlFor="quantity" className="block mb-2 font-semibold">
+        <div className="mb-6">
+          <label
+            htmlFor="quantity"
+            className="block text-gray-600 font-semibold mb-1"
+          >
             Quantity
           </label>
           <input
@@ -165,14 +184,17 @@ const ProductCreateForm: React.FC = () => {
             name="quantity"
             value={form.quantity}
             onChange={handleChange}
-            className="border px-4 py-2 w-full"
+            className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
             placeholder="Enter product quantity"
             required
           />
         </div>
 
-        <div className="mb-4">
-          <label htmlFor="cover_image" className="block mb-2 font-semibold">
+        <div className="mb-6">
+          <label
+            htmlFor="cover_image"
+            className="block text-gray-600 font-semibold mb-1"
+          >
             Cover Image URL
           </label>
           <input
@@ -181,13 +203,16 @@ const ProductCreateForm: React.FC = () => {
             name="cover_image"
             value={form.cover_image}
             onChange={handleChange}
-            className="border px-4 py-2 w-full"
+            className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
             placeholder="Enter cover image URL"
           />
         </div>
 
-        <div className="mb-4">
-          <label htmlFor="active" className="flex items-center font-semibold">
+        <div className="mb-6">
+          <label
+            htmlFor="active"
+            className="flex items-center font-semibold text-gray-600"
+          >
             <input
               type="checkbox"
               id="active"
@@ -200,61 +225,65 @@ const ProductCreateForm: React.FC = () => {
           </label>
         </div>
 
-        <div className="mb-4">
-          <h4 className="text-lg font-semibold mb-2">Sub-Images</h4>
+        <div className="mb-6">
+          <h4 className="text-lg font-semibold mb-2 text-gray-600">
+            Sub-Images
+          </h4>
           {form.sub_images.map((subImage, index) => (
-            <div key={index} className="flex mb-2">
+            <div key={index} className="flex items-center mb-2">
               <input
                 type="text"
                 value={subImage}
                 onChange={(e) => handleSubImageChange(index, e.target.value)}
-                className="border px-4 py-2 w-full"
+                className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors mr-2"
                 placeholder={`Sub-Image URL ${index + 1}`}
               />
               <UnderlineButton
                 label="Remove"
                 onClick={() => removeSubImageField(index)}
-                className="tracking-wide ml-2 text-sm"
+                className="tracking-wide text-red-500 text-sm"
               />
             </div>
           ))}
           <UnderlineButton
-            className="ml-2 tracking-wide text-blue-500"
+            className="tracking-wide text-blue-500 text-sm"
             label="Add Sub-Image"
             onClick={addSubImageField}
           />
         </div>
 
-        <div className="mb-4">
-          <h4 className="text-lg font-semibold mb-2">Sizes</h4>
+        <div className="mb-6">
+          <h4 className="text-lg font-semibold mb-2 text-gray-600">Sizes</h4>
           {form.sizes.map((size, index) => (
-            <div key={index} className="flex mb-2">
+            <div key={index} className="flex items-center mb-2">
               <input
                 type="text"
                 value={size}
                 onChange={(e) => handleSizeChange(index, e.target.value)}
-                className="border px-4 py-2 w-full"
+                className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors mr-2"
                 placeholder={`Size ${index + 1}`}
               />
               <UnderlineButton
                 label="Remove"
                 onClick={() => removeSizeField(index)}
-                className="tracking-wide ml-2 text-sm"
+                className="tracking-wide text-red-500 text-sm"
               />
             </div>
           ))}
           <UnderlineButton
             label="Add Size"
             onClick={addSizeField}
-            className="tracking-wide ml-2 text-blue-500"
+            className="tracking-wide text-blue-500 text-sm"
           />
         </div>
 
-        <ButtonOne
-          type="submit"
-          label="Create Product"
-          className="bg-black text-white px-4 py-2"
-        />
+        <div className="flex justify-end space-x-4">
+          <ButtonOne
+            type="submit"
+            label="Create Product"
+            className="px-6 py-3 text-sm font-medium text-white bg-gray-900 hover:bg-gray-700 transition-colors duration-300 rounded-full shadow-md"
+          />
+        </div>
       </form>
     </div>
   )

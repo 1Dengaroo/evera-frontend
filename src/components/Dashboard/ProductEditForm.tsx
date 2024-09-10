@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { ProductFormProps } from '../../types'
 import { useUpdateProduct } from '../../hooks/Dashboard/useUpdateProduct'
 import { useNotification } from '../../context/NotificationContext'
+import { UnderlineButton } from '../Button/UnderlineButton'
+import { useNavigate } from 'react-router-dom'
 
 const ProductForm: React.FC<ProductFormProps> = ({
   product,
@@ -10,6 +12,8 @@ const ProductForm: React.FC<ProductFormProps> = ({
   handleUpdateSuccess,
   setIsEditing
 }) => {
+  const navigate = useNavigate()
+
   useEffect(() => {
     setEditForm({
       name: product.name || '',
@@ -25,6 +29,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
   }, [product, setEditForm])
 
   const { showNotification } = useNotification()
+
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -105,12 +110,25 @@ const ProductForm: React.FC<ProductFormProps> = ({
       quantity: product.quantity || 9999
     })
     setIsEditing(null)
+    navigate(-1)
   }
 
   return (
-    <form onSubmit={handleSubmit} className="border p-4 rounded">
-      <div className="mb-4">
-        <label htmlFor="name" className="block mb-2 font-semibold">
+    <form
+      onSubmit={handleSubmit}
+      className="mb-4 border rounded-3xl p-10 shadow-lg bg-white space-y-6 max-w-4xl mx-auto transition-all duration-500 hover:shadow-2xl"
+    >
+      <div className="flex justify-between items-center border-b pb-6 border-gray-300">
+        <h3 className="text-2xl font-thin text-gray-900">
+          Edit Product #{product.id}
+        </h3>
+      </div>
+
+      <div className="mb-6">
+        <label
+          htmlFor="name"
+          className="block text-gray-600 font-semibold mb-1"
+        >
           Product Name
         </label>
         <input
@@ -119,13 +137,16 @@ const ProductForm: React.FC<ProductFormProps> = ({
           name="name"
           value={editForm.name}
           onChange={handleChange}
-          className="border px-4 py-2 w-full"
+          className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
           placeholder="Enter product name"
         />
       </div>
 
-      <div className="mb-4">
-        <label htmlFor="description" className="block mb-2 font-semibold">
+      <div className="mb-6">
+        <label
+          htmlFor="description"
+          className="block text-gray-600 font-semibold mb-1"
+        >
           Product Description
         </label>
         <textarea
@@ -133,13 +154,16 @@ const ProductForm: React.FC<ProductFormProps> = ({
           name="description"
           value={editForm.description}
           onChange={handleChange}
-          className="border px-4 py-2 w-full"
+          className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
           placeholder="Enter product description"
         />
       </div>
 
-      <div className="mb-4">
-        <label htmlFor="price" className="block mb-2 font-semibold">
+      <div className="mb-6">
+        <label
+          htmlFor="price"
+          className="block text-gray-600 font-semibold mb-1"
+        >
           Price In Cents (USD)
         </label>
         <input
@@ -148,13 +172,16 @@ const ProductForm: React.FC<ProductFormProps> = ({
           name="price"
           value={editForm.price}
           onChange={handleChange}
-          className="border px-4 py-2 w-full"
+          className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
           placeholder="Enter product price"
         />
       </div>
 
-      <div className="mb-4">
-        <label htmlFor="product_type" className="block mb-2 font-semibold">
+      <div className="mb-6">
+        <label
+          htmlFor="product_type"
+          className="block text-gray-600 font-semibold mb-1"
+        >
           Product Type
         </label>
         <select
@@ -162,7 +189,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
           name="product_type"
           value={editForm.product_type}
           onChange={handleChange}
-          className="border px-4 py-2 w-full"
+          className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
         >
           <option value="unisex">Unisex</option>
           <option value="men">Men</option>
@@ -170,8 +197,11 @@ const ProductForm: React.FC<ProductFormProps> = ({
         </select>
       </div>
 
-      <div className="mb-4">
-        <label htmlFor="quantity" className="block mb-2 font-semibold">
+      <div className="mb-6">
+        <label
+          htmlFor="quantity"
+          className="block text-gray-600 font-semibold mb-1"
+        >
           Quantity
         </label>
         <input
@@ -180,13 +210,16 @@ const ProductForm: React.FC<ProductFormProps> = ({
           name="quantity"
           value={editForm.quantity}
           onChange={handleChange}
-          className="border px-4 py-2 w-full"
+          className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
           placeholder="Enter product quantity"
         />
       </div>
 
-      <div className="mb-4">
-        <label htmlFor="cover_image" className="block mb-2 font-semibold">
+      <div className="mb-6">
+        <label
+          htmlFor="cover_image"
+          className="block text-gray-600 font-semibold mb-1"
+        >
           Cover Image URL
         </label>
         <input
@@ -195,71 +228,68 @@ const ProductForm: React.FC<ProductFormProps> = ({
           name="cover_image"
           value={editForm.cover_image}
           onChange={handleChange}
-          className="border px-4 py-2 w-full"
+          className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
           placeholder="Enter cover image URL"
         />
       </div>
 
-      <div className="mb-4">
-        <label className="block mb-2 font-semibold">Sub-Images</label>
+      <div className="mb-6">
+        <label className="block text-gray-600 font-semibold mb-1">
+          Sub-Images
+        </label>
         {editForm.sub_images.map((subImage: string, index: number) => (
           <div key={index} className="flex items-center mb-2">
             <input
               type="text"
               value={subImage}
               onChange={(e) => handleSubImageChange(index, e.target.value)}
-              className="border px-4 py-2 w-full mr-2"
+              className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors mr-2"
               placeholder={`Sub-Image URL ${index + 1}`}
             />
-            <button
-              type="button"
+            <UnderlineButton
+              label="Remove"
               onClick={() => removeSubImage(index)}
-              className="px-4 py-2 text-red-500 hover:underline"
-            >
-              Remove
-            </button>
+              className="tracking-wide text-red-500 text-sm"
+            />
           </div>
         ))}
-        <button
-          type="button"
+        <UnderlineButton
+          className="tracking-wide text-blue-500 text-sm px-4 py-2"
+          label="Add Sub-Image"
           onClick={addSubImage}
-          className="px-4 py-2 text-blue-500 hover:underline"
-        >
-          Add Sub-Image
-        </button>
+        />
       </div>
 
-      <div className="mb-4">
-        <label className="block mb-2 font-semibold">Sizes</label>
+      <div className="mb-6">
+        <label className="block text-gray-600 font-semibold mb-1">Sizes</label>
         {editForm.sizes.map((size: string, index: number) => (
           <div key={index} className="flex items-center mb-2">
             <input
               type="text"
               value={size}
               onChange={(e) => handleSizeChange(index, e.target.value)}
-              className="border px-4 py-2 w-full mr-2"
+              className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors mr-2"
               placeholder={`Size ${index + 1}`}
             />
-            <button
-              type="button"
+            <UnderlineButton
+              label="Remove"
               onClick={() => removeSizeField(index)}
-              className="px-4 py-2 text-red-500 hover:underline"
-            >
-              Remove
-            </button>
+              className="tracking-wide text-red-500 text-sm"
+            />
           </div>
         ))}
-        <button
-          type="button"
+        <UnderlineButton
+          className="tracking-wide text-blue-500 text-sm px-4 py-2"
+          label="Add Size"
           onClick={addSizeField}
-          className="px-4 py-2 text-blue-500 hover:underline"
-        >
-          Add Size
-        </button>
+        />
       </div>
 
-      <div className="mb-4">
-        <label htmlFor="active" className="flex items-center font-semibold">
+      <div className="mb-6">
+        <label
+          htmlFor="active"
+          className="flex items-center font-semibold text-gray-600"
+        >
           <input
             type="checkbox"
             id="active"
@@ -272,14 +302,17 @@ const ProductForm: React.FC<ProductFormProps> = ({
         </label>
       </div>
 
-      <div className="flex space-x-4">
-        <button type="submit" className="bg-black text-white px-4 py-2">
-          Save
+      <div className="flex justify-end space-x-4">
+        <button
+          type="submit"
+          className="px-6 py-3 text-sm font-medium text-white bg-gray-900 hover:bg-gray-700 transition-colors duration-300 rounded-full shadow-md"
+        >
+          Save Changes
         </button>
         <button
           type="button"
           onClick={handleCancel}
-          className="hover:underline"
+          className="px-6 py-3 text-sm font-medium text-gray-900 hover:underline"
         >
           Cancel
         </button>

@@ -17,7 +17,9 @@ const Orders: React.FC = () => {
       setOrders(fetchedOrders)
     }
 
-    fetchOrders()
+    if (isAuthenticated) {
+      fetchOrders()
+    }
   }, [])
 
   const handleNavigateToTrackOrder = () => {

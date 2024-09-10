@@ -48,47 +48,36 @@ export const Cart: React.FC = () => {
           />
         ))}
       </div>
-      <p className="text-right mt-4">Subtotal: ${(total / 100).toFixed(2)}</p>
-      <p className="text-right">
-        Tax: <span className="text-gray-500 italic">TBD</span>
-      </p>
-      <p className="text-right">
-        Shipping: <span className="text-gray-500 italic">TBD</span>
-      </p>
-      <p className="text-right mt-2">Total: ${(total / 100).toFixed(2)}</p>
-      {!isAuthenticated ? (
-        <>
-          {cartIsValid && (
-            <div className="w-full flex flex-col items-center">
+      <div className="text-right">
+        <p className="font-gray-500">Subtotal: ${(total / 100).toFixed(2)}</p>
+        <p className="text-gray-500 italic">Tax: TBD</p>
+        <p className="text-gray-500 italic">Shipping: TBD</p>
+        <p className="font-semibold">Total: ${(total / 100).toFixed(2)}</p>
+      </div>
+
+      {cartIsValid && (
+        <div className="w-full flex flex-col items-center mt-8">
+          {!isAuthenticated ? (
+            <>
               <ButtonOne
-                className="mt-8"
+                className="px-6 py-3 text-sm font-medium text-white bg-gray-900 hover:bg-gray-700 transition-colors duration-300 rounded-full shadow-md"
                 label="Login and track your order"
-                onClick={() => {
-                  navigate('/login')
-                }}
+                onClick={() => navigate('/login')}
               />
               <UnderlineButton
                 label="Checkout as guest"
-                className="text-sm cursor-pointer mt-2"
+                className="text-sm text-blue-500 mt-4 hover:underline transition-all"
                 onClick={() => navigate('/checkout')}
               />
-            </div>
+            </>
+          ) : (
+            <ButtonOne
+              className="px-6 py-3 text-sm font-medium text-white bg-gray-900 hover:bg-gray-700 transition-colors duration-300 rounded-full shadow-md"
+              label="Checkout"
+              onClick={() => navigate('/checkout')}
+            />
           )}
-        </>
-      ) : (
-        <>
-          {cartIsValid && (
-            <div className="w-full flex flex-col items-center">
-              <ButtonOne
-                className="mt-8"
-                label="Checkout"
-                onClick={() => {
-                  navigate('/checkout')
-                }}
-              />
-            </div>
-          )}
-        </>
+        </div>
       )}
     </div>
   )

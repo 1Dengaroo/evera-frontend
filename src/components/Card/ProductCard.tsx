@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ProductCardProps } from '../../types'
 import { UnderlineButton } from '../Button/UnderlineButton'
+import { ButtonOne } from '../Button/ButtonOne'
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, onEditClick }) => {
   const navigate = useNavigate()
@@ -38,12 +39,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onEditClick }) => {
         ${Number(product.price / 100).toFixed(2)}
       </p>
       {onEditClick && (
-        <button
-          onClick={handleEditClick}
-          className="bg-black text-white font-serif py-2 px-4 mx-4 mb-4"
-        >
-          Edit
-        </button>
+        <div className="p-4">
+          <ButtonOne
+            label="Edit"
+            onClick={handleEditClick}
+            className="px-6 py-3 right text-sm font-medium text-white bg-gray-900 hover:bg-gray-700 transition-colors duration-300 rounded-full shadow-md"
+          />
+        </div>
       )}
     </div>
   )

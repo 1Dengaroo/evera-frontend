@@ -25,6 +25,7 @@ import PasswordResetRequest from './components/Authentication/PasswordResetReque
 import PasswordReset from './components/Authentication/PasswordReset'
 import { SideCart } from './components/Cart/SideCart'
 import OrderSearch from './pages/TrackOrder'
+import ProductEditPage from './components/Dashboard/ProductEditPage'
 
 const App: React.FC = () => {
   return (
@@ -63,6 +64,10 @@ const App: React.FC = () => {
 
                   <Route element={<ProtectedRoutes />}>
                     <Route element={<Dashboard />} path="/dashboard" />
+                    <Route
+                      path="/dashboard/products/edit/:productId"
+                      element={<ProductEditPage />}
+                    />
                   </Route>
 
                   <Route path="*" element={<NotFound />} />

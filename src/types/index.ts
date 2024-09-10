@@ -130,7 +130,7 @@ export interface AdminGetOrdersParams {
 
 export interface ProductCardProps {
   product: Product
-  onEditClick?: () => void // Optional edit handler for admin view
+  onEditClick?: () => void
 }
 
 export interface ProductFormProps {

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useGetProducts } from '../../hooks/Dashboard/useGetProducts'
 import { Product } from '../../types'
 import ProductCard from '../Card/ProductCard'
-import ProductForm from './ProductEditForm'
 import FilterForm from '../Filter/FilterForm'
 
 const ProductsList: React.FC = () => {
-  const [isEditingProduct, setIsEditingProduct] = useState<string | null>(null)
-  const [editProductForm, setEditProductForm] = useState<any>({})
   const [products, setProducts] = useState<Product[]>([])
   const [productFilters, setProductFilters] = useState({
     name: '',
@@ -16,6 +14,7 @@ const ProductsList: React.FC = () => {
     endDate: '',
     sortByDate: 'desc'
   })
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -29,7 +28,7 @@ const ProductsList: React.FC = () => {
     }
 
     fetchProducts()
-  }, [])
+  }, [productFilters])
 
   const handleProductFilterChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -51,28 +50,8 @@ const ProductsList: React.FC = () => {
     setProducts(fetchedProducts)
   }
 
-  const handleProductUpdateSuccess = (updatedProduct: Product) => {
-    setProducts((prevProducts) =>
-      prevProducts.map((product) =>
-        product.id === updatedProduct.id ? updatedProduct : product
-      )
-    )
-    setIsEditingProduct(null)
-  }
-
-  const handleProductEditClick = (product: Product) => {
-    setIsEditingProduct(product.id)
-    setEditProductForm({
-      name: product.name,
-      description: product.description,
-      price: product.price,
-      active: product.active,
-      product_type: product.product_type,
-      quantity: product.quantity || 9999,
-      cover_image: product.cover_image,
-      sub_images: product.sub_images || [],
-      sizes: product.sizes || []
-    })
+  const handleProductEditClick = (productId: string) => {
+    navigate(`/dashboard/products/edit/${productId}`)
   }
 
   return (
@@ -112,24 +91,13 @@ const ProductsList: React.FC = () => {
       {products.length === 0 ? (
         <p className="text-center text-gray-600">You have no products.</p>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 text-center">
           {products.map((product) => (
-            <div key={product.id}>
-              {isEditingProduct === product.id ? (
-                <ProductForm
-                  product={product}
-                  editForm={editProductForm}
-                  setEditForm={setEditProductForm}
-                  handleUpdateSuccess={handleProductUpdateSuccess}
-                  setIsEditing={setIsEditingProduct}
-                />
-              ) : (
-                <ProductCard
-                  product={product}
-                  onEditClick={() => handleProductEditClick(product)}
-                />
-              )}
-            </div>
+            <ProductCard
+              key={product.id}
+              product={product}
+              onEditClick={() => handleProductEditClick(product.id)}
+            />
           ))}
         </div>
       )}
