@@ -25,9 +25,11 @@ export const SideCart: React.FC = () => {
       !valid ? setCartIsValid(false) : setCartIsValid(true)
     }
 
-    validateCart()
-    fetchTotal()
-  }, [items])
+    if (showSideCart) {
+      validateCart()
+      fetchTotal()
+    }
+  }, [items, showSideCart])
 
   return (
     <>

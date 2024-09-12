@@ -8,7 +8,6 @@ export const useGetOrders = async (): Promise<Order[]> => {
     const token = localStorage.getItem('jwtToken')
     setAuthToken(token)
     const response = await axios.get(url)
-    console.log(response.data)
     return response.data
   } catch {
     return []
