@@ -1,34 +1,42 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { Navbar } from './components/Navbar/Navbar'
-import { Footer } from './components/Footer/Footer'
+import { ProtectedRoutes, PublicRoutes } from './components/Authentication'
+
+import { Navbar } from './components/Navbar'
+import { Footer } from './components/Footer'
+
 import Home from './pages/Home'
 import FAQ from './pages/FAQ'
 import Shop from './pages/Shop'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
 import About from './pages/About'
 import ProductShow from './pages/ProductShow'
 import CartPage from './pages/Cart'
-import { CartProvider } from './context/CartContext'
-import Login from './pages/Login'
-import Signup from './pages/Signup'
-import { AuthProvider } from './context/AuthContext'
-import ProtectedRoutes from './components/Authentication/ProtectedRoute'
-import PublicRoutes from './components/Authentication/PublicRoute'
 import Checkout from './pages/Checkout'
 import Orders from './pages/Orders'
-import { NotificationProvider } from './context/NotificationContext'
 import Dashboard from './pages/Dashboard'
-import { NotFound } from './pages/404'
-import { OrderCancel } from './pages/OrderCancel'
-import { OrderSuccess } from './pages/OrderSuccess'
-import PasswordResetRequest from './components/Authentication/PasswordResetRequest'
-import PasswordReset from './components/Authentication/PasswordReset'
-import { SideCart } from './components/Cart/SideCart'
+import NotFound from './pages/404'
+import OrderCancel from './pages/OrderCancel'
+import OrderSuccess from './pages/OrderSuccess'
 import OrderSearch from './pages/TrackOrder'
-import ProductEditPage from './components/Dashboard/ProductEditPage'
-import OrdersComponent from './components/Dashboard/Orders'
-import ProductCreateForm from './components/Dashboard/ProductCreateForm'
-import ProductsList from './components/Dashboard/ProductsList'
+
+import { CartProvider } from './context/CartContext'
+import { AuthProvider } from './context/AuthContext'
+import { NotificationProvider } from './context/NotificationContext'
+
+import {
+  PasswordResetRequest,
+  PasswordReset
+} from './components/Authentication'
+import { SideCart } from './components/Cart'
+
+import {
+  ProductEditPage,
+  DashboardOrders,
+  ProductCreateForm,
+  ProductsList
+} from './components/Dashboard'
 
 const App: React.FC = () => {
   return (
@@ -52,7 +60,6 @@ const App: React.FC = () => {
                   <Route element={<Orders />} path="/orders" />
                   <Route element={<OrderCancel />} path="/orders/cancel" />
                   <Route element={<OrderSuccess />} path="/orders/success" />
-                  <Route element={<Login />} path="/login" />
                   <Route element={<OrderSearch />} path="/orders/track" />
 
                   <Route element={<PublicRoutes />}>
@@ -67,7 +74,7 @@ const App: React.FC = () => {
 
                   <Route element={<ProtectedRoutes />}>
                     <Route path="/dashboard/*" element={<Dashboard />}>
-                      <Route path="orders" element={<OrdersComponent />} />
+                      <Route path="orders" element={<DashboardOrders />} />
                       <Route path="products" element={<ProductsList />} />
                       <Route
                         path="create-product"

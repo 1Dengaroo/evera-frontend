@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Section } from '../components/Section/Section'
+import { Section } from '../components/Section'
 
 export const NotFound: React.FC = () => {
   const navigate = useNavigate()
@@ -25,3 +25,5 @@ export const NotFound: React.FC = () => {
     </Section>
   )
 }
+
+export default NotFound

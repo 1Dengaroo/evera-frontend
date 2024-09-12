@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { useCreateProduct } from '../../hooks/Dashboard/useCreateProduct'
 import { useNotification } from '../../context/NotificationContext'
-import { ButtonOne } from '../Button/ButtonOne'
-import { UnderlineButton } from '../Button/UnderlineButton'
+import { ButtonOne, UnderlineButton } from '../Button'
 
-const ProductCreateForm: React.FC = () => {
+export const ProductCreateForm: React.FC = () => {
   const [form, setForm] = useState({
     name: '',
     description: '',
@@ -288,5 +287,3 @@ const ProductCreateForm: React.FC = () => {
     </div>
   )
 }
-
-export default ProductCreateForm

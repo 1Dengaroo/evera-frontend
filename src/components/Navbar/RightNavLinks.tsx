@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
 import { CartContext } from '../../context/CartContext'
 import { useUserLogout } from '../../hooks/Users/useUserLogout'
-import { NavItem } from '../../types'
+import { NavItem } from './types'
 
 const rightNavItems: NavItem[] = [{ label: 'Cart', href: '/cart' }]
 

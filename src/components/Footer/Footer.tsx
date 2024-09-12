@@ -6,7 +6,6 @@ export const Footer: React.FC = () => {
     <footer className="bg-white text-black py-12">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
-          {/* Links Section */}
           <div className="flex flex-col md:flex-row items-center mb-4 md:mb-0">
             <a className="text-sm text-gray-600 hover:text-black mx-2" href="/">
               Home
@@ -43,7 +42,6 @@ export const Footer: React.FC = () => {
             </a>
           </div>
 
-          {/* Social Media Icons Section */}
           <div className="flex items-center mb-4 md:mb-0">
             <a
               className="text-gray-600 hover:text-black mx-2"
@@ -72,7 +70,6 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Copyright Section */}
         <div className="mt-4 text-center text-sm text-gray-500">
           © 2024 Evera. All rights reserved.
         </div>

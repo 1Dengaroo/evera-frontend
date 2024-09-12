@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useGetOrders } from '../../hooks/Dashboard/useGetOrders'
 import { Order } from '../../types'
-import OrderCard from '../Order/OrderCard'
-import OrderForm from './OrderForm'
-import FilterForm from '../Filter/FilterForm'
+import { OrderCard } from '../Order'
+import { OrderForm } from './OrderForm'
+import { FilterForm } from '../Filter'
 
-const OrdersComponent: React.FC = () => {
+export const DashboardOrders: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([])
   const [isEditingOrder, setIsEditingOrder] = useState<string | null>(null)
   const [editOrderForm, setEditOrderForm] = useState<any>({})
@@ -127,5 +127,3 @@ const OrdersComponent: React.FC = () => {
     </div>
   )
 }
-
-export default OrdersComponent

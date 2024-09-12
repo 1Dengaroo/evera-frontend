@@ -1,10 +1,12 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ProductCardProps } from '../../types'
-import { UnderlineButton } from '../Button/UnderlineButton'
-import { ButtonOne } from '../Button/ButtonOne'
+import { ProductCardProps } from './types'
+import { UnderlineButton, ButtonOne } from '../Button'
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, onEditClick }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({
+  product,
+  onEditClick
+}) => {
   const navigate = useNavigate()
 
   const handleNavigate = () => {
@@ -50,5 +52,3 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onEditClick }) => {
     </div>
   )
 }
-
-export default ProductCard

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useUserSignup } from '../hooks/Users/useUserSignup'
-import { Section } from '../components/Section/Section'
+import { Section } from '../components/Section'
 import { useNavigate } from 'react-router-dom'
 import { useNotification } from '../context/NotificationContext'
-import { ButtonOne } from '../components/Button/ButtonOne'
+import { ButtonOne } from '../components/Button'
 
 const Signup: React.FC = () => {
   const [name, setName] = useState<string | undefined>(undefined)

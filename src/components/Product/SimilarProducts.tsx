@@ -1,8 +1,8 @@
 import React from 'react'
-import ProductCard from './ProductCard'
+import { ProductCard } from './ProductCard'
 import { SimilarProductsProps } from '../../hooks/Products/types'
 
-const SimilarProducts: React.FC<SimilarProductsProps> = ({
+export const SimilarProducts: React.FC<SimilarProductsProps> = ({
   similarProducts
 }) => {
   if (similarProducts.length === 0) return null
@@ -20,5 +20,3 @@ const SimilarProducts: React.FC<SimilarProductsProps> = ({
     </div>
   )
 }
-
-export default SimilarProducts

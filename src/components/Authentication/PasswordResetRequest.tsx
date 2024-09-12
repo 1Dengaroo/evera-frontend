@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useRequestPasswordReset } from '../../hooks/Users/usePasswordResetRequest'
-import { Section } from '../Section/Section'
+import { Section } from '../Section'
 import { useNotification } from '../../context/NotificationContext'
-import { ButtonOne } from '../Button/ButtonOne'
+import { ButtonOne } from '../Button'
 
-const PasswordResetRequest: React.FC = () => {
+export const PasswordResetRequest: React.FC = () => {
   const [email, setEmail] = useState('')
   const { showNotification } = useNotification()
   const [loading, setLoading] = useState(false)
@@ -51,5 +51,3 @@ const PasswordResetRequest: React.FC = () => {
     </Section>
   )
 }
-
-export default PasswordResetRequest

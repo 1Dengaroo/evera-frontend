@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Section } from '../components/Section/Section'
+import { Section } from '../components/Section'
 
 export const OrderCancel: React.FC = () => {
   const navigate = useNavigate()
@@ -28,3 +28,5 @@ export const OrderCancel: React.FC = () => {
     </Section>
   )
 }
+
+export default OrderCancel

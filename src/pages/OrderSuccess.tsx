@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Section } from '../components/Section/Section'
+import { Section } from '../components/Section'
 import { Order } from '../types'
 import { useGetOrderFromCS } from '../hooks/Orders/useGetOrderFromCS'
-import OrderCard from '../components/Order/OrderCard'
+import { OrderCard } from '../components/Order'
 import { useCart } from '../hooks/Cart/useCart'
 
 export const OrderSuccess: React.FC = () => {
@@ -63,3 +63,5 @@ export const OrderSuccess: React.FC = () => {
     </div>
   )
 }
+
+export default OrderSuccess

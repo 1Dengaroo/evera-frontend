@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useTrackOrder } from '../hooks/Orders/useTrackOrder'
 import { Order } from '../types'
-import OrderCard from '../components/Order/OrderCard'
-import { ButtonOne } from '../components/Button/ButtonOne'
+import { OrderCard } from '../components/Order'
+import { ButtonOne } from '../components/Button'
 
 const TrackOrder: React.FC = () => {
   const [orderId, setOrderId] = useState('')

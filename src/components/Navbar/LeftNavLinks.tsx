@@ -1,7 +1,7 @@
 // src/components/Navbar/LeftNavLinks.tsx
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { NavItem } from '../../types'
+import { NavItem } from './types'
 
 const leftNavItems: NavItem[] = [
   { label: 'Shop', href: '/shop' },

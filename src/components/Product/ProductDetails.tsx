@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { QuantityInput } from '../Input/QuantityInput'
+import { QuantityInput } from '../Input'
 import { useCart } from '../../hooks/Cart/useCart'
 import { useNotification } from '../../context/NotificationContext'
 import { ProductDetailsProps } from './types'
 
-const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
+export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
   const [selectedSize, setSelectedSize] = useState<string>('')
   const [quantity, setQuantity] = useState<number>(1)
   const { addItem } = useCart()
@@ -83,5 +83,3 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
     </div>
   )
 }
-
-export default ProductDetails

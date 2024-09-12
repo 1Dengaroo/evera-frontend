@@ -1,6 +1,6 @@
 import React from 'react'
-import { Section } from '../components/Section/Section'
-import { UnderlineButton } from '../components/Button/UnderlineButton'
+import { Section } from '../components/Section'
+import { UnderlineButton } from '../components/Button'
 
 const FAQ: React.FC = () => {
   return (

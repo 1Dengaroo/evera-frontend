@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { useGetOrders } from '../hooks/Orders/useGetOrders'
 import { Order } from '../types'
-import OrderCard from '../components/Order/OrderCard'
+import { OrderCard } from '../components/Order'
 import { AuthContext } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
-import { UnderlineButton } from '../components/Button/UnderlineButton'
+import { UnderlineButton } from '../components/Button'
 
 const Orders: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([])

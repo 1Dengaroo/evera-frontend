@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { FilterFormProps } from './types'
-import { ButtonOne } from '../Button/ButtonOne'
-import { UnderlineButton } from '../Button/UnderlineButton'
+import { ButtonOne, UnderlineButton } from '../Button'
 import { IoFilterSharp } from 'react-icons/io5'
 import { IoClose } from 'react-icons/io5'
 
-const FilterForm: React.FC<FilterFormProps> = ({
+export const FilterForm: React.FC<FilterFormProps> = ({
   filters,
   onFilterChange,
   onFilterSubmit,
@@ -110,5 +109,3 @@ const FilterForm: React.FC<FilterFormProps> = ({
     </>
   )
 }
-
-export default FilterForm

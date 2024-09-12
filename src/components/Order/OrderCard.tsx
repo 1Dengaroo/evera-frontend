@@ -1,6 +1,6 @@
 import React from 'react'
-import { OrderCardProps } from '../../types'
-import { ButtonOne } from '../Button/ButtonOne'
+import { OrderCardProps } from './types'
+import { ButtonOne } from '../Button'
 
 const OrderStatusBadge: React.FC<{ paid: boolean }> = ({ paid }) => (
   <span
@@ -70,7 +70,7 @@ const DeliveryAddress: React.FC<{ address: any }> = ({ address }) => (
   </>
 )
 
-const OrderCard: React.FC<OrderCardProps> = ({ order, onEditClick }) => (
+export const OrderCard: React.FC<OrderCardProps> = ({ order, onEditClick }) => (
   <div className="mb-4 border rounded-3xl p-10 shadow-lg bg-white space-y-10 max-w-4xl mx-auto transition-all duration-500 hover:shadow-2xl">
     <div className="flex justify-between items-center border-b pb-6 border-gray-300">
       <h3 className="text-2xl font-thin text-gray-900">Order #{order.id}</h3>
@@ -159,5 +159,3 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onEditClick }) => (
     )}
   </div>
 )
-
-export default OrderCard

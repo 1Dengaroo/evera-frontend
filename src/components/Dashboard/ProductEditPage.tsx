@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Product } from '../../types'
-import ProductForm from './ProductEditForm'
+import { ProductForm } from './ProductEditForm'
 import { useGetProduct } from '../../hooks/Dashboard/useGetProduct'
 
-const ProductEditPage: React.FC = () => {
+export const ProductEditPage: React.FC = () => {
   const { productId } = useParams<{ productId: string }>()
   const [product, setProduct] = useState<Product | null>(null)
   const [editForm, setEditForm] = useState<any>({})
@@ -55,5 +55,3 @@ const ProductEditPage: React.FC = () => {
     </div>
   )
 }
-
-export default ProductEditPage

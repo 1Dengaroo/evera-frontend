@@ -19,32 +19,10 @@ export interface Product {
   product_type: string
 }
 
-export interface UserCredentials {
-  email: string
-  password: string
-  name?: string
-}
-
 export interface User {
   id: number
   email: string
   name: string
-}
-
-export interface NavItem {
-  label: string
-  href: string
-}
-
-export interface AuthContextType {
-  isAuthenticated: boolean
-  login: (token: string, user: any) => void
-  logout: () => void
-}
-
-export interface UserLoginResponse {
-  success: boolean
-  data: any
 }
 
 export interface Order {
@@ -90,38 +68,4 @@ export interface Address {
   state: string
   postal_code: string
   country: string
-}
-
-export interface OrderFormProps {
-  order: Order
-  editForm: any
-  setEditForm: React.Dispatch<React.SetStateAction<any>>
-  handleUpdateSuccess: (updatedOrder: Order) => void
-  setIsEditing: React.Dispatch<React.SetStateAction<string | null>>
-}
-
-export interface OrderCardProps {
-  order: Order
-  onEditClick?: () => void // Optional edit handler for admin view
-}
-
-export interface ProductCardProps {
-  product: Product
-  onEditClick?: () => void
-}
-
-export interface ProductFormProps {
-  product: Product
-  editForm: any
-  setEditForm: React.Dispatch<React.SetStateAction<any>>
-  handleUpdateSuccess: (updatedProduct: Product) => void
-  setIsEditing: React.Dispatch<React.SetStateAction<string | null>>
-}
-
-export interface CartItemProps {
-  id: string
-  name: string
-  size: string
-  quantity: number
-  imageUrl: string
 }

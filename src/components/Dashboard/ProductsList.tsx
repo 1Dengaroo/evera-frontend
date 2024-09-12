@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGetProducts } from '../../hooks/Dashboard/useGetProducts'
 import { Product } from '../../types'
-import ProductCard from '../Product/ProductCard'
-import FilterForm from '../Filter/FilterForm'
+import { ProductCard } from '../Product'
+import { FilterForm } from '../Filter'
 
-const ProductsList: React.FC = () => {
+export const ProductsList: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([])
   const [productFilters, setProductFilters] = useState({
     name: '',
@@ -105,5 +105,3 @@ const ProductsList: React.FC = () => {
     </div>
   )
 }
-
-export default ProductsList

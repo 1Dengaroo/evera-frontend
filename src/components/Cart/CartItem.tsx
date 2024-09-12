@@ -2,15 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { useCart } from '../../hooks/Cart/useCart'
 import { useGetProductPriceById } from '../../hooks/Products/useGetProductPriceById'
 import { useValidateProduct } from '../../hooks/Products/useValidateProduct'
-import { CartItemProps } from '../../types'
-import { QuantityInput } from '../Input/QuantityInput'
-import { UnderlineButton } from '../Button/UnderlineButton'
+import { QuantityInput } from '../Input'
+import { UnderlineButton } from '../Button'
+import { ExtendedCartItem } from './types'
 
-interface ExtendedCartItemProps extends CartItemProps {
-  showMobileLayout?: boolean
-}
-
-export const CartItem: React.FC<ExtendedCartItemProps> = ({
+export const CartItem: React.FC<ExtendedCartItem> = ({
   id,
   name,
   size,

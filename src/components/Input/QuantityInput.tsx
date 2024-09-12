@@ -1,13 +1,5 @@
 import React from 'react'
-
-interface QuantityInputProps {
-  className?: string
-  value: number
-  min?: number
-  onIncrement: () => void
-  onDecrement: () => void
-  onChange: (newValue: number) => void
-}
+import { QuantityInputProps } from './types'
 
 export const QuantityInput: React.FC<QuantityInputProps> = ({
   className = '',
@@ -45,10 +37,10 @@ export const QuantityInput: React.FC<QuantityInputProps> = ({
         className="text-center border-none"
         style={{
           appearance: 'textfield',
-          minWidth: '2rem', // Allows the input to shrink to its minimum
-          width: 'auto', // Makes the input auto size based on the content
-          maxWidth: '4rem', // Adds a maximum width to prevent it from growing too much
-          height: '2rem' // Ensures the input is consistent in height
+          minWidth: '2rem',
+          width: 'auto',
+          maxWidth: '4rem',
+          height: '2rem'
         }}
       />
       <button onClick={onIncrement} className="px-2 py-1">

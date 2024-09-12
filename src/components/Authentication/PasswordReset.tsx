@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useResetPassword } from '../../hooks/Users/usePasswordReset'
-import { Section } from '../Section/Section'
+import { Section } from '../Section'
 import { useNotification } from '../../context/NotificationContext'
 import { useNavigate } from 'react-router-dom'
-import { ButtonOne } from '../Button/ButtonOne'
+import { ButtonOne } from '../Button'
 
-const PasswordReset: React.FC = () => {
+export const PasswordReset: React.FC = () => {
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
   const [searchParams] = useSearchParams()
@@ -63,5 +63,3 @@ const PasswordReset: React.FC = () => {
     </Section>
   )
 }
-
-export default PasswordReset

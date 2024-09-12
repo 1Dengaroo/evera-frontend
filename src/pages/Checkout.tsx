@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Section } from '../components/Section/Section'
+import { Section } from '../components/Section'
 import { useCart } from '../hooks/Cart/useCart'
 import { loadStripe, Stripe } from '@stripe/stripe-js'
 import { useGetStripePublicKey } from '../hooks/Payments/useGetStripePublicKey'

@@ -1,10 +1,9 @@
 import React from 'react'
 import { useUpdateOrder } from '../../hooks/Dashboard/useUpdateOrder'
-import { OrderFormProps } from '../../types'
-import { ButtonOne } from '../Button/ButtonOne'
-import { UnderlineButton } from '../Button/UnderlineButton'
+import { OrderFormProps } from './types'
+import { ButtonOne, UnderlineButton } from '../Button'
 
-const OrderForm: React.FC<OrderFormProps> = ({
+export const OrderForm: React.FC<OrderFormProps> = ({
   order,
   editForm,
   setEditForm,
@@ -148,5 +147,3 @@ const OrderForm: React.FC<OrderFormProps> = ({
     </div>
   )
 }
-
-export default OrderForm

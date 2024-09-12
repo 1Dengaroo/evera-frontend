@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
-import ProductImageSlider from '../components/Slider/ProductImageSlider'
-import ProductDetails from '../components/Product/ProductDetails'
+import { ProductImageSlider } from '../components/Slider'
 import { useGetProductById } from '../hooks/Products/useGetProductById'
 import { useGetSimilarProducts } from '../hooks/Products/useGetSimilarProducts'
 import { Product } from '../types'
-import SimilarProducts from '../components/Product/SimilarProducts'
+import { SimilarProducts, ProductDetails } from '../components/Product'
 
 const ProductShow: React.FC = () => {
   const { id } = useParams<{ id: string }>()

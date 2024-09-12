@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { useContext } from 'react'
-import { UserCredentials } from '../../types'
+import { UserCredentials } from './types'
 import { AuthContext } from '../../context/AuthContext'
-import { UserLoginResponse } from '../../types'
+import { UserLoginResponse } from './types'
 
 export const useUserLogin = () => {
   const { login } = useContext(AuthContext)

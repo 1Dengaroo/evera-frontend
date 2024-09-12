@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { UserCredentials } from '../../types'
+import { UserCredentials } from './types'
 
 export const useUserSignup = async (
   credentials: UserCredentials

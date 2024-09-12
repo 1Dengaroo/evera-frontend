@@ -5,8 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useGetCartTotal } from '../../hooks/Products/useGetCartTotal'
 import { AuthContext } from '../../context/AuthContext'
 import { useValidateCart } from '../../hooks/Products/useValidateCart'
-import { ButtonOne } from '../Button/ButtonOne'
-import { UnderlineButton } from '../Button/UnderlineButton'
+import { ButtonOne, UnderlineButton } from '../Button'
 
 export const Cart: React.FC = () => {
   const { items } = useCart()

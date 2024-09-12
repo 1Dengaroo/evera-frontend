@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react'
-import { AuthContextType } from '../types'
+import { AuthContextType } from './types'
 import axios from 'axios'
 import { isJwtExpired } from '../utils/auth/isJwtExpired'
 import { useNotification } from './NotificationContext'

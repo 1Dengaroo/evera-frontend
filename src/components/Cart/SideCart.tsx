@@ -5,8 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useValidateCart } from '../../hooks/Products/useValidateCart'
 import { useGetCartTotal } from '../../hooks/Products/useGetCartTotal'
 import { AuthContext } from '../../context/AuthContext'
-import { UnderlineButton } from '../Button/UnderlineButton'
-import { ButtonOne } from '../Button/ButtonOne'
+import { ButtonOne, UnderlineButton } from '../Button'
 
 export const SideCart: React.FC = () => {
   const { items, showSideCart, hideSideCartView } = useCart()

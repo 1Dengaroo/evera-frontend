@@ -4,7 +4,9 @@ import { NextArrow } from './NextArrow'
 import { PrevArrow } from './PrevArrow'
 import { ProductImageSliderProps } from './types'
 
-const ProductImageSlider: React.FC<ProductImageSliderProps> = ({ product }) => {
+export const ProductImageSlider: React.FC<ProductImageSliderProps> = ({
+  product
+}) => {
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -57,5 +59,3 @@ const ProductImageSlider: React.FC<ProductImageSliderProps> = ({ product }) => {
     </>
   )
 }
-
-export default ProductImageSlider

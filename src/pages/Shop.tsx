@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Section } from '../components/Section/Section'
+import { Section } from '../components/Section'
 import { useGetProducts } from '../hooks/Products/useGetProducts'
-import ProductCard from '../components/Product/ProductCard'
-import FilterForm from '../components/Filter/FilterForm'
+import { ProductCard } from '../components/Product'
+import { FilterForm } from '../components/Filter'
 import { Product } from '../types'
 
 const Shop: React.FC = () => {

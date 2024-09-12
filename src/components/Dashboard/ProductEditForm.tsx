@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
-import { ProductFormProps } from '../../types'
+import { ProductFormProps } from './types'
 import { useUpdateProduct } from '../../hooks/Dashboard/useUpdateProduct'
 import { useNotification } from '../../context/NotificationContext'
-import { UnderlineButton } from '../Button/UnderlineButton'
+import { UnderlineButton } from '../Button'
 import { useNavigate } from 'react-router-dom'
 
-const ProductForm: React.FC<ProductFormProps> = ({
+export const ProductForm: React.FC<ProductFormProps> = ({
   product,
   editForm,
   setEditForm,
@@ -320,5 +320,3 @@ const ProductForm: React.FC<ProductFormProps> = ({
     </form>
   )
 }
-
-export default ProductForm

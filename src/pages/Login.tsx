@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { useUserLogin } from '../hooks/Users/useUserLogin'
 import { useNavigate } from 'react-router-dom'
-import { Section } from '../components/Section/Section'
+import { Section } from '../components/Section'
 import { useNotification } from '../context/NotificationContext'
-import { UnderlineButton } from '../components/Button/UnderlineButton'
-import { ButtonOne } from '../components/Button/ButtonOne'
+import { ButtonOne, UnderlineButton } from '../components/Button'
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('')

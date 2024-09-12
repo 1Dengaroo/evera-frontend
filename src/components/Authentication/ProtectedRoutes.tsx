@@ -2,7 +2,7 @@ import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 import { useGetAdminStatus } from '../../hooks/Users/useGetAdminStatus'
 
-const ProtectedRoutes: React.FC = () => {
+export const ProtectedRoutes: React.FC = () => {
   const { isAdmin, loading } = useGetAdminStatus()
 
   if (loading) {
@@ -15,5 +15,3 @@ const ProtectedRoutes: React.FC = () => {
 
   return isAdmin ? <Outlet /> : <Navigate to="/404" />
 }
-
-export default ProtectedRoutes

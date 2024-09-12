@@ -1,15 +1,5 @@
-import React, { ReactNode } from 'react'
-
-interface SectionProps {
-  title?: string
-  children: ReactNode
-  className?: string
-  id?: string
-  backgroundImage?: string
-  titleClassName?: string
-  descriptionClassName?: string
-  shortHeight?: boolean
-}
+import React from 'react'
+import { SectionProps } from './types'
 
 export const Section: React.FC<SectionProps> = ({
   title,

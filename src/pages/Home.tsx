@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import { Section } from '../components/Section/Section'
+import { Section } from '../components/Section'
 import { useNavigate } from 'react-router-dom'
 import { useGetFrontPageProducts } from '../hooks/Products/useGetFrontPageProducts'
-import ProductCard from '../components/Product/ProductCard'
+import { ProductCard } from '../components/Product'
 import { Product } from '../types'
 
 const Home: React.FC = () => {
