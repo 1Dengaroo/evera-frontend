@@ -48,7 +48,7 @@ export const OrderSuccess: React.FC = () => {
       <h2 className="text-3xl font-thin tracking-wide my-8 text-center mt-12">
         Order Success
       </h2>
-      <p className="w-3/4 text-lg justify-center mx-auto mt-8 text-center">
+      <p className="max-w-4xl text-lg justify-center mx-auto mt-8 text-center">
         Thank you for your purchase! You can continue shopping or check your
         email for further details. You should also receive an email confirmation
         shortly with your order details.
