@@ -31,8 +31,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         src={product.cover_image}
       />
       <UnderlineButton
-        label={product.name}
         className="text-sm font-light text-gray-700 mb-2 tracking-wide"
+        label={product.name}
       />
       <p className="text-gray-500 font-serif font-thin tracking-widest text-sm px-4 mb-2">
         Evera
@@ -43,9 +43,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {onEditClick && (
         <div className="p-4">
           <ButtonOne
+            className="px-6 py-3 right text-sm font-medium text-white bg-gray-900 hover:bg-gray-700 transition-colors duration-300 rounded-full shadow-md"
             label="Edit"
             onClick={handleEditClick}
-            className="px-6 py-3 right text-sm font-medium text-white bg-gray-900 hover:bg-gray-700 transition-colors duration-300 rounded-full shadow-md"
           />
         </div>
       )}

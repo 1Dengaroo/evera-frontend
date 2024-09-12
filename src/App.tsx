@@ -73,21 +73,21 @@ const App: React.FC = () => {
                   </Route>
 
                   <Route element={<ProtectedRoutes />}>
-                    <Route path="/dashboard/*" element={<Dashboard />}>
-                      <Route path="orders" element={<DashboardOrders />} />
-                      <Route path="products" element={<ProductsList />} />
+                    <Route element={<Dashboard />} path="/dashboard/*">
+                      <Route element={<DashboardOrders />} path="orders" />
+                      <Route element={<ProductsList />} path="products" />
                       <Route
-                        path="create-product"
                         element={<ProductCreateForm />}
+                        path="create-product"
                       />
                     </Route>
                     <Route
-                      path="/dashboard/products/edit/:productId"
                       element={<ProductEditPage />}
+                      path="/dashboard/products/edit/:productId"
                     />
                   </Route>
 
-                  <Route path="*" element={<NotFound />} />
+                  <Route element={<NotFound />} path="*" />
                 </Routes>
               </div>
               <Footer />

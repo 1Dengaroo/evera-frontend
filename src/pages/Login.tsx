@@ -25,36 +25,36 @@ const Login: React.FC = () => {
 
   return (
     <Section
+      descriptionClassName="w-full"
       title="Login"
       titleClassName="text-3xl font-thin tracking-wide my-8 w-full mt-12"
-      descriptionClassName="w-full"
       shortHeight
     >
       <div className="flex flex-col items-center w-full">
         <input
-          type="email"
-          value={email}
+          className="p-2 mb-4 w-96 border border-black placeholder:text-xs"
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
-          className="p-2 mb-4 w-96 border border-black placeholder:text-xs"
+          type="email"
+          value={email}
         />
         <input
-          type="password"
-          value={password}
+          className="p-2 mb-4 w-96 border border-black placeholder:text-xs"
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
-          className="p-2 mb-4 w-96 border border-black placeholder:text-xs"
+          type="password"
+          value={password}
         />
-        <ButtonOne label="Login" onClick={onSubmit} className="px-6 text-sm" />
+        <ButtonOne className="px-6 text-sm" label="Login" onClick={onSubmit} />
         <div className="flex flex-col items-center mt-4">
           <UnderlineButton
-            label="Forgot password?"
             className="text-sm cursor-pointer mb-2"
+            label="Forgot password?"
             onClick={() => navigate('/reset-password')}
           />
           <UnderlineButton
-            label="Create an account"
             className="text-sm cursor-pointer"
+            label="Create an account"
             onClick={() => navigate('/signup')}
           />
         </div>

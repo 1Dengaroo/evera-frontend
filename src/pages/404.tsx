@@ -15,8 +15,8 @@ export const NotFound: React.FC = () => {
         <p className="text-center">
           The page you are looking for does not exist. Go back to{' '}
           <span
-            onClick={() => navigate('/')}
             className="text-blue-500 cursor-pointer"
+            onClick={() => navigate('/')}
           >
             Home
           </span>

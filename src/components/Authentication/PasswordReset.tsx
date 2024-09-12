@@ -31,33 +31,33 @@ export const PasswordReset: React.FC = () => {
 
   return (
     <Section
+      descriptionClassName="w-full"
       title="Reset Password"
       titleClassName="text-3xl font-thin tracking-wide my-8 w-full mt-12"
-      descriptionClassName="w-full"
       shortHeight
     >
       <form
-        onSubmit={handleSubmit}
         className="flex flex-col items-center w-full"
+        onSubmit={handleSubmit}
       >
         <input
-          type="password"
-          value={password}
+          className="p-2 mb-4 w-96 border border-black placeholder:text-xs"
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
-          className="p-2 mb-4 w-96 border border-black placeholder:text-xs"
+          type="password"
+          value={password}
         />
         <input
-          type="password"
-          value={passwordConfirmation}
+          className="p-2 mb-4 w-96 border border-black placeholder:text-xs"
           onChange={(e) => setPasswordConfirmation(e.target.value)}
           placeholder="Confirm Password"
-          className="p-2 mb-4 w-96 border border-black placeholder:text-xs"
+          type="password"
+          value={passwordConfirmation}
         />
         <ButtonOne
-          type="submit"
-          label="Reset Password"
           className="px-6 text-sm"
+          label="Reset Password"
+          type="submit"
         />
       </form>
     </Section>

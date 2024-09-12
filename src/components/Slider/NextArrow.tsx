@@ -5,8 +5,8 @@ export const NextArrow = (props: any) => {
   return (
     <div
       className={className}
-      style={{ ...style, display: 'block', right: '10px' }}
       onClick={onClick}
+      style={{ ...style, display: 'block', right: '10px' }}
     />
   )
 }

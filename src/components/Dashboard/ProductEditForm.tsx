@@ -115,8 +115,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 
   return (
     <form
-      onSubmit={handleSubmit}
       className="mb-4 border rounded-3xl p-10 shadow-lg bg-white space-y-6 max-w-4xl mx-auto transition-all duration-500 hover:shadow-2xl"
+      onSubmit={handleSubmit}
     >
       <div className="flex justify-between items-center border-b pb-6 border-gray-300">
         <h3 className="text-2xl font-thin text-gray-900">
@@ -126,70 +126,70 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 
       <div className="mb-6">
         <label
-          htmlFor="name"
           className="block text-gray-600 font-semibold mb-1"
+          htmlFor="name"
         >
           Product Name
         </label>
         <input
-          type="text"
+          className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
           id="name"
           name="name"
-          value={editForm.name}
           onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
           placeholder="Enter product name"
+          type="text"
+          value={editForm.name}
         />
       </div>
 
       <div className="mb-6">
         <label
-          htmlFor="description"
           className="block text-gray-600 font-semibold mb-1"
+          htmlFor="description"
         >
           Product Description
         </label>
         <textarea
+          className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
           id="description"
           name="description"
-          value={editForm.description}
           onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
           placeholder="Enter product description"
+          value={editForm.description}
         />
       </div>
 
       <div className="mb-6">
         <label
-          htmlFor="price"
           className="block text-gray-600 font-semibold mb-1"
+          htmlFor="price"
         >
           Price In Cents (USD)
         </label>
         <input
-          type="number"
+          className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
           id="price"
           name="price"
-          value={editForm.price}
           onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
           placeholder="Enter product price"
+          type="number"
+          value={editForm.price}
         />
       </div>
 
       <div className="mb-6">
         <label
-          htmlFor="product_type"
           className="block text-gray-600 font-semibold mb-1"
+          htmlFor="product_type"
         >
           Product Type
         </label>
         <select
+          className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
           id="product_type"
           name="product_type"
-          value={editForm.product_type}
           onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
+          value={editForm.product_type}
         >
           <option value="unisex">Unisex</option>
           <option value="men">Men</option>
@@ -199,37 +199,37 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 
       <div className="mb-6">
         <label
-          htmlFor="quantity"
           className="block text-gray-600 font-semibold mb-1"
+          htmlFor="quantity"
         >
           Quantity
         </label>
         <input
-          type="number"
+          className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
           id="quantity"
           name="quantity"
-          value={editForm.quantity}
           onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
           placeholder="Enter product quantity"
+          type="number"
+          value={editForm.quantity}
         />
       </div>
 
       <div className="mb-6">
         <label
-          htmlFor="cover_image"
           className="block text-gray-600 font-semibold mb-1"
+          htmlFor="cover_image"
         >
           Cover Image URL
         </label>
         <input
-          type="text"
+          className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
           id="cover_image"
           name="cover_image"
-          value={editForm.cover_image}
           onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
           placeholder="Enter cover image URL"
+          type="text"
+          value={editForm.cover_image}
         />
       </div>
 
@@ -240,16 +240,16 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         {editForm.sub_images.map((subImage: string, index: number) => (
           <div key={index} className="flex items-center mb-2">
             <input
+              className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors mr-2"
+              onChange={(e) => handleSubImageChange(index, e.target.value)}
+              placeholder={`Sub-Image URL ${index + 1}`}
               type="text"
               value={subImage}
-              onChange={(e) => handleSubImageChange(index, e.target.value)}
-              className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors mr-2"
-              placeholder={`Sub-Image URL ${index + 1}`}
             />
             <UnderlineButton
+              className="tracking-wide text-red-500 text-sm"
               label="Remove"
               onClick={() => removeSubImage(index)}
-              className="tracking-wide text-red-500 text-sm"
             />
           </div>
         ))}
@@ -265,16 +265,16 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         {editForm.sizes.map((size: string, index: number) => (
           <div key={index} className="flex items-center mb-2">
             <input
+              className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors mr-2"
+              onChange={(e) => handleSizeChange(index, e.target.value)}
+              placeholder={`Size ${index + 1}`}
               type="text"
               value={size}
-              onChange={(e) => handleSizeChange(index, e.target.value)}
-              className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors mr-2"
-              placeholder={`Size ${index + 1}`}
             />
             <UnderlineButton
+              className="tracking-wide text-red-500 text-sm"
               label="Remove"
               onClick={() => removeSizeField(index)}
-              className="tracking-wide text-red-500 text-sm"
             />
           </div>
         ))}
@@ -287,16 +287,16 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 
       <div className="mb-6">
         <label
-          htmlFor="active"
           className="flex items-center font-semibold text-gray-600"
+          htmlFor="active"
         >
           <input
-            type="checkbox"
+            checked={editForm.active}
+            className="mr-2"
             id="active"
             name="active"
-            checked={editForm.active}
             onChange={handleCheckboxChange}
-            className="mr-2"
+            type="checkbox"
           />
           Active
         </label>
@@ -304,15 +304,15 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 
       <div className="flex justify-end space-x-4">
         <button
-          type="submit"
           className="px-6 py-3 text-sm font-medium text-white bg-gray-900 hover:bg-gray-700 transition-colors duration-300 rounded-full shadow-md"
+          type="submit"
         >
           Save Changes
         </button>
         <button
-          type="button"
-          onClick={handleCancel}
           className="px-6 py-3 text-sm font-medium text-gray-900 hover:underline"
+          onClick={handleCancel}
+          type="button"
         >
           Cancel
         </button>

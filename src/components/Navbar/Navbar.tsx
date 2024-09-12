@@ -37,33 +37,33 @@ export const Navbar: React.FC = () => {
           {/* Mobile menu button */}
           <div className="flex md:hidden items-center">
             <button
-              onClick={toggleMenu}
-              type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-900 transition duration-150 ease-in-out"
               aria-controls="mobile-menu"
               aria-expanded={isOpen}
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-900 transition duration-150 ease-in-out"
+              onClick={toggleMenu}
+              type="button"
             >
               <svg
-                className="block h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
                 aria-hidden="true"
+                className="block h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
               >
                 {isOpen ? (
                   <path
+                    d="M6 18L18 6M6 6l12 12"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
                   />
                 ) : (
                   <path
+                    d="M4 6h16M4 12h16m-7 6h7"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M4 6h16M4 12h16m-7 6h7"
                   />
                 )}
               </svg>
@@ -80,8 +80,8 @@ export const Navbar: React.FC = () => {
         id="mobile-menu"
       >
         <div className="px-2 pt-2 pb-3 space-y-1">
-          <LeftNavLinks isMobile onClick={closeMenu} />
-          <RightNavLinks isMobile onClick={closeMenu} />
+          <LeftNavLinks onClick={closeMenu} isMobile />
+          <RightNavLinks onClick={closeMenu} isMobile />
         </div>
       </div>
     </nav>

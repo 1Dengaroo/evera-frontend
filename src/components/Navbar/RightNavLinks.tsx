@@ -39,11 +39,11 @@ const RightNavLinks: React.FC<{ isMobile?: boolean; onClick?: () => void }> = ({
       {allRightNavItems.map((item) => (
         <Link
           key={item.label}
-          to={item.href}
-          onClick={item.label === 'Logout' ? onLogout : onClick}
           className={`text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium ${
             isMobile ? 'block' : 'inline-block'
           }`}
+          onClick={item.label === 'Logout' ? onLogout : onClick}
+          to={item.href}
         >
           {item.label === 'Cart' && getCartSize() > 0 ? (
             <div className="relative">

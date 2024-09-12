@@ -61,9 +61,6 @@ export const ProductsList: React.FC = () => {
       </h2>
 
       <FilterForm
-        filters={productFilters}
-        onFilterChange={handleProductFilterChange}
-        onFilterSubmit={handleProductFilterSubmit}
         fields={[
           { name: 'name', type: 'text', placeholder: 'Filter by Name' },
           {
@@ -86,7 +83,10 @@ export const ProductsList: React.FC = () => {
             ]
           }
         ]}
+        filters={productFilters}
         numberOfItems={products.length}
+        onFilterChange={handleProductFilterChange}
+        onFilterSubmit={handleProductFilterSubmit}
       />
 
       {products.length === 0 ? (
@@ -96,8 +96,8 @@ export const ProductsList: React.FC = () => {
           {products.map((product) => (
             <ProductCard
               key={product.id}
-              product={product}
               onEditClick={() => handleProductEditClick(product.id)}
+              product={product}
             />
           ))}
         </div>

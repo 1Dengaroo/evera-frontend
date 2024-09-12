@@ -26,9 +26,9 @@ const OrderItem: React.FC<{ item: any }> = ({ item }) => (
   <div className="flex items-start items-center justify-between py-6 border-b w-full">
     <div className="flex items-start items-center">
       <img
-        src={item.product.cover_image}
         alt={item.name}
         className="w-24 h-32 object-cover rounded-md mb-2"
+        src={item.product.cover_image}
       />
       <div className="ml-6">
         <h3 className="text-md font-thin tracking-wider">

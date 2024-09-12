@@ -20,11 +20,11 @@ const TrackOrder: React.FC = () => {
       </h2>
       <div className="flex items-center justify-center space-x-2 mb-8">
         <input
-          type="text"
-          placeholder="Enter Order ID"
           className="border border-gray-300 w-1/2 rounded-l px-4 py-2 w-64 placeholder:text-sm text-sm"
-          value={orderId}
           onChange={(e) => setOrderId(e.target.value)}
+          placeholder="Enter Order ID"
+          type="text"
+          value={orderId}
         />
         <ButtonOne
           className="text-sm tracking-wide"

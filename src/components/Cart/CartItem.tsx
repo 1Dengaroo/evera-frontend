@@ -56,9 +56,9 @@ export const CartItem: React.FC<ExtendedCartItem> = ({
     <div className="flex items-start md:items-center justify-between py-12 px-2 border-b w-full">
       <div className="flex items-start items-center">
         <img
-          src={imageUrl}
           alt={name}
           className="w-32 h-44 object-cover rounded-md"
+          src={imageUrl}
         />
         <div className="ml-6 h-full">
           <h3 className="text-md font-thin tracking-wider">
@@ -76,15 +76,15 @@ export const CartItem: React.FC<ExtendedCartItem> = ({
             className={`flex items-center mt-4 ${showMobileLayout ? 'block' : 'md:hidden'}`}
           >
             <QuantityInput
-              value={quantity}
-              onIncrement={handleIncrement}
-              onDecrement={handleDecrement}
               onChange={handleQuantityChange}
+              onDecrement={handleDecrement}
+              onIncrement={handleIncrement}
+              value={quantity}
             />
             <UnderlineButton
+              className="ml-4 tracking-wider text-sm"
               label="Remove"
               onClick={() => removeItem(id, size)}
-              className="ml-4 tracking-wider text-sm"
             />
           </div>
         </div>
@@ -94,15 +94,15 @@ export const CartItem: React.FC<ExtendedCartItem> = ({
         className={`hidden ${showMobileLayout ? 'hidden' : 'md:flex'} items-center`}
       >
         <QuantityInput
-          value={quantity}
-          onIncrement={handleIncrement}
-          onDecrement={handleDecrement}
           onChange={handleQuantityChange}
+          onDecrement={handleDecrement}
+          onIncrement={handleIncrement}
+          value={quantity}
         />
         <UnderlineButton
+          className="ml-4 tracking-wider text-sm"
           label="Remove"
           onClick={() => removeItem(id, size)}
-          className="ml-4 tracking-wider text-sm"
         />
       </div>
     </div>

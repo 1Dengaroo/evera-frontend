@@ -57,9 +57,6 @@ const Shop: React.FC = () => {
       <p className="font-light mb-8">SHOP ALL</p>
 
       <FilterForm
-        filters={productFilters}
-        onFilterChange={handleProductFilterChange}
-        onFilterSubmit={handleProductFilterSubmit}
         fields={[
           { name: 'name', type: 'text', placeholder: 'Filter by name' },
           {
@@ -79,7 +76,10 @@ const Shop: React.FC = () => {
             ]
           }
         ]}
+        filters={productFilters}
         numberOfItems={products.length}
+        onFilterChange={handleProductFilterChange}
+        onFilterSubmit={handleProductFilterSubmit}
       />
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">

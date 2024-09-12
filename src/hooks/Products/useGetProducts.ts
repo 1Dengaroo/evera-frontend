@@ -12,8 +12,9 @@ export const useGetProducts = async (
 
     if (params.name) queryParams.name = params.name
     if (params.sort_by) queryParams.sort_by = params.sort_by
-    if (params.sort_direction)
+    if (params.sort_direction) {
       queryParams.sort_direction = params.sort_direction
+    }
 
     const queryString = new URLSearchParams(
       queryParams as Record<string, string>

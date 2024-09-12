@@ -80,9 +80,6 @@ export const DashboardOrders: React.FC = () => {
       </h2>
 
       <FilterForm
-        filters={orderFilters}
-        onFilterChange={handleOrderFilterChange}
-        onFilterSubmit={handleOrderFilterSubmit}
         fields={[
           { name: 'id', type: 'text', placeholder: 'Filter by ID' },
           { name: 'email', type: 'text', placeholder: 'Filter by email' },
@@ -97,7 +94,10 @@ export const DashboardOrders: React.FC = () => {
             ]
           }
         ]}
+        filters={orderFilters}
         numberOfItems={orders.length}
+        onFilterChange={handleOrderFilterChange}
+        onFilterSubmit={handleOrderFilterSubmit}
       />
 
       {orders.length === 0 ? (
@@ -108,16 +108,16 @@ export const DashboardOrders: React.FC = () => {
             <div key={order.id}>
               {isEditingOrder === order.id ? (
                 <OrderForm
-                  order={order}
                   editForm={editOrderForm}
-                  setEditForm={setEditOrderForm}
                   handleUpdateSuccess={handleOrderUpdateSuccess}
+                  order={order}
+                  setEditForm={setEditOrderForm}
                   setIsEditing={setIsEditingOrder}
                 />
               ) : (
                 <OrderCard
-                  order={order}
                   onEditClick={() => handleOrderEditClick(order)}
+                  order={order}
                 />
               )}
             </div>

@@ -50,13 +50,13 @@ const FAQ: React.FC = () => {
           <p className="font-light">
             You can contact our customer support team by emailing us directly at
             <a
-              href="mailto:support@everafashion.com"
               className="text-blue-500 hover:underline"
+              href="mailto:support@everafashion.com"
             >
               {' '}
               <UnderlineButton
-                label="support@everafashion.com"
                 className="text-blue-500"
+                label="support@everafashion.com"
               />
             </a>
             . We&apos;re here to assist you with any questions or concerns you

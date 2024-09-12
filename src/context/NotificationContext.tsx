@@ -44,10 +44,10 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({
     <NotificationContext.Provider value={{ showNotification }}>
       {notification && (
         <Notification
-          message={notification.message}
-          type={notification.type}
           duration={notification.duration}
+          message={notification.message}
           onClose={handleClose}
+          type={notification.type}
         />
       )}
       {children}

@@ -81,10 +81,10 @@ export const OrderForm: React.FC<OrderFormProps> = ({
             Status:
           </label>
           <select
-            name="status"
-            value={editForm.delivery.status}
-            onChange={handleInputChange}
             className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
+            name="status"
+            onChange={handleInputChange}
+            value={editForm.delivery.status}
           >
             <option value="manufacturing">Manufacturing</option>
             <option value="shipped">Shipped</option>
@@ -97,11 +97,11 @@ export const OrderForm: React.FC<OrderFormProps> = ({
             Tracking Information:
           </label>
           <input
-            type="text"
-            name="tracking_information"
-            value={editForm.delivery.tracking_information || ''}
-            onChange={handleInputChange}
             className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
+            name="tracking_information"
+            onChange={handleInputChange}
+            type="text"
+            value={editForm.delivery.tracking_information || ''}
           />
         </div>
 
@@ -120,12 +120,12 @@ export const OrderForm: React.FC<OrderFormProps> = ({
           ].map((field) => (
             <div key={field} className="mb-4">
               <input
-                type="text"
-                name={field}
-                placeholder={field.replace('_', ' ').toUpperCase()}
-                value={editForm.delivery.address[field] || ''}
-                onChange={handleAddressChange}
                 className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
+                name={field}
+                onChange={handleAddressChange}
+                placeholder={field.replace('_', ' ').toUpperCase()}
+                type="text"
+                value={editForm.delivery.address[field] || ''}
               />
             </div>
           ))}
@@ -133,14 +133,14 @@ export const OrderForm: React.FC<OrderFormProps> = ({
 
         <div className="flex justify-end space-x-4">
           <ButtonOne
+            className="px-6 py-3 text-sm font-medium text-white bg-gray-900 hover:bg-gray-700 transition-colors duration-300 rounded-full shadow-md"
             label="Save Changes"
             onClick={handleSubmit}
-            className="px-6 py-3 text-sm font-medium text-white bg-gray-900 hover:bg-gray-700 transition-colors duration-300 rounded-full shadow-md"
           />
           <UnderlineButton
+            className="text-sm font-medium text-gray-900 hover:underline transition-all"
             label="Cancel"
             onClick={() => setIsEditing(null)}
-            className="text-sm font-medium text-gray-900 hover:underline transition-all"
           />
         </div>
       </form>

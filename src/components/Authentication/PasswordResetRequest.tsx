@@ -25,27 +25,27 @@ export const PasswordResetRequest: React.FC = () => {
 
   return (
     <Section
+      descriptionClassName="w-full"
       title="Reset Password"
       titleClassName="text-3xl font-thin tracking-wide my-8 w-full mt-12"
-      descriptionClassName="w-full"
       shortHeight
     >
       <form
-        onSubmit={handleSubmit}
         className="flex flex-col items-center w-full"
+        onSubmit={handleSubmit}
       >
         <input
-          type="email"
-          value={email}
+          className="p-2 mb-4 w-96 border border-black placeholder:text-xs"
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your email"
-          className="p-2 mb-4 w-96 border border-black placeholder:text-xs"
+          type="email"
+          value={email}
           required
         />
         <ButtonOne
+          className="px-6 text-sm"
           label={loading ? 'Loading...' : 'Send Password Reset'}
           onClick={handleSubmit}
-          className="px-6 text-sm"
         />
       </form>
     </Section>

@@ -9,8 +9,8 @@ export const UnderlineButton: React.FC<UnderlineButtonProps> = ({
 }) => {
   return (
     <button
-      type={type}
       className={`relative inline-block group ${className}`}
+      type={type}
       {...props}
     >
       <span

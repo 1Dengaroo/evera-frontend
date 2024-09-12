@@ -27,9 +27,9 @@ export const FilterForm: React.FC<FilterFormProps> = ({
         <div className="flex space-x-2">
           <IoFilterSharp className="text-xl" />
           <UnderlineButton
+            className="text-xs"
             label="FILTER & SORT"
             onClick={toggleSidebar}
-            className="text-xs"
           />
         </div>
         {numberOfItems !== 1 ? (
@@ -71,10 +71,10 @@ export const FilterForm: React.FC<FilterFormProps> = ({
                 return (
                   <select
                     key={index}
-                    name={field.name}
-                    value={filters[field.name]}
-                    onChange={onFilterChange}
                     className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
+                    name={field.name}
+                    onChange={onFilterChange}
+                    value={filters[field.name]}
                   >
                     {field.options?.map((option, idx) => (
                       <option key={idx} value={option.value}>
@@ -87,12 +87,12 @@ export const FilterForm: React.FC<FilterFormProps> = ({
                 return (
                   <input
                     key={index}
-                    type={field.type}
-                    name={field.name}
-                    placeholder={field.placeholder}
-                    value={filters[field.name]}
-                    onChange={onFilterChange}
                     className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors placeholder:text-xs"
+                    name={field.name}
+                    onChange={onFilterChange}
+                    placeholder={field.placeholder}
+                    type={field.type}
+                    value={filters[field.name]}
                   />
                 )
               }
@@ -100,8 +100,8 @@ export const FilterForm: React.FC<FilterFormProps> = ({
             <ButtonOne
               className="text-sm px-6 py-2 bg-gray-900 text-white tracking-wide rounded-full hover:bg-gray-700 transition-colors duration-300 shadow-md"
               label="VIEW PRODUCTS"
-              type="submit"
               onClick={closeSidebar}
+              type="submit"
             />
           </div>
         </form>

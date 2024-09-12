@@ -90,78 +90,78 @@ export const ProductCreateForm: React.FC = () => {
       </h2>
 
       <form
-        onSubmit={handleSubmit}
         className="mb-4 border rounded-3xl p-10 shadow-lg bg-white space-y-6 transition-all duration-500 hover:shadow-2xl"
+        onSubmit={handleSubmit}
       >
         <div className="mb-6">
           <label
-            htmlFor="name"
             className="block text-gray-600 font-semibold mb-1"
+            htmlFor="name"
           >
             Product Name
           </label>
           <input
-            type="text"
+            className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
             id="name"
             name="name"
-            value={form.name}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
             placeholder="Enter product name"
+            type="text"
+            value={form.name}
             required
           />
         </div>
 
         <div className="mb-6">
           <label
-            htmlFor="description"
             className="block text-gray-600 font-semibold mb-1"
+            htmlFor="description"
           >
             Product Description
           </label>
           <textarea
+            className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
             id="description"
             name="description"
-            value={form.description}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
             placeholder="Enter product description"
+            value={form.description}
             required
           />
         </div>
 
         <div className="mb-6">
           <label
-            htmlFor="price"
             className="block text-gray-600 font-semibold mb-1"
+            htmlFor="price"
           >
             Price In Cents (USD)
           </label>
           <input
-            type="number"
+            className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
             id="price"
             name="price"
-            value={form.price}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
             placeholder="Enter product price"
+            type="number"
+            value={form.price}
             required
           />
         </div>
 
         <div className="mb-6">
           <label
-            htmlFor="product_type"
             className="block text-gray-600 font-semibold mb-1"
+            htmlFor="product_type"
           >
             Product Type
           </label>
           <select
+            className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
             id="product_type"
             name="product_type"
-            value={form.product_type}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
+            value={form.product_type}
             required
           >
             <option value="unisex">Unisex</option>
@@ -172,53 +172,53 @@ export const ProductCreateForm: React.FC = () => {
 
         <div className="mb-6">
           <label
-            htmlFor="quantity"
             className="block text-gray-600 font-semibold mb-1"
+            htmlFor="quantity"
           >
             Quantity
           </label>
           <input
-            type="number"
+            className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
             id="quantity"
             name="quantity"
-            value={form.quantity}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
             placeholder="Enter product quantity"
+            type="number"
+            value={form.quantity}
             required
           />
         </div>
 
         <div className="mb-6">
           <label
-            htmlFor="cover_image"
             className="block text-gray-600 font-semibold mb-1"
+            htmlFor="cover_image"
           >
             Cover Image URL
           </label>
           <input
-            type="text"
+            className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
             id="cover_image"
             name="cover_image"
-            value={form.cover_image}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
             placeholder="Enter cover image URL"
+            type="text"
+            value={form.cover_image}
           />
         </div>
 
         <div className="mb-6">
           <label
-            htmlFor="active"
             className="flex items-center font-semibold text-gray-600"
+            htmlFor="active"
           >
             <input
-              type="checkbox"
+              checked={form.active}
+              className="mr-2"
               id="active"
               name="active"
-              checked={form.active}
               onChange={handleCheckboxChange}
-              className="mr-2"
+              type="checkbox"
             />
             Active
           </label>
@@ -231,16 +231,16 @@ export const ProductCreateForm: React.FC = () => {
           {form.sub_images.map((subImage, index) => (
             <div key={index} className="flex items-center mb-2">
               <input
+                className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors mr-2"
+                onChange={(e) => handleSubImageChange(index, e.target.value)}
+                placeholder={`Sub-Image URL ${index + 1}`}
                 type="text"
                 value={subImage}
-                onChange={(e) => handleSubImageChange(index, e.target.value)}
-                className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors mr-2"
-                placeholder={`Sub-Image URL ${index + 1}`}
               />
               <UnderlineButton
+                className="tracking-wide text-red-500 text-sm"
                 label="Remove"
                 onClick={() => removeSubImageField(index)}
-                className="tracking-wide text-red-500 text-sm"
               />
             </div>
           ))}
@@ -256,31 +256,31 @@ export const ProductCreateForm: React.FC = () => {
           {form.sizes.map((size, index) => (
             <div key={index} className="flex items-center mb-2">
               <input
+                className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors mr-2"
+                onChange={(e) => handleSizeChange(index, e.target.value)}
+                placeholder={`Size ${index + 1}`}
                 type="text"
                 value={size}
-                onChange={(e) => handleSizeChange(index, e.target.value)}
-                className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors mr-2"
-                placeholder={`Size ${index + 1}`}
               />
               <UnderlineButton
+                className="tracking-wide text-red-500 text-sm"
                 label="Remove"
                 onClick={() => removeSizeField(index)}
-                className="tracking-wide text-red-500 text-sm"
               />
             </div>
           ))}
           <UnderlineButton
+            className="tracking-wide text-blue-500 text-sm"
             label="Add Size"
             onClick={addSizeField}
-            className="tracking-wide text-blue-500 text-sm"
           />
         </div>
 
         <div className="flex justify-end space-x-4">
           <ButtonOne
-            type="submit"
-            label="Create Product"
             className="px-6 py-3 text-sm font-medium text-white bg-gray-900 hover:bg-gray-700 transition-colors duration-300 rounded-full shadow-md"
+            label="Create Product"
+            type="submit"
           />
         </div>
       </form>

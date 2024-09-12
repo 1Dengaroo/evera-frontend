@@ -59,11 +59,11 @@ export const SideCart: React.FC = () => {
             <CartItem
               key={item.id}
               id={item.id}
-              name={item.name}
-              size={item.size}
-              quantity={item.quantity}
               imageUrl={item.imageUrl}
+              name={item.name}
+              quantity={item.quantity}
               showMobileLayout={true}
+              size={item.size}
             />
           ))
         )}
@@ -87,8 +87,8 @@ export const SideCart: React.FC = () => {
                       }}
                     />
                     <UnderlineButton
-                      label="Checkout as guest"
                       className="text-sm cursor-pointer mt-2"
+                      label="Checkout as guest"
                       onClick={() => {
                         hideSideCartView()
                         navigate('/checkout')

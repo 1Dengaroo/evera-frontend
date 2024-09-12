@@ -23,18 +23,16 @@ export const QuantityInput: React.FC<QuantityInputProps> = ({
       }
     >
       <button
-        onClick={onDecrement}
         className="px-2 py-1"
         disabled={value <= min}
+        onClick={onDecrement}
       >
         -
       </button>
       <input
-        type="number"
-        value={value}
+        className="text-center border-none"
         min={min}
         onChange={handleInputChange}
-        className="text-center border-none"
         style={{
           appearance: 'textfield',
           minWidth: '2rem',
@@ -42,8 +40,10 @@ export const QuantityInput: React.FC<QuantityInputProps> = ({
           maxWidth: '4rem',
           height: '2rem'
         }}
+        type="number"
+        value={value}
       />
-      <button onClick={onIncrement} className="px-2 py-1">
+      <button className="px-2 py-1" onClick={onIncrement}>
         +
       </button>
     </div>

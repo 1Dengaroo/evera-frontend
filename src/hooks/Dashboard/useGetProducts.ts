@@ -14,8 +14,9 @@ export const useGetProducts = async (
     const queryParams: Record<string, string | boolean | undefined> = {}
     if (params?.active !== undefined) queryParams.active = params.active
     if (params?.name) queryParams.name = params.name
-    if (params?.startDate)
+    if (params?.startDate) {
       queryParams['created_at[start_date]'] = params.startDate
+    }
     if (params?.endDate) queryParams['created_at[end_date]'] = params.endDate
     if (params?.sortByDate) queryParams.sort_by_date = params.sortByDate
 

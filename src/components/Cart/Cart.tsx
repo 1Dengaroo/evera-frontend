@@ -40,10 +40,10 @@ export const Cart: React.FC = () => {
           <CartItem
             key={item.id}
             id={item.id}
-            name={item.name}
-            size={item.size}
-            quantity={item.quantity}
             imageUrl={item.imageUrl}
+            name={item.name}
+            quantity={item.quantity}
+            size={item.size}
           />
         ))}
       </div>
@@ -64,8 +64,8 @@ export const Cart: React.FC = () => {
                 onClick={() => navigate('/login')}
               />
               <UnderlineButton
-                label="Checkout as guest"
                 className="text-sm text-blue-500 mt-4 hover:underline transition-all"
+                label="Checkout as guest"
                 onClick={() => navigate('/checkout')}
               />
             </>

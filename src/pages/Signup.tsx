@@ -31,30 +31,30 @@ const Signup: React.FC = () => {
     >
       <div className="flex flex-col items-center w-full">
         <input
-          type="text"
-          placeholder="Name"
-          value={name || ''}
+          className="p-2 mb-4 w-96 border border-black placeholder:text-xs"
           onChange={(e) => setName(e.target.value)}
-          className="p-2 mb-4 w-96 border border-black placeholder:text-xs"
+          placeholder="Name"
+          type="text"
+          value={name || ''}
         />
         <input
-          type="email"
-          placeholder="Email"
-          value={email}
+          className="p-2 mb-4 w-96 border border-black placeholder:text-xs"
           onChange={(e) => setEmail(e.target.value)}
-          className="p-2 mb-4 w-96 border border-black placeholder:text-xs"
+          placeholder="Email"
+          type="email"
+          value={email}
         />
         <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
           className="p-2 mb-4 w-96 border border-black placeholder:text-xs"
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          type="password"
+          value={password}
         />
         <ButtonOne
+          className="px-6 text-sm"
           label="Sign Up"
           onClick={handleSignup}
-          className="px-6 text-sm"
         />
       </div>
       {error && <p className="text-red-500 text-center mt-4">{error}</p>}

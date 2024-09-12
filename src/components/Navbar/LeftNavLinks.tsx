@@ -19,11 +19,11 @@ const LeftNavLinks: React.FC<{ isMobile?: boolean; onClick?: () => void }> = ({
       {leftNavItems.map((item) => (
         <Link
           key={item.label}
-          to={item.href}
-          onClick={onClick}
           className={`text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium ${
             isMobile ? 'block' : 'inline-block'
           }`}
+          onClick={onClick}
+          to={item.href}
         >
           {item.label}
         </Link>

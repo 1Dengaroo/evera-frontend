@@ -61,10 +61,10 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
       <p className="text-sm font-thin text-gray-700 mb-2">Quantity</p>
       <QuantityInput
         className="mb-2 border-black"
-        value={quantity}
-        onIncrement={handleQuantityIncrement}
-        onDecrement={handleQuantityDecrement}
         onChange={setQuantity}
+        onDecrement={handleQuantityDecrement}
+        onIncrement={handleQuantityIncrement}
+        value={quantity}
       />
       <button
         className="w-full h-12 py-2 tracking-wider border border-black rounded-sm hover:bg-gray-100 mb-12 transition duration-500"

@@ -17,8 +17,8 @@ export const OrderCancel: React.FC = () => {
           have any questions or need further assistance, please contact our
           support team. You can go back to the{' '}
           <span
-            onClick={() => navigate('/')}
             className="text-blue-500 cursor-pointer"
+            onClick={() => navigate('/')}
           >
             Home
           </span>{' '}
