@@ -26,6 +26,9 @@ import PasswordReset from './components/Authentication/PasswordReset'
 import { SideCart } from './components/Cart/SideCart'
 import OrderSearch from './pages/TrackOrder'
 import ProductEditPage from './components/Dashboard/ProductEditPage'
+import OrdersComponent from './components/Dashboard/Orders'
+import ProductCreateForm from './components/Dashboard/ProductCreateForm'
+import ProductsList from './components/Dashboard/ProductsList'
 
 const App: React.FC = () => {
   return (
@@ -63,7 +66,14 @@ const App: React.FC = () => {
                   </Route>
 
                   <Route element={<ProtectedRoutes />}>
-                    <Route element={<Dashboard />} path="/dashboard" />
+                    <Route path="/dashboard/*" element={<Dashboard />}>
+                      <Route path="orders" element={<OrdersComponent />} />
+                      <Route path="products" element={<ProductsList />} />
+                      <Route
+                        path="create-product"
+                        element={<ProductCreateForm />}
+                      />
+                    </Route>
                     <Route
                       path="/dashboard/products/edit/:productId"
                       element={<ProductEditPage />}

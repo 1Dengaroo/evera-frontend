@@ -1,11 +1,19 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
-import { AuthContext } from '../../context/AuthContext'
+import { useGetAdminStatus } from '../../hooks/Users/useGetAdminStatus'
 
 const ProtectedRoutes: React.FC = () => {
-  const { isAuthenticated } = useContext(AuthContext)
+  const { isAdmin, loading } = useGetAdminStatus()
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/login" />
+  if (loading) {
+    return (
+      <div className="text-center tracking-wide font-thin text-lg">
+        Loading...
+      </div>
+    )
+  }
+
+  return isAdmin ? <Outlet /> : <Navigate to="/404" />
 }
 
 export default ProtectedRoutes

@@ -28,7 +28,7 @@ const ProductsList: React.FC = () => {
     }
 
     fetchProducts()
-  }, [productFilters])
+  }, [])
 
   const handleProductFilterChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -56,7 +56,7 @@ const ProductsList: React.FC = () => {
 
   return (
     <div>
-      <h2 className="text-3xl text-center mb-6 font-thin tracking-wide mt-16">
+      <h2 className="text-3xl text-center mb-6 font-thin tracking-wide mt-8">
         Your Products
       </h2>
 
@@ -86,6 +86,7 @@ const ProductsList: React.FC = () => {
             ]
           }
         ]}
+        numberOfItems={products.length}
       />
 
       {products.length === 0 ? (

@@ -1,73 +1,59 @@
-import React, { useEffect } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
-import OrdersComponent from '../components/Dashboard/Orders'
-import ProductCreateForm from '../components/Dashboard/ProductCreateForm'
-import ProductsList from '../components/Dashboard/ProductsList'
+import React from 'react'
+import { useNavigate, useLocation, Outlet } from 'react-router-dom'
+
+const DashboardButton: React.FC<{
+  title: string
+  description: string
+  onClick: () => void
+}> = ({ title, description, onClick }) => {
+  return (
+    <div
+      onClick={onClick}
+      className="cursor-pointer p-6 bg-white shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-300"
+    >
+      <h3 className="text-2xl font-thin tracking-wide text-gray-800 mb-2">
+        {title}
+      </h3>
+      <p className="text-sm text-gray-600">{description}</p>
+    </div>
+  )
+}
 
 const Dashboard: React.FC = () => {
-  const location = useLocation()
   const navigate = useNavigate()
+  const location = useLocation()
 
-  const getTabFromURL = () => {
-    const params = new URLSearchParams(location.search)
-    return params.get('tab') as 'orders' | 'products' | 'create product' | null
-  }
-
-  const [selectedTab, setSelectedTab] = React.useState<
-    'orders' | 'products' | 'create product' | null
-  >(getTabFromURL())
-
-  useEffect(() => {
-    if (selectedTab) {
-      navigate(`?tab=${selectedTab}`, { replace: true })
-    } else {
-      navigate(``, { replace: true })
-    }
-  }, [selectedTab, navigate])
-
-  const renderContent = () => {
-    if (selectedTab === 'orders') {
-      return <OrdersComponent />
-    } else if (selectedTab === 'create product') {
-      return <ProductCreateForm />
-    } else if (selectedTab === 'products') {
-      return <ProductsList />
-    } else {
-      return (
-        <p className="text-center text-gray-600">
-          Select a tab to view content.
-        </p>
-      )
-    }
-  }
+  const isChildRoute = location.pathname !== '/dashboard'
 
   return (
-    <div className="mx-auto md:px-16 p-4 mt-8">
-      <h2 className="text-3xl text-center mb-6 font-thin tracking-wide">
-        Dashboard
-      </h2>
-      <div className="flex space-x-4 justify-center mb-6">
-        <button
-          className={`px-4 py-1 rounded ${selectedTab === 'orders' ? 'bg-gray-800 text-white' : 'border border-black'}`}
-          onClick={() => setSelectedTab('orders')}
-        >
-          Orders
-        </button>
-        <button
-          className={`px-4 py-1 rounded ${selectedTab === 'products' ? 'bg-gray-800 text-white' : 'border border-black'}`}
-          onClick={() => setSelectedTab('products')}
-        >
-          Products
-        </button>
-        <button
-          className={`px-4 py-1 rounded ${selectedTab === 'create product' ? 'bg-gray-800 text-white' : 'border border-black'}`}
-          onClick={() => setSelectedTab('create product')}
-        >
-          Create Product
-        </button>
-      </div>
+    <div className="mx-auto md:px-16 px-4 mt-12">
+      {!isChildRoute && (
+        <>
+          <h2 className="text-4xl font-thin text-center mb-10 tracking-wide text-gray-900">
+            Dashboard
+          </h2>
 
-      <div className="mt-6">{renderContent()}</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 max-w-7xl mx-auto">
+            <DashboardButton
+              title="Orders"
+              description="View and manage customer orders, track statuses, and handle returns."
+              onClick={() => navigate('/dashboard/orders')}
+            />
+            <DashboardButton
+              title="Products"
+              description="Manage your product inventory, update details, and track stock levels."
+              onClick={() => navigate('/dashboard/products')}
+            />
+            <DashboardButton
+              title="Create Product"
+              description="Add new products to your catalog, including details like pricing and images."
+              onClick={() => navigate('/dashboard/create-product')}
+            />
+          </div>
+        </>
+      )}
+
+      <Outlet />
     </div>
   )
 }

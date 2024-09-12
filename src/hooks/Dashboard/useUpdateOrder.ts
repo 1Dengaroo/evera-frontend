@@ -1,6 +1,7 @@
 import axios from 'axios'
-import { Order, UpdateOrderParams } from '../../types'
+import { Order } from '../../types'
 import { setAuthToken } from '../Users/setAuthToken'
+import { UpdateOrderParams } from './types'
 
 export const useUpdateOrder = async ({
   orderId,

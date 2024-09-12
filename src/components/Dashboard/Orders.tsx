@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useGetOrders } from '../../hooks/Dashboard/useGetOrders'
 import { Order } from '../../types'
 import OrderCard from '../Order/OrderCard'
-import OrderForm from '../Order/OrderForm'
+import OrderForm from './OrderForm'
 import FilterForm from '../Filter/FilterForm'
 
 const OrdersComponent: React.FC = () => {
@@ -97,6 +97,7 @@ const OrdersComponent: React.FC = () => {
             ]
           }
         ]}
+        numberOfItems={orders.length}
       />
 
       {orders.length === 0 ? (

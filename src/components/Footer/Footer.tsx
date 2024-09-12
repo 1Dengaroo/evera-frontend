@@ -35,6 +35,12 @@ export const Footer: React.FC = () => {
             >
               Support
             </a>
+            <a
+              className="text-sm text-gray-600 hover:text-black mx-2"
+              href="/dashboard"
+            >
+              Dashboard
+            </a>
           </div>
 
           {/* Social Media Icons Section */}

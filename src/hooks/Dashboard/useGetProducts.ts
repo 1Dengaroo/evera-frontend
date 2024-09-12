@@ -1,14 +1,7 @@
 import axios from 'axios'
 import { Product } from '../../types'
 import { setAuthToken } from '../Users/setAuthToken'
-
-interface GetProductsParams {
-  active?: boolean
-  name?: string
-  startDate?: string
-  endDate?: string
-  sortByDate?: string
-}
+import { GetProductsParams } from './types'
 
 export const useGetProducts = async (
   params?: GetProductsParams

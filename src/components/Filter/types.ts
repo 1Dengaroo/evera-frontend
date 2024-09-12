@@ -12,4 +12,5 @@ export interface FilterFormProps {
   ) => void
   onFilterSubmit: (e: React.FormEvent) => void
   fields: FilterField[]
+  numberOfItems: number
 }
