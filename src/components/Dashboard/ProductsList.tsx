@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGetProducts } from '../../hooks/Dashboard/useGetProducts'
 import { Product } from '../../types'
-import ProductCard from '../Card/ProductCard'
+import ProductCard from '../Product/ProductCard'
 import FilterForm from '../Filter/FilterForm'
 
 const ProductsList: React.FC = () => {

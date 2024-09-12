@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Section } from '../components/Section/Section'
 import { useGetProducts } from '../hooks/Products/useGetProducts'
-import ProductCard from '../components/Card/ProductCard'
+import ProductCard from '../components/Product/ProductCard'
 import FilterForm from '../components/Filter/FilterForm'
 import { Product } from '../types'
 

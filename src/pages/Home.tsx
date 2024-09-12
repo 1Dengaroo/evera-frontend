@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Section } from '../components/Section/Section'
 import { useNavigate } from 'react-router-dom'
 import { useGetFrontPageProducts } from '../hooks/Products/useGetFrontPageProducts'
-import ProductCard from '../components/Card/ProductCard'
+import ProductCard from '../components/Product/ProductCard'
 import { Product } from '../types'
 
 const Home: React.FC = () => {
