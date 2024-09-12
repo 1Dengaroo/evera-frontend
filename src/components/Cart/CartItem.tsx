@@ -29,7 +29,8 @@ export const CartItem: React.FC<ExtendedCartItem> = ({
     const validateItem = async () => {
       const { valid, message } = await useValidateProduct({
         id,
-        quantity
+        quantity,
+        size
       })
       !valid ? setError(message) : setError('')
     }

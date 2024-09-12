@@ -9,7 +9,11 @@ export const useValidateCart = async (items: CartItem[]): Promise<any> => {
   try {
     const url = `${process.env.REACT_APP_API_URL}/products/validate_cart`
     const response = await axios.post(url, {
-      items: items.map((item) => ({ id: item.id, quantity: item.quantity }))
+      items: items.map((item) => ({
+        id: item.id,
+        quantity: item.quantity,
+        size: item.size
+      }))
     })
     return response.data
   } catch (error: any) {
