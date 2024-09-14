@@ -1,26 +1,14 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import { useGetOrders } from '../hooks/Orders/useGetOrders'
-import { Order } from '../types'
 import { OrderCard } from '../components/Order'
 import { AuthContext } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import { UnderlineButton } from '../components/Button'
 
 const Orders: React.FC = () => {
-  const [orders, setOrders] = useState<Order[]>([])
   const { isAuthenticated } = useContext(AuthContext)
   const navigate = useNavigate()
-
-  useEffect(() => {
-    const fetchOrders = async () => {
-      const fetchedOrders = await useGetOrders()
-      setOrders(fetchedOrders)
-    }
-
-    if (isAuthenticated) {
-      fetchOrders()
-    }
-  }, [])
+  const { orders, loading, error } = useGetOrders(isAuthenticated) // Call the hook at the top level
 
   const handleNavigateToTrackOrder = () => {
     navigate('/orders/track')
@@ -37,10 +25,14 @@ const Orders: React.FC = () => {
         onClick={handleNavigateToTrackOrder}
       />
       {isAuthenticated ? (
-        orders.length === 0 ? (
+        loading ? (
+          <p className="text-center text-gray-600">Loading...</p>
+        ) : error ? (
+          <p className="text-center text-red-600">Error: {error}</p>
+        ) : orders.length === 0 ? (
           <p className="text-center text-gray-600">You have no orders.</p>
         ) : (
-          <div className="">
+          <div>
             {orders.map((order) => (
               <OrderCard key={order.id} order={order} />
             ))}
@@ -48,7 +40,7 @@ const Orders: React.FC = () => {
         )
       ) : (
         <p className="text-center text-gray-600">
-          You need to be logged in to view all of your orders
+          You need to be logged in to view all of your orders.
         </p>
       )}
     </div>

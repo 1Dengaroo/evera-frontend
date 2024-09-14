@@ -1,16 +1,14 @@
 import React, { useState } from 'react'
 import { useTrackOrder } from '../hooks/Orders/useTrackOrder'
-import { Order } from '../types'
 import { OrderCard } from '../components/Order'
 import { ButtonOne } from '../components/Button'
 
 const TrackOrder: React.FC = () => {
   const [orderId, setOrderId] = useState('')
-  const [order, setOrder] = useState<Order | null>(null)
+  const { order, trackOrder, loading, error } = useTrackOrder() // Call the hook at the top level
 
   const handleTrackOrder = async () => {
-    const trackedOrder = await useTrackOrder(orderId)
-    setOrder(trackedOrder)
+    await trackOrder(orderId)
   }
 
   return (
@@ -30,10 +28,10 @@ const TrackOrder: React.FC = () => {
           className="text-sm tracking-wide"
           label="Track Order"
           onClick={handleTrackOrder}
-        >
-          Track Order
-        </ButtonOne>
+        />
       </div>
+      {loading && <p className="text-center text-gray-600">Loading...</p>}
+      {error && <p className="text-center text-red-600">{error}</p>}
       {order && <OrderCard order={order} />}
     </div>
   )

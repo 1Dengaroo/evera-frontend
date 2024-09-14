@@ -1,36 +1,31 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Section } from '../components/Section'
-import { Order } from '../types'
 import { useGetOrderFromCS } from '../hooks/Orders/useGetOrderFromCS'
 import { OrderCard } from '../components/Order'
 import { useCart } from '../hooks/Cart/useCart'
 
 export const OrderSuccess: React.FC = () => {
-  const [order, setOrder] = useState<Order | null>(null)
-  const [error, setError] = useState<string | null>(null)
   const { clearCart } = useCart()
 
   const sessionId = new URLSearchParams(window.location.search).get(
     'session_id'
   )
+  const { order, loading, error } = useGetOrderFromCS(sessionId) // Call the hook at the top level
 
   useEffect(() => {
-    const fetchOrder = async () => {
-      if (sessionId) {
-        try {
-          const fetchedOrder = await useGetOrderFromCS(sessionId)
-          setOrder(fetchedOrder)
-        } catch (err) {
-          setError('Failed to load order details.')
-        }
-      } else {
-        setError('No session ID found in the URL.')
-      }
-    }
-
     clearCart()
-    fetchOrder()
-  }, [sessionId])
+  }, [])
+
+  if (loading) {
+    return (
+      <Section
+        title="Loading"
+        titleClassName="text-3xl font-thin tracking-wide my-8 mt-12"
+      >
+        <p className="text-center">Loading order details...</p>
+      </Section>
+    )
+  }
 
   if (error) {
     return (
@@ -49,11 +44,10 @@ export const OrderSuccess: React.FC = () => {
         Order Success
       </h2>
       <p className="max-w-4xl text-lg justify-center mx-auto mt-8 text-center">
-        Thank you for your purchase! You can continue shopping or check your
-        email for further details. You should also receive an email confirmation
+        Thank you for your purchase! You should receive an email confirmation
         shortly with your order details.
       </p>
-      <div className="mx-auto justify-center mx-auto mt-8">
+      <div className="mx-auto justify-center mt-8">
         {order ? (
           <OrderCard order={order} />
         ) : (
