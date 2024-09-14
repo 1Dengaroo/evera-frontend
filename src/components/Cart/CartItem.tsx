@@ -1,31 +1,27 @@
 import React from 'react'
 import { useCart } from '../../hooks/Cart/useCart'
-import { useGetProductPriceById } from '../../hooks/Products/useGetProductPriceById'
-import { useValidateProduct } from '../../hooks/Products/useValidateProduct'
 import { QuantityInput } from '../Input'
 import { UnderlineButton } from '../Button'
 import { ExtendedCartItem } from './types'
 
-export const CartItem: React.FC<ExtendedCartItem> = ({
+interface CartItemProps extends ExtendedCartItem {
+  price?: number
+  isValid?: boolean
+  validationMessage?: string
+}
+
+export const CartItem: React.FC<CartItemProps> = ({
   id,
   name,
   size,
   quantity,
   imageUrl,
+  price,
+  isValid,
+  validationMessage,
   showMobileLayout = false
 }) => {
   const { removeItem, updateQuantity } = useCart()
-
-  const {
-    price,
-    loading: priceLoading,
-    error: priceError
-  } = useGetProductPriceById(id)
-  const {
-    isValid,
-    message: validationMessage,
-    error: validationError
-  } = useValidateProduct({ id, quantity, size })
 
   const handleIncrement = () => {
     updateQuantity(id, size, quantity + 1)
@@ -41,8 +37,7 @@ export const CartItem: React.FC<ExtendedCartItem> = ({
     updateQuantity(id, size, newValue)
   }
 
-  const displayError =
-    validationError || (!isValid ? validationMessage : priceError)
+  const displayError = !isValid ? validationMessage : null
 
   return (
     <div className="flex items-start md:items-center justify-between py-12 px-2 border-b w-full">
@@ -63,11 +58,9 @@ export const CartItem: React.FC<ExtendedCartItem> = ({
           >
             {displayError
               ? displayError
-              : priceLoading
-                ? 'Loading price...'
-                : price !== null
-                  ? `$${(price / 100).toFixed(2)}`
-                  : 'Price not available'}
+              : price !== undefined
+                ? `$${(price / 100).toFixed(2)}`
+                : 'Price not available'}
           </p>
           {/* Mobile Layout */}
           <div

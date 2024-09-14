@@ -2,8 +2,7 @@ import React, { useContext } from 'react'
 import { useCart } from '../../hooks/Cart/useCart'
 import { CartItem } from './CartItem'
 import { useNavigate } from 'react-router-dom'
-import { useValidateCart } from '../../hooks/Cart/useValidateCart'
-import { useGetCartTotal } from '../../hooks/Cart/useGetCartTotal'
+import { useGetCartItemsDetails } from '../../hooks/Cart/useGetCartItemDetails'
 import { AuthContext } from '../../context/AuthContext'
 import { ButtonOne, UnderlineButton } from '../Button'
 
@@ -13,27 +12,30 @@ export const SideCart: React.FC = () => {
   const { isAuthenticated } = useContext(AuthContext)
 
   const {
-    total,
-    loading: totalLoading,
-    error: totalError
-  } = useGetCartTotal(items, showSideCart)
-  const {
-    isValid: cartIsValid,
-    loading: validateLoading,
-    error: validateError
-  } = useValidateCart(items, showSideCart)
+    itemDetails,
+    loading: detailsLoading,
+    error: detailsError
+  } = useGetCartItemsDetails(items)
 
   if (!showSideCart) {
     return null
   }
 
-  if (totalLoading || validateLoading) {
+  if (detailsLoading) {
     return <div>Loading...</div>
   }
 
-  if (totalError || validateError) {
-    return <div>Error: {totalError || validateError}</div>
+  if (detailsError) {
+    return <div>Error: {detailsError}</div>
   }
+
+  const total = itemDetails.reduce((sum, detail) => {
+    const item = items.find((i) => i.id === detail.id && i.size === detail.size)
+    const quantity = item ? item.quantity : 0
+    return sum + detail.price * quantity
+  }, 0)
+
+  const cartIsValid = itemDetails.every((detail) => detail.isValid)
 
   return (
     <>
@@ -59,17 +61,25 @@ export const SideCart: React.FC = () => {
         {items.length === 0 ? (
           <p>Your cart is empty.</p>
         ) : (
-          items.map((item) => (
-            <CartItem
-              key={`${item.id}-${item.size}`}
-              id={item.id}
-              imageUrl={item.imageUrl}
-              name={item.name}
-              quantity={item.quantity}
-              showMobileLayout={true}
-              size={item.size}
-            />
-          ))
+          items.map((item) => {
+            const details = itemDetails.find(
+              (detail) => detail.id === item.id && detail.size === item.size
+            )
+            return (
+              <CartItem
+                key={`${item.id}-${item.size}`}
+                id={item.id}
+                imageUrl={item.imageUrl}
+                name={item.name}
+                quantity={item.quantity}
+                showMobileLayout={true}
+                size={item.size}
+                price={details?.price}
+                isValid={details?.isValid}
+                validationMessage={details?.validationMessage}
+              />
+            )
+          })
         )}
 
         {items.length > 0 && (

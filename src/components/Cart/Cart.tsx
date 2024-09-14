@@ -2,41 +2,67 @@ import React, { useContext } from 'react'
 import { useCart } from '../../hooks/Cart/useCart'
 import { CartItem } from './CartItem'
 import { useNavigate } from 'react-router-dom'
-import { useGetCartTotal } from '../../hooks/Cart/useGetCartTotal'
 import { AuthContext } from '../../context/AuthContext'
-import { useValidateCart } from '../../hooks/Cart/useValidateCart'
 import { ButtonOne, UnderlineButton } from '../Button'
+import { useGetCartItemsDetails } from '../../hooks/Cart/useGetCartItemDetails'
 
 export const Cart: React.FC = () => {
   const { items } = useCart()
   const navigate = useNavigate()
   const { isAuthenticated } = useContext(AuthContext)
 
-  const { total, loading: totalLoading } = useGetCartTotal(items)
-  const { isValid: cartIsValid, loading: validateLoading } =
-    useValidateCart(items)
+  const {
+    itemDetails,
+    loading: detailsLoading,
+    error: detailsError
+  } = useGetCartItemsDetails(items)
 
   if (items.length === 0) {
     return <p className="text-center mt-8">Your cart is empty</p>
   }
 
-  if (totalLoading || validateLoading) {
+  if (detailsLoading) {
     return <p className="text-center mt-8">Loading...</p>
   }
+
+  if (detailsError) {
+    return (
+      <p className="text-center mt-8 text-red-500">Error: {detailsError}</p>
+    )
+  }
+
+  const total = itemDetails.reduce(
+    (sum, item) =>
+      sum +
+      item.price *
+        (items.find((i) => i.id === item.id && i.size === item.size)
+          ?.quantity || 0),
+    0
+  )
+
+  const cartIsValid = itemDetails.every((item) => item.isValid)
 
   return (
     <div className="container">
       <div className="w-full">
-        {items.map((item) => (
-          <CartItem
-            key={`${item.id}-${item.size}`}
-            id={item.id}
-            imageUrl={item.imageUrl}
-            name={item.name}
-            quantity={item.quantity}
-            size={item.size}
-          />
-        ))}
+        {items.map((item) => {
+          const details = itemDetails.find(
+            (detail) => detail.id === item.id && detail.size === item.size
+          )
+          return (
+            <CartItem
+              key={`${item.id}-${item.size}`}
+              id={item.id}
+              imageUrl={item.imageUrl}
+              name={item.name}
+              quantity={item.quantity}
+              size={item.size}
+              price={details?.price}
+              isValid={details?.isValid}
+              validationMessage={details?.validationMessage}
+            />
+          )
+        })}
       </div>
       <div className="text-right">
         <p className="font-gray-500">Subtotal: ${(total / 100).toFixed(2)}</p>
