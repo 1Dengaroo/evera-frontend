@@ -1,36 +1,42 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import { useCart } from '../../hooks/Cart/useCart'
 import { CartItem } from './CartItem'
 import { useNavigate } from 'react-router-dom'
-import { useGetCartTotal } from '../../hooks/Products/useGetCartTotal'
+import { useGetCartTotal } from '../../hooks/Cart/useGetCartTotal'
 import { AuthContext } from '../../context/AuthContext'
-import { useValidateCart } from '../../hooks/Products/useValidateCart'
+import { useValidateCart } from '../../hooks/Cart/useValidateCart'
 import { ButtonOne, UnderlineButton } from '../Button'
 
 export const Cart: React.FC = () => {
   const { items } = useCart()
   const navigate = useNavigate()
-  const [total, setTotal] = useState<number>(0)
   const { isAuthenticated } = useContext(AuthContext)
-  const [cartIsValid, setCartIsValid] = useState<boolean>(false)
 
-  useEffect(() => {
-    const fetchTotal = async () => {
-      const total = await useGetCartTotal(items)
-      setTotal(total || 0)
-    }
-
-    const validateCart = async () => {
-      const { valid } = await useValidateCart(items)
-      !valid ? setCartIsValid(false) : setCartIsValid(true)
-    }
-
-    validateCart()
-    fetchTotal()
-  }, [items])
+  const {
+    total,
+    loading: totalLoading,
+    error: totalError
+  } = useGetCartTotal(items)
+  const {
+    isValid: cartIsValid,
+    loading: validateLoading,
+    error: validateError
+  } = useValidateCart(items)
 
   if (items.length === 0) {
     return <p className="text-center mt-8">Your cart is empty</p>
+  }
+
+  if (totalLoading || validateLoading) {
+    return <p className="text-center mt-8">Loading...</p>
+  }
+
+  if (totalError || validateError) {
+    return (
+      <p className="text-center mt-8 text-red-500">
+        Error: {totalError || validateError}
+      </p>
+    )
   }
 
   return (
@@ -38,7 +44,7 @@ export const Cart: React.FC = () => {
       <div className="w-full">
         {items.map((item) => (
           <CartItem
-            key={item.id}
+            key={`${item.id}-${item.size}`}
             id={item.id}
             imageUrl={item.imageUrl}
             name={item.name}

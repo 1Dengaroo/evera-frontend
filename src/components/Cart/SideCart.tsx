@@ -1,44 +1,46 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import { useCart } from '../../hooks/Cart/useCart'
 import { CartItem } from './CartItem'
 import { useNavigate } from 'react-router-dom'
-import { useValidateCart } from '../../hooks/Products/useValidateCart'
-import { useGetCartTotal } from '../../hooks/Products/useGetCartTotal'
+import { useValidateCart } from '../../hooks/Cart/useValidateCart'
+import { useGetCartTotal } from '../../hooks/Cart/useGetCartTotal'
 import { AuthContext } from '../../context/AuthContext'
 import { ButtonOne, UnderlineButton } from '../Button'
 
 export const SideCart: React.FC = () => {
   const { items, showSideCart, hideSideCartView } = useCart()
   const navigate = useNavigate()
-  const [total, setTotal] = useState<number>(0)
   const { isAuthenticated } = useContext(AuthContext)
-  const [cartIsValid, setCartIsValid] = useState<boolean>(false)
 
-  useEffect(() => {
-    const fetchTotal = async () => {
-      const total = await useGetCartTotal(items)
-      setTotal(total || 0)
-    }
+  const {
+    total,
+    loading: totalLoading,
+    error: totalError
+  } = useGetCartTotal(items, showSideCart)
+  const {
+    isValid: cartIsValid,
+    loading: validateLoading,
+    error: validateError
+  } = useValidateCart(items, showSideCart)
 
-    const validateCart = async () => {
-      const { valid } = await useValidateCart(items)
-      !valid ? setCartIsValid(false) : setCartIsValid(true)
-    }
+  if (!showSideCart) {
+    return null
+  }
 
-    if (showSideCart) {
-      validateCart()
-      fetchTotal()
-    }
-  }, [items, showSideCart])
+  if (totalLoading || validateLoading) {
+    return <div>Loading...</div>
+  }
+
+  if (totalError || validateError) {
+    return <div>Error: {totalError || validateError}</div>
+  }
 
   return (
     <>
-      {showSideCart && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40"
-          onClick={hideSideCartView}
-        ></div>
-      )}
+      <div
+        className="fixed inset-0 bg-black bg-opacity-50 z-40"
+        onClick={hideSideCartView}
+      ></div>
 
       <div
         className={`fixed top-0 right-0 h-screen md:w-116 w-96 bg-white shadow-lg p-4 pb-36 z-50 overflow-y-auto transform transition-transform duration-300 ease-in-out ${
@@ -59,7 +61,7 @@ export const SideCart: React.FC = () => {
         ) : (
           items.map((item) => (
             <CartItem
-              key={item.id}
+              key={`${item.id}-${item.size}`}
               id={item.id}
               imageUrl={item.imageUrl}
               name={item.name}
@@ -76,10 +78,10 @@ export const SideCart: React.FC = () => {
               Total: ${(total / 100).toFixed(2)}
             </p>
 
-            {!isAuthenticated ? (
-              <>
-                {cartIsValid && (
-                  <div className="w-full flex flex-col items-center">
+            {cartIsValid && (
+              <div className="w-full flex flex-col items-center">
+                {!isAuthenticated ? (
+                  <>
                     <ButtonOne
                       className="mt-8"
                       label="Login and track your order"
@@ -96,12 +98,8 @@ export const SideCart: React.FC = () => {
                         navigate('/checkout')
                       }}
                     />
-                  </div>
-                )}
-              </>
-            ) : (
-              <>
-                {cartIsValid && (
+                  </>
+                ) : (
                   <button
                     className="bg-black text-white py-2 px-4 mt-4 w-full"
                     onClick={() => {
@@ -112,7 +110,7 @@ export const SideCart: React.FC = () => {
                     Checkout
                   </button>
                 )}
-              </>
+              </div>
             )}
           </>
         )}
