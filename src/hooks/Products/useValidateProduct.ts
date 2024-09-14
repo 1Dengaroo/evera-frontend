@@ -27,7 +27,7 @@ export const useValidateProduct = (item: {
       setLoading(true)
       setError(null)
       try {
-        const url = `${process.env.REACT_APP_API_URL}/products/validate_product`
+        const url = `${process.env.REACT_APP_API_URL}/carts/validate_product`
         const response = await axios.post<ValidateProductResponse>(url, {
           item: {
             id: item.id,

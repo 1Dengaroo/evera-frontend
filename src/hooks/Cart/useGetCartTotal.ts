@@ -21,7 +21,7 @@ export const useGetCartTotal = (
       setError(null)
 
       try {
-        const url = `${process.env.REACT_APP_API_URL}/products/cart_total`
+        const url = `${process.env.REACT_APP_API_URL}/carts/cart_total`
         const response = await axios.post(url, {
           items: items.map((item) => ({ id: item.id, quantity: item.quantity }))
         })

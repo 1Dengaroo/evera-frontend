@@ -21,7 +21,7 @@ export const useValidateCart = (
       setError(null)
 
       try {
-        const url = `${process.env.REACT_APP_API_URL}/products/validate_cart`
+        const url = `${process.env.REACT_APP_API_URL}/carts/validate_cart`
         const response = await axios.post(url, {
           items: items.map((item) => ({
             id: item.id,

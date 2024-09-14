@@ -26,8 +26,14 @@ export const useGetCartItemsDetails = (items: CartItem[]) => {
       setLoading(true)
       setError(null)
       try {
-        const url = `${process.env.REACT_APP_API_URL}/products/cart_item_details`
-        const response = await axios.post(url, { items })
+        const url = `${process.env.REACT_APP_API_URL}/carts/cart_item_details`
+        const filteredItems = items.map(({ id, size, quantity }) => ({
+          id,
+          size,
+          quantity
+        }))
+
+        const response = await axios.post(url, { items: filteredItems })
         setItemDetails(response.data.itemDetails)
       } catch (err: any) {
         setError('Failed to fetch cart item details')
