@@ -1,21 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Section } from '../components/Section'
 import { useNavigate } from 'react-router-dom'
 import { useGetFrontPageProducts } from '../hooks/Products/useGetFrontPageProducts'
 import { ProductCard } from '../components/Product'
-import { Product } from '../types'
 
 const Home: React.FC = () => {
   const navigate = useNavigate()
-  const [products, setProducts] = React.useState<Product[]>([])
-
-  useEffect(() => {
-    async function fetchData() {
-      const result = await useGetFrontPageProducts()
-      setProducts(result)
-    }
-    fetchData()
-  }, [])
+  const { products, loading, error } = useGetFrontPageProducts()
 
   const handleShopButtonClick = () => {
     navigate('/shop')
@@ -41,18 +32,26 @@ const Home: React.FC = () => {
           Shop Now
         </button>
       </Section>
+
       <Section
         descriptionClassName="text-lg text-gray-800"
         title="New Arrivals"
         titleClassName="text-2xl font-thin text-gray-900 mb-4 tracking-wider mb-8"
         shortHeight
       >
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+        {loading ? (
+          <p className="text-center">Loading products...</p>
+        ) : error ? (
+          <p className="text-center text-red-600">Error: {error}</p>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        )}
       </Section>
+
       <Section
         backgroundImage="images/home_2.webp"
         title="Evera's Story"

@@ -1,37 +1,35 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 import { ProductImageSlider } from '../components/Slider'
 import { useGetProductById } from '../hooks/Products/useGetProductById'
 import { useGetSimilarProducts } from '../hooks/Products/useGetSimilarProducts'
-import { Product } from '../types'
 import { SimilarProducts, ProductDetails } from '../components/Product'
 
 const ProductShow: React.FC = () => {
   const { id } = useParams<{ id: string }>()
   const location = useLocation()
-  const [product, setProduct] = useState<Product | null>(null)
-  const [similar, setSimilar] = useState<Product[]>([])
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [location])
 
-  useEffect(() => {
-    async function fetchProduct() {
-      if (id) {
-        const productData = await useGetProductById(id)
-        setProduct(productData)
-      }
-    }
-    async function fetchSimilarProducts() {
-      const similarProducts = await useGetSimilarProducts(id || '')
-      setSimilar(similarProducts)
-    }
-    fetchProduct()
-    fetchSimilarProducts()
-  }, [id])
+  const {
+    product,
+    loading: productLoading,
+    error: productError
+  } = useGetProductById(id || '')
 
-  if (!product) {
+  const {
+    similarProducts,
+    loading: similarLoading,
+    error: similarError
+  } = useGetSimilarProducts(id || '')
+
+  if (productLoading) {
+    return <p className="text-center mt-8">Loading product...</p>
+  }
+
+  if (productError || !product) {
     return (
       <div className="flex justify-center">
         <p className="center text-xl my-16">Item not active or not found</p>
@@ -51,7 +49,13 @@ const ProductShow: React.FC = () => {
         </div>
       </div>
 
-      <SimilarProducts similarProducts={similar} />
+      {similarLoading ? (
+        <p className="text-center mt-8">Loading similar products...</p>
+      ) : similarError ? (
+        <p className="text-center text-red-600">{similarError}</p>
+      ) : (
+        <SimilarProducts similarProducts={similarProducts} />
+      )}
     </div>
   )
 }

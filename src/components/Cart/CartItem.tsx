@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useCart } from '../../hooks/Cart/useCart'
 import { useGetProductPriceById } from '../../hooks/Products/useGetProductPriceById'
 import { useValidateProduct } from '../../hooks/Products/useValidateProduct'
@@ -15,29 +15,17 @@ export const CartItem: React.FC<ExtendedCartItem> = ({
   showMobileLayout = false
 }) => {
   const { removeItem, updateQuantity } = useCart()
-  const [price, setPrice] = useState<number | null>(null)
-  const [error, setError] = useState<string>('')
 
-  useEffect(() => {
-    const fetchPrice = async () => {
-      const { success, data } = await useGetProductPriceById(id)
-      if (success) {
-        setPrice(data)
-      }
-    }
-
-    const validateItem = async () => {
-      const { valid, message } = await useValidateProduct({
-        id,
-        quantity,
-        size
-      })
-      !valid ? setError(message) : setError('')
-    }
-
-    validateItem()
-    fetchPrice()
-  }, [id, quantity])
+  const {
+    price,
+    loading: priceLoading,
+    error: priceError
+  } = useGetProductPriceById(id)
+  const {
+    isValid,
+    message: validationMessage,
+    error: validationError
+  } = useValidateProduct({ id, quantity, size })
 
   const handleIncrement = () => {
     updateQuantity(id, size, quantity + 1)
@@ -53,6 +41,9 @@ export const CartItem: React.FC<ExtendedCartItem> = ({
     updateQuantity(id, size, newValue)
   }
 
+  const displayError =
+    validationError || (!isValid ? validationMessage : priceError)
+
   return (
     <div className="flex items-start md:items-center justify-between py-12 px-2 border-b w-full">
       <div className="flex items-start items-center">
@@ -65,16 +56,24 @@ export const CartItem: React.FC<ExtendedCartItem> = ({
           <h3 className="text-md font-thin tracking-wider">
             {size ? `${name} (${size})` : name}
           </h3>
-          <p className={`text-sm ${error ? 'text-red-600' : 'text-gray-500'}`}>
-            {error
-              ? error
-              : price !== null
-                ? `$${(price / 100).toFixed(2)}`
-                : 'Loading price...'}
+          <p
+            className={`text-sm ${
+              displayError ? 'text-red-600' : 'text-gray-500'
+            }`}
+          >
+            {displayError
+              ? displayError
+              : priceLoading
+                ? 'Loading price...'
+                : price !== null
+                  ? `$${(price / 100).toFixed(2)}`
+                  : 'Price not available'}
           </p>
           {/* Mobile Layout */}
           <div
-            className={`flex items-center mt-4 ${showMobileLayout ? 'block' : 'md:hidden'}`}
+            className={`flex items-center mt-4 ${
+              showMobileLayout ? 'block' : 'md:hidden'
+            }`}
           >
             <QuantityInput
               onChange={handleQuantityChange}
@@ -92,7 +91,9 @@ export const CartItem: React.FC<ExtendedCartItem> = ({
       </div>
       {/* Desktop Layout */}
       <div
-        className={`hidden ${showMobileLayout ? 'hidden' : 'md:flex'} items-center`}
+        className={`hidden ${
+          showMobileLayout ? 'hidden' : 'md:flex'
+        } items-center`}
       >
         <QuantityInput
           onChange={handleQuantityChange}

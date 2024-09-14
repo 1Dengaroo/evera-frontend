@@ -1,29 +1,27 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Section } from '../components/Section'
 import { useGetProducts } from '../hooks/Products/useGetProducts'
 import { ProductCard } from '../components/Product'
 import { FilterForm } from '../components/Filter'
-import { Product } from '../types'
 
 const Shop: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>([])
   const [productFilters, setProductFilters] = useState({
     name: '',
     sort_by: 'created_at',
     sort_direction: 'desc'
   })
 
-  useEffect(() => {
-    async function fetchData() {
-      const result = await useGetProducts({
-        name: productFilters.name || undefined,
-        sort_by: productFilters.sort_by as 'price' | 'created_at',
-        sort_direction: productFilters.sort_direction as 'asc' | 'desc'
-      })
-      setProducts(result)
-    }
-    fetchData()
-  }, [])
+  const [submittedFilters, setSubmittedFilters] = useState({
+    name: '',
+    sort_by: 'created_at',
+    sort_direction: 'desc'
+  })
+
+  const { products, loading, error } = useGetProducts({
+    name: submittedFilters.name || undefined,
+    sort_by: submittedFilters.sort_by as 'price' | 'created_at',
+    sort_direction: submittedFilters.sort_direction as 'asc' | 'desc'
+  })
 
   const handleProductFilterChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -37,15 +35,7 @@ const Shop: React.FC = () => {
 
   const handleProductFilterSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    async function fetchData() {
-      const result = await useGetProducts({
-        name: productFilters.name || undefined,
-        sort_by: productFilters.sort_by as 'price' | 'created_at',
-        sort_direction: productFilters.sort_direction as 'asc' | 'desc'
-      })
-      setProducts(result)
-    }
-    fetchData()
+    setSubmittedFilters({ ...productFilters })
   }
 
   return (
@@ -82,11 +72,17 @@ const Shop: React.FC = () => {
         onFilterSubmit={handleProductFilterSubmit}
       />
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
+      {loading ? (
+        <p>Loading products...</p>
+      ) : error ? (
+        <p className="text-red-600">{error}</p>
+      ) : (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      )}
     </Section>
   )
 }
