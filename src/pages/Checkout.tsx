@@ -13,21 +13,27 @@ const Payment: React.FC = () => {
     return <>Your cart is empty</>
   }
 
+  const { sessionId, createCheckoutSession, loading, error } =
+    useCreateStripeCheckoutSession()
+
+  const { publicKey, error: publicKeyError } = useGetStripePublicKey() // Also refactored as a hook
+
   useEffect(() => {
-    const fetchStripeKeyAndInit = async () => {
-      const publicKey = await useGetStripePublicKey()
-      const stripeInstance = await loadStripe(publicKey)
-      setStripe(stripeInstance)
+    const initializeStripe = async () => {
+      if (publicKey) {
+        const stripeInstance = await loadStripe(publicKey)
+        setStripe(stripeInstance)
+      }
     }
 
-    fetchStripeKeyAndInit()
-  }, [])
+    initializeStripe()
+  }, [publicKey])
 
   useEffect(() => {
     const initializeCheckout = async () => {
       if (!stripe || items.length === 0) return
 
-      const sessionId = await useCreateStripeCheckoutSession(items)
+      await createCheckoutSession(items)
 
       if (sessionId) {
         const { error } = await stripe.redirectToCheckout({ sessionId })
@@ -37,10 +43,20 @@ const Payment: React.FC = () => {
       }
     }
 
-    if (stripe) {
-      initializeCheckout()
-    }
-  }, [stripe])
+    initializeCheckout()
+  }, [stripe, sessionId])
+
+  if (loading || !stripe) {
+    return <p className="text-center">Redirecting to payment...</p>
+  }
+
+  if (error || publicKeyError) {
+    return (
+      <p className="text-center text-red-600">
+        Error: {error || publicKeyError}
+      </p>
+    )
+  }
 
   return null
 }
