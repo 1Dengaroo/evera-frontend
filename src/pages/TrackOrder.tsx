@@ -5,7 +5,7 @@ import { ButtonOne } from '../components/Button'
 
 const TrackOrder: React.FC = () => {
   const [orderId, setOrderId] = useState('')
-  const { order, trackOrder, loading, error } = useTrackOrder() // Call the hook at the top level
+  const { order, trackOrder, loading, error } = useTrackOrder()
 
   const handleTrackOrder = async () => {
     await trackOrder(orderId)

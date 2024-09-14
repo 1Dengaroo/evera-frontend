@@ -7,20 +7,19 @@ import { ButtonOne } from '../Button'
 export const PasswordResetRequest: React.FC = () => {
   const [email, setEmail] = useState('')
   const { showNotification } = useNotification()
-  const [loading, setLoading] = useState(false)
+
+  const { requestPasswordReset, loading, error, message } =
+    useRequestPasswordReset()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setLoading(true)
-
-    const { success, message } = await useRequestPasswordReset(email)
+    const success = await requestPasswordReset(email)
 
     if (success) {
       showNotification(message || 'Reset instructions sent', 'success', 10000)
     } else {
-      showNotification('Something went wrong.', 'error')
+      showNotification(error || 'Something went wrong.', 'error')
     }
-    setLoading(false)
   }
 
   return (
@@ -45,7 +44,7 @@ export const PasswordResetRequest: React.FC = () => {
         <ButtonOne
           className="px-6 text-sm"
           label={loading ? 'Loading...' : 'Send Password Reset'}
-          onClick={handleSubmit}
+          type="submit"
         />
       </form>
     </Section>

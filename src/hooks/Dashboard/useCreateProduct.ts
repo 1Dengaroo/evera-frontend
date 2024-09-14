@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { Product } from '../../types'
-import { setAuthToken } from '../Users/setAuthToken'
+import { setAuthToken } from '../../utils/auth/setAuthToken'
 
 export const useCreateProduct = () => {
   const createProduct = async (

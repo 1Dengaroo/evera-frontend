@@ -13,7 +13,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   setIsEditing
 }) => {
   const navigate = useNavigate()
-  const { updateProduct, loading, error } = useUpdateProduct() // Call the hook at the top level
+  const { updateProduct, loading, error } = useUpdateProduct()
   const { showNotification } = useNotification()
 
   useEffect(() => {
@@ -307,8 +307,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({
       <div className="flex justify-end space-x-4">
         <button
           className="px-6 py-3 text-sm font-medium text-white bg-gray-900 hover:bg-gray-700 transition-colors duration-300 rounded-full shadow-md"
-          type="submit"
           disabled={loading}
+          type="submit"
         >
           {loading ? 'Saving...' : 'Save Changes'}
         </button>

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useContext } from 'react'
 import { AuthContext } from '../../context/AuthContext'
-import { setAuthToken } from './setAuthToken'
+import { setAuthToken } from '../../utils/auth/setAuthToken'
 
 export const useUserLogout = () => {
   const { logout } = useContext(AuthContext)

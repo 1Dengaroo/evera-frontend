@@ -1,18 +1,31 @@
+import { useState } from 'react'
 import axios from 'axios'
 import { UserCredentials } from './types'
 
-export const useUserSignup = async (
-  credentials: UserCredentials
-): Promise<any> => {
-  try {
-    const url = `${process.env.REACT_APP_API_URL}/signup`
+export const useUserSignup = () => {
+  const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string | null>(null)
 
-    await axios.post(url, {
-      user: credentials
-    })
+  const signup = async (credentials: UserCredentials): Promise<boolean> => {
+    setLoading(true)
+    setError(null)
+    try {
+      const url = `${process.env.REACT_APP_API_URL}/signup`
 
-    return { success: true }
-  } catch (error: any) {
-    return { success: false, message: error.response.data.status.message }
+      await axios.post(url, {
+        user: credentials
+      })
+
+      return true
+    } catch (error: any) {
+      const errorMessage =
+        error.response?.data?.status?.message || 'Signup failed.'
+      setError(errorMessage)
+      return false
+    } finally {
+      setLoading(false)
+    }
   }
+
+  return { signup, loading, error }
 }

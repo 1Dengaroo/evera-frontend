@@ -10,7 +10,7 @@ export const OrderSuccess: React.FC = () => {
   const sessionId = new URLSearchParams(window.location.search).get(
     'session_id'
   )
-  const { order, loading, error } = useGetOrderFromCS(sessionId) // Call the hook at the top level
+  const { order, loading, error } = useGetOrderFromCS(sessionId)
 
   useEffect(() => {
     clearCart()

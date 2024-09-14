@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { setAuthToken } from './setAuthToken'
+import { setAuthToken } from '../../utils/auth/setAuthToken'
 
 export const useGetAdminStatus = () => {
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null)

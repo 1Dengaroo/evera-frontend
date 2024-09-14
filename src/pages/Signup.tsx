@@ -6,20 +6,21 @@ import { useNotification } from '../context/NotificationContext'
 import { ButtonOne } from '../components/Button'
 
 const Signup: React.FC = () => {
-  const [name, setName] = useState<string | undefined>(undefined)
+  const [name, setName] = useState<string>('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState<string | null>(null)
   const navigate = useNavigate()
   const { showNotification } = useNotification()
 
+  const { signup, loading, error } = useUserSignup()
+
   const handleSignup = async () => {
-    const data = await useUserSignup({ email, password, name })
-    if (data.success) {
+    const success = await signup({ email, password, name })
+    if (success) {
       navigate('/login')
       showNotification('Account created successfully, please login', 'success')
-    } else {
-      setError(data.message)
+    } else if (error) {
+      showNotification(error, 'error')
     }
   }
 
@@ -35,7 +36,7 @@ const Signup: React.FC = () => {
           onChange={(e) => setName(e.target.value)}
           placeholder="Name"
           type="text"
-          value={name || ''}
+          value={name}
         />
         <input
           className="p-2 mb-4 w-96 border border-black placeholder:text-xs"
@@ -53,8 +54,9 @@ const Signup: React.FC = () => {
         />
         <ButtonOne
           className="px-6 text-sm"
-          label="Sign Up"
+          label={loading ? 'Signing Up...' : 'Sign Up'}
           onClick={handleSignup}
+          disabled={loading}
         />
       </div>
       {error && <p className="text-red-500 text-center mt-4">{error}</p>}

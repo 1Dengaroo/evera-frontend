@@ -70,7 +70,7 @@ export const Cart: React.FC = () => {
                 onClick={() => navigate('/login')}
               />
               <UnderlineButton
-                className="text-sm text-blue-500 mt-4 hover:underline transition-all"
+                className="text-sm mt-4 hover:underline transition-all"
                 label="Checkout as guest"
                 onClick={() => navigate('/checkout')}
               />

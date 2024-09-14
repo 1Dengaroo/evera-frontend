@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams, useNavigate } from 'react-router-dom'
 import { useResetPassword } from '../../hooks/Users/usePasswordReset'
 import { Section } from '../Section'
 import { useNotification } from '../../context/NotificationContext'
-import { useNavigate } from 'react-router-dom'
 import { ButtonOne } from '../Button'
 
 export const PasswordReset: React.FC = () => {
@@ -14,9 +13,11 @@ export const PasswordReset: React.FC = () => {
   const { showNotification } = useNotification()
   const navigate = useNavigate()
 
+  const { resetPassword, loading, error } = useResetPassword()
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    const { success, message } = await useResetPassword(
+    const success = await resetPassword(
       resetToken,
       password,
       passwordConfirmation
@@ -25,7 +26,7 @@ export const PasswordReset: React.FC = () => {
       navigate('/login')
       showNotification('Password reset successfully, please login', 'success')
     } else {
-      showNotification(message || 'Something went wrong', 'error')
+      showNotification(error || 'Something went wrong', 'error')
     }
   }
 
@@ -46,6 +47,7 @@ export const PasswordReset: React.FC = () => {
           placeholder="Password"
           type="password"
           value={password}
+          required
         />
         <input
           className="p-2 mb-4 w-96 border border-black placeholder:text-xs"
@@ -53,10 +55,11 @@ export const PasswordReset: React.FC = () => {
           placeholder="Confirm Password"
           type="password"
           value={passwordConfirmation}
+          required
         />
         <ButtonOne
           className="px-6 text-sm"
-          label="Reset Password"
+          label={loading ? 'Resetting...' : 'Reset Password'}
           type="submit"
         />
       </form>

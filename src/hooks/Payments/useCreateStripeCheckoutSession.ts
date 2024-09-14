@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { CartItem } from '../../types/'
-import { setAuthToken } from '../Users/setAuthToken'
+import { setAuthToken } from '../../utils/auth/setAuthToken'
 
 export const useCreateStripeCheckoutSession = () => {
   const [sessionId, setSessionId] = useState<string | null>(null)

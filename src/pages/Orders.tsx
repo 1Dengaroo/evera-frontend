@@ -8,7 +8,7 @@ import { UnderlineButton } from '../components/Button'
 const Orders: React.FC = () => {
   const { isAuthenticated } = useContext(AuthContext)
   const navigate = useNavigate()
-  const { orders, loading, error } = useGetOrders(isAuthenticated) // Call the hook at the top level
+  const { orders, loading, error } = useGetOrders(isAuthenticated)
 
   const handleNavigateToTrackOrder = () => {
     navigate('/orders/track')

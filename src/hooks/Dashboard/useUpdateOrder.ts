@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { Order } from '../../types'
-import { setAuthToken } from '../Users/setAuthToken'
+import { setAuthToken } from '../../utils/auth/setAuthToken'
 import { UpdateOrderParams } from './types'
 
 export const useUpdateOrder = () => {

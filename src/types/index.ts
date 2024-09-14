@@ -14,7 +14,7 @@ export interface Product {
   active: boolean
   cover_image: string
   sub_images: string[]
-sizes: string[]
+  sizes: string[]
   quantity: number
   product_type: string
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Order } from '../../types'
-import { setAuthToken } from '../Users/setAuthToken'
+import { setAuthToken } from '../../utils/auth/setAuthToken'
 
 export const useGetOrderFromCS = (sessionId: string | null) => {
   const [order, setOrder] = useState<Order | null>(null)

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Order } from '../../types'
-import { setAuthToken } from '../Users/setAuthToken'
+import { setAuthToken } from '../../utils/auth/setAuthToken'
 
 export const useGetOrders = (isAuthenticated: boolean) => {
   const [orders, setOrders] = useState<Order[]>([])
