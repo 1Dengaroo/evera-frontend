@@ -54,9 +54,9 @@ const Signup: React.FC = () => {
         />
         <ButtonOne
           className="px-6 text-sm"
+          disabled={loading}
           label={loading ? 'Signing Up...' : 'Sign Up'}
           onClick={handleSignup}
-          disabled={loading}
         />
       </div>
       {error && <p className="text-red-500 text-center mt-4">{error}</p>}

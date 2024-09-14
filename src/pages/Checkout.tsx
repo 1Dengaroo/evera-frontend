@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { Section } from '../components/Section'
 import { useCart } from '../hooks/Cart/useCart'
 import { loadStripe, Stripe } from '@stripe/stripe-js'
 import { useGetStripePublicKey } from '../hooks/Payments/useGetStripePublicKey'
 import { useCreateStripeCheckoutSession } from '../hooks/Payments/useCreateStripeCheckoutSession'
+import { Section } from '../components/Section'
 
 const Payment: React.FC = () => {
   const [stripe, setStripe] = useState<Stripe | null>(null)
   const { items } = useCart()
 
-  if (items.length === 0) {
-    return <>Your cart is empty</>
-  }
-
   const { sessionId, createCheckoutSession, loading, error } =
     useCreateStripeCheckoutSession()
 
-  const { publicKey, error: publicKeyError } = useGetStripePublicKey() // Also refactored as a hook
+  const { publicKey, error: publicKeyError } = useGetStripePublicKey()
 
   useEffect(() => {
     const initializeStripe = async () => {
@@ -45,6 +41,10 @@ const Payment: React.FC = () => {
 
     initializeCheckout()
   }, [stripe, sessionId])
+
+  if (items.length === 0) {
+    return <>Your cart is empty</>
+  }
 
   if (loading || !stripe) {
     return <p className="text-center">Redirecting to payment...</p>

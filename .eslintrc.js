@@ -64,7 +64,7 @@ module.exports = {
     'react/prop-types': 'off',
 
     // Enforce all rules-of-hooks
-    // 'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/rules-of-hooks': 'error',
 
     // Import rules
     // Allow for a single named export without it being default

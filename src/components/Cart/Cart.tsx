@@ -12,16 +12,9 @@ export const Cart: React.FC = () => {
   const navigate = useNavigate()
   const { isAuthenticated } = useContext(AuthContext)
 
-  const {
-    total,
-    loading: totalLoading,
-    error: totalError
-  } = useGetCartTotal(items)
-  const {
-    isValid: cartIsValid,
-    loading: validateLoading,
-    error: validateError
-  } = useValidateCart(items)
+  const { total, loading: totalLoading } = useGetCartTotal(items)
+  const { isValid: cartIsValid, loading: validateLoading } =
+    useValidateCart(items)
 
   if (items.length === 0) {
     return <p className="text-center mt-8">Your cart is empty</p>
@@ -29,14 +22,6 @@ export const Cart: React.FC = () => {
 
   if (totalLoading || validateLoading) {
     return <p className="text-center mt-8">Loading...</p>
-  }
-
-  if (totalError || validateError) {
-    return (
-      <p className="text-center mt-8 text-red-500">
-        Error: {totalError || validateError}
-      </p>
-    )
   }
 
   return (
