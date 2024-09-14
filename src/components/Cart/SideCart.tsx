@@ -70,12 +70,12 @@ export const SideCart: React.FC = () => {
                 key={`${item.id}-${item.size}`}
                 id={item.id}
                 imageUrl={item.imageUrl}
+                isValid={details?.isValid}
                 name={item.name}
+                price={details?.price}
                 quantity={item.quantity}
                 showMobileLayout={true}
                 size={item.size}
-                price={details?.price}
-                isValid={details?.isValid}
                 validationMessage={details?.validationMessage}
               />
             )
