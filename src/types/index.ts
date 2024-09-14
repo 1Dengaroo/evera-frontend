@@ -14,7 +14,7 @@ export interface Product {
   active: boolean
   cover_image: string
   sub_images: string[]
-  sizes: string[]
+sizes: string[]
   quantity: number
   product_type: string
 }
@@ -43,12 +43,6 @@ export interface OrderItem {
   quantity: number
   product: Product
   size: string
-}
-
-export interface Product {
-  name: string
-  price: number
-  cover_image: string
 }
 
 export interface Delivery {

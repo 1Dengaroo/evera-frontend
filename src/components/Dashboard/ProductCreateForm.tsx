@@ -17,6 +17,7 @@ export const ProductCreateForm: React.FC = () => {
   })
 
   const { showNotification } = useNotification()
+  const { createProduct } = useCreateProduct()
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -64,7 +65,7 @@ export const ProductCreateForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    const createdProduct = await useCreateProduct(form)
+    const createdProduct = await createProduct(form) // Use the function from the hook
     if (createdProduct) {
       setForm({
         name: '',

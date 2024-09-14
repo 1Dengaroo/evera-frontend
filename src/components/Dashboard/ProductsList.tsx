@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGetProducts } from '../../hooks/Dashboard/useGetProducts'
-import { Product } from '../../types'
 import { ProductCard } from '../Product'
 import { FilterForm } from '../Filter'
 
 export const ProductsList: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>([])
   const [productFilters, setProductFilters] = useState({
     name: '',
     active: '',
@@ -15,19 +13,15 @@ export const ProductsList: React.FC = () => {
     sortByDate: 'desc'
   })
   const navigate = useNavigate()
+  const { products, fetchProducts, loading, error } = useGetProducts()
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const { name, active, sortByDate } = productFilters
-      const fetchedProducts = await useGetProducts({
-        name,
-        active: active ? active === 'true' : undefined,
-        sortByDate
-      })
-      setProducts(fetchedProducts)
-    }
-
-    fetchProducts()
+    const { name, active, sortByDate } = productFilters
+    fetchProducts({
+      name,
+      active: active ? active === 'true' : undefined,
+      sortByDate
+    })
   }, [])
 
   const handleProductFilterChange = (
@@ -37,17 +31,16 @@ export const ProductsList: React.FC = () => {
     setProductFilters((prevFilters) => ({ ...prevFilters, [name]: value }))
   }
 
-  const handleProductFilterSubmit = async (e: React.FormEvent) => {
+  const handleProductFilterSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     const { name, active, startDate, endDate, sortByDate } = productFilters
-    const fetchedProducts = await useGetProducts({
+    fetchProducts({
       name,
       active: active ? active === 'true' : undefined,
       startDate,
       endDate,
       sortByDate
     })
-    setProducts(fetchedProducts)
   }
 
   const handleProductEditClick = (productId: string) => {
@@ -89,8 +82,12 @@ export const ProductsList: React.FC = () => {
         onFilterSubmit={handleProductFilterSubmit}
       />
 
-      {products.length === 0 ? (
-        <p className="text-center text-gray-600">You have no products.</p>
+      {loading ? (
+        <p className="text-center text-gray-600">Loading...</p>
+      ) : error ? (
+        <p className="text-center text-red-600">Error: {error}</p>
+      ) : products.length === 0 ? (
+        <p className="text-center text-gray-600">You have no products</p>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 text-center">
           {products.map((product) => (

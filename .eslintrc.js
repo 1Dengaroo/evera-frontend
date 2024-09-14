@@ -142,7 +142,7 @@ module.exports = {
     'react/jsx-sort-props': [
       'warn',
       { ignoreCase: true, reservedFirst: true, shorthandLast: true }
-    ],
+    ]
   },
   settings: {
     react: {

@@ -6,40 +6,51 @@ import { useGetProduct } from '../../hooks/Dashboard/useGetProduct'
 
 export const ProductEditPage: React.FC = () => {
   const { productId } = useParams<{ productId: string }>()
-  const [product, setProduct] = useState<Product | null>(null)
-  const [editForm, setEditForm] = useState<any>({})
   const navigate = useNavigate()
+  const { product, loading, error } = useGetProduct(productId)
+
+  const [editForm, setEditForm] = useState<any>({
+    name: '',
+    description: '',
+    price: 0,
+    active: true,
+    product_type: 'unisex',
+    quantity: 9999,
+    cover_image: '',
+    sub_images: [],
+    sizes: []
+  })
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      const data = await useGetProduct(productId)
-      if (data) {
-        setProduct(data)
-        setEditForm({
-          name: data.name,
-          description: data.description,
-          price: data.price,
-          active: data.active,
-          product_type: data.product_type,
-          quantity: data.quantity || 9999,
-          cover_image: data.cover_image,
-          sub_images: data.sub_images || [],
-          sizes: data.sizes || []
-        })
-      }
+    if (product) {
+      setEditForm({
+        name: product.name || '',
+        description: product.description || '',
+        price: product.price || 0,
+        active: product.active ?? true,
+        product_type: product.product_type || 'unisex',
+        quantity: product.quantity || 9999,
+        cover_image: product.cover_image || '',
+        sub_images: product.sub_images || [],
+        sizes: product.sizes || []
+      })
     }
-
-    if (productId) {
-      fetchProduct()
-    }
-  }, [productId])
+  }, [product])
 
   const handleProductUpdateSuccess = (updatedProduct: Product) => {
     navigate('/shop/' + updatedProduct.id)
   }
 
+  if (loading) {
+    return <p className="text-center text-gray-600">Loading...</p>
+  }
+
+  if (error) {
+    return <p className="text-center text-red-600">Error: {error}</p>
+  }
+
   if (!product) {
-    return <></>
+    return <p className="text-center text-gray-600">Product not found.</p>
   }
 
   return (

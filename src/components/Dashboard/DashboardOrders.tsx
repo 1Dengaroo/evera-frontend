@@ -6,7 +6,6 @@ import { OrderForm } from './OrderForm'
 import { FilterForm } from '../Filter'
 
 export const DashboardOrders: React.FC = () => {
-  const [orders, setOrders] = useState<Order[]>([])
   const [isEditingOrder, setIsEditingOrder] = useState<string | null>(null)
   const [editOrderForm, setEditOrderForm] = useState<any>({})
   const [orderFilters, setOrderFilters] = useState({
@@ -15,17 +14,15 @@ export const DashboardOrders: React.FC = () => {
     id: ''
   })
 
-  useEffect(() => {
-    const fetchOrders = async () => {
-      const fetchedOrders = await useGetOrders({
-        email: orderFilters.email || undefined,
-        status: orderFilters.status || undefined,
-        id: orderFilters.id || undefined
-      })
-      setOrders(fetchedOrders)
-    }
+  const { orders, fetchOrders, loading, error, updateOrderInState } =
+    useGetOrders()
 
-    fetchOrders()
+  useEffect(() => {
+    fetchOrders({
+      email: orderFilters.email || undefined,
+      status: orderFilters.status || undefined,
+      id: orderFilters.id || undefined
+    })
   }, [])
 
   const handleOrderFilterChange = (
@@ -37,20 +34,15 @@ export const DashboardOrders: React.FC = () => {
 
   const handleOrderFilterSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    const fetchedOrders = await useGetOrders({
+    await fetchOrders({
       email: orderFilters.email || undefined,
       status: orderFilters.status || undefined,
       id: orderFilters.id || undefined
     })
-    setOrders(fetchedOrders)
   }
 
   const handleOrderUpdateSuccess = (updatedOrder: Order) => {
-    setOrders((prevOrders) =>
-      prevOrders.map((order) =>
-        order.id === updatedOrder.id ? updatedOrder : order
-      )
-    )
+    updateOrderInState(updatedOrder)
     setIsEditingOrder(null)
   }
 
@@ -100,7 +92,11 @@ export const DashboardOrders: React.FC = () => {
         onFilterSubmit={handleOrderFilterSubmit}
       />
 
-      {orders.length === 0 ? (
+      {loading ? (
+        <p className="text-center text-gray-600">Loading...</p>
+      ) : error ? (
+        <p className="text-center text-red-600">Error: {error}</p>
+      ) : orders.length === 0 ? (
         <p className="text-center text-gray-600">You have no orders.</p>
       ) : (
         <div className="grid grid-cols-1 gap-6">

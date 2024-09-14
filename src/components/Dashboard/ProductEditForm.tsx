@@ -13,6 +13,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   setIsEditing
 }) => {
   const navigate = useNavigate()
+  const { updateProduct, loading, error } = useUpdateProduct() // Call the hook at the top level
+  const { showNotification } = useNotification()
 
   useEffect(() => {
     setEditForm({
@@ -27,8 +29,6 @@ export const ProductForm: React.FC<ProductFormProps> = ({
       quantity: product.quantity || 9999
     })
   }, [product, setEditForm])
-
-  const { showNotification } = useNotification()
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -86,7 +86,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    const updatedProduct = await useUpdateProduct(product.id, editForm)
+    const updatedProduct = await updateProduct(product.id, editForm) // Use the function from the hook
     if (!updatedProduct) {
       showNotification('Failed to update product', 'error')
       return
@@ -302,12 +302,15 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         </label>
       </div>
 
+      {error && <p className="text-red-500">{error}</p>}
+
       <div className="flex justify-end space-x-4">
         <button
           className="px-6 py-3 text-sm font-medium text-white bg-gray-900 hover:bg-gray-700 transition-colors duration-300 rounded-full shadow-md"
           type="submit"
+          disabled={loading}
         >
-          Save Changes
+          {loading ? 'Saving...' : 'Save Changes'}
         </button>
         <button
           className="px-6 py-3 text-sm font-medium text-gray-900 hover:underline"

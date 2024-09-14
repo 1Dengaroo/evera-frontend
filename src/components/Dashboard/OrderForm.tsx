@@ -10,6 +10,8 @@ export const OrderForm: React.FC<OrderFormProps> = ({
   handleUpdateSuccess,
   setIsEditing
 }) => {
+  const { updateOrder, loading, error } = useUpdateOrder()
+
   const handleInputChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -44,7 +46,7 @@ export const OrderForm: React.FC<OrderFormProps> = ({
   const handleSubmit = async () => {
     const { delivery } = editForm
 
-    const updatedOrder = await useUpdateOrder({
+    const updatedOrder = await updateOrder({
       orderId: order.id,
       delivery_attributes: {
         status: delivery.status,
@@ -131,11 +133,14 @@ export const OrderForm: React.FC<OrderFormProps> = ({
           ))}
         </div>
 
+        {error && <p className="text-red-500">{error}</p>}
+
         <div className="flex justify-end space-x-4">
           <ButtonOne
             className="px-6 py-3 text-sm font-medium text-white bg-gray-900 hover:bg-gray-700 transition-colors duration-300 rounded-full shadow-md"
-            label="Save Changes"
+            label={loading ? 'Saving...' : 'Save Changes'}
             onClick={handleSubmit}
+            disabled={loading}
           />
           <UnderlineButton
             className="text-sm font-medium text-gray-900 hover:underline transition-all"
