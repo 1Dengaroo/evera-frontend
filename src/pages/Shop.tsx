@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { Section } from '../components/Section'
 import { useGetProducts } from '../hooks/Products/useGetProducts'
 import { ProductCard } from '../components/Product'
 import { FilterForm } from '../components/Filter'
+import { LoadingSpinner } from '../components/LoadingSpinner'
 
 const Shop: React.FC = () => {
   const [productFilters, setProductFilters] = useState({
@@ -39,11 +39,10 @@ const Shop: React.FC = () => {
   }
 
   return (
-    <Section
-      title="Discover All Products"
-      titleClassName="text-3xl tracking-wide font-thin mt-8 mb-8"
-      shortHeight
-    >
+    <div className="w-full px-8 text-center">
+      <h2 className="text-3xl mb-6 font-thin tracking-wide mt-16">
+        Our Products
+      </h2>
       <p className="font-light mb-8">SHOP ALL</p>
 
       <FilterForm
@@ -73,7 +72,9 @@ const Shop: React.FC = () => {
       />
 
       {loading ? (
-        <p>Loading products...</p>
+        <div className="flex justify-center items-center">
+          <LoadingSpinner size={48} />
+        </div>
       ) : error ? (
         <p className="text-red-600">{error}</p>
       ) : (
@@ -83,7 +84,7 @@ const Shop: React.FC = () => {
           ))}
         </div>
       )}
-    </Section>
+    </div>
   )
 }
 

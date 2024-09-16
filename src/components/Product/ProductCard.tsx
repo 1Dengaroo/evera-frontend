@@ -22,7 +22,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     <div
-      className="group rounded-lg shadow-sm hover:shadow-lg transition-shadow cursor-pointer"
+      className="group rounded-lg shadow-sm hover:shadow-lg transition-shadow cursor-pointer text-center"
       onClick={handleNavigate}
     >
       <img
@@ -42,11 +42,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       </p>
       {onEditClick && (
         <div className="p-4">
-          <ButtonOne
-            className="px-6 py-3 right text-sm font-medium text-white bg-gray-900 hover:bg-gray-700 transition-colors duration-300 rounded-full shadow-md"
-            label="Edit"
-            onClick={handleEditClick}
-          />
+          <ButtonOne label="Edit" onClick={handleEditClick} />
         </div>
       )}
     </div>

@@ -6,36 +6,30 @@ export const Footer: React.FC = () => {
     <footer className="bg-white text-black py-12">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="flex flex-col md:flex-row items-center mb-4 md:mb-0">
+          <div className="flex flex-col md:flex-row items-center mb-4 md:mb-0 space-x-6">
             <a className="text-sm text-gray-600 hover:text-black mx-2" href="/">
               Home
             </a>
-            <a
-              className="text-sm text-gray-600 hover:text-black mx-2"
-              href="/shop"
-            >
+            <a className="text-sm text-gray-600 hover:text-black" href="/shop">
               Products
             </a>
             <a
-              className="text-sm text-gray-600 hover:text-black mx-2"
+              className="text-sm text-gray-600 hover:text-black"
               href="/orders"
             >
               Orders
             </a>
-            <a
-              className="text-sm text-gray-600 hover:text-black mx-2"
-              href="/faq"
-            >
+            <a className="text-sm text-gray-600 hover:text-black" href="/faq">
               FAQ
             </a>
             <a
-              className="text-sm text-gray-600 hover:text-black mx-2"
+              className="text-sm text-gray-600 hover:text-black"
               href="mailto:support@everafashion.com"
             >
               Support
             </a>
             <a
-              className="text-sm text-gray-600 hover:text-black mx-2"
+              className="text-sm text-gray-600 hover:text-black"
               href="/dashboard"
             >
               Dashboard
@@ -71,7 +65,16 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="mt-4 text-center text-sm text-gray-500">
-          © 2024 Evera. All rights reserved.
+          Built by{' '}
+          <a
+            className="text-gray-600 hover:underline"
+            href="https://www.linkedin.com/in/andydeng-/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Andy Deng
+          </a>
+          . © 2024 Evera. All rights reserved.
         </div>
       </div>
     </footer>

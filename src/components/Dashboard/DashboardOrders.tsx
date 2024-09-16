@@ -4,6 +4,7 @@ import { Order } from '../../types'
 import { OrderCard } from '../Order'
 import { OrderForm } from './OrderForm'
 import { FilterForm } from '../Filter'
+import { LoadingSpinner } from '../LoadingSpinner'
 
 export const DashboardOrders: React.FC = () => {
   const [isEditingOrder, setIsEditingOrder] = useState<string | null>(null)
@@ -66,7 +67,7 @@ export const DashboardOrders: React.FC = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto w-full">
       <h2 className="text-3xl text-center mb-6 font-thin tracking-wide mt-8">
         Your Orders
       </h2>
@@ -93,7 +94,9 @@ export const DashboardOrders: React.FC = () => {
       />
 
       {loading ? (
-        <p className="text-center text-gray-600">Loading...</p>
+        <div className="flex justify-center items-center">
+          <LoadingSpinner />
+        </div>
       ) : error ? (
         <p className="text-center text-red-600">Error: {error}</p>
       ) : orders.length === 0 ? (

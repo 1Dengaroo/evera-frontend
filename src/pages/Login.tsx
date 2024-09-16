@@ -45,7 +45,7 @@ const Login: React.FC = () => {
           type="password"
           value={password}
         />
-        <ButtonOne className="px-6 text-sm" label="Login" onClick={onSubmit} />
+        <ButtonOne label="Login" onClick={onSubmit} />
         <div className="flex flex-col items-center mt-4">
           <UnderlineButton
             className="text-sm cursor-pointer mb-2"

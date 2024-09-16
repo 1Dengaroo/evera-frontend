@@ -58,7 +58,6 @@ export const PasswordReset: React.FC = () => {
           required
         />
         <ButtonOne
-          className="px-6 text-sm"
           label={loading ? 'Resetting...' : 'Reset Password'}
           type="submit"
         />

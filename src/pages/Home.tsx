@@ -3,6 +3,7 @@ import { Section } from '../components/Section'
 import { useNavigate } from 'react-router-dom'
 import { useGetFrontPageProducts } from '../hooks/Products/useGetFrontPageProducts'
 import { ProductCard } from '../components/Product'
+import { LoadingSpinner } from '../components/LoadingSpinner'
 
 const Home: React.FC = () => {
   const navigate = useNavigate()
@@ -40,7 +41,9 @@ const Home: React.FC = () => {
         shortHeight
       >
         {loading ? (
-          <p className="text-center">Loading products...</p>
+          <div className="flex justify-center items-center">
+            <LoadingSpinner />
+          </div>
         ) : error ? (
           <p className="text-center text-red-600">Error: {error}</p>
         ) : (

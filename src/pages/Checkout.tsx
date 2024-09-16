@@ -4,6 +4,7 @@ import { loadStripe, Stripe } from '@stripe/stripe-js'
 import { useGetStripePublicKey } from '../hooks/Payments/useGetStripePublicKey'
 import { useCreateStripeCheckoutSession } from '../hooks/Payments/useCreateStripeCheckoutSession'
 import { Section } from '../components/Section'
+import { LoadingSpinner } from '../components/LoadingSpinner'
 
 const Payment: React.FC = () => {
   const [stripe, setStripe] = useState<Stripe | null>(null)
@@ -47,7 +48,11 @@ const Payment: React.FC = () => {
   }
 
   if (loading || !stripe) {
-    return <p className="text-center">Redirecting to payment...</p>
+    return (
+      <div className="flex justify-center items-center h-16">
+        <LoadingSpinner />
+      </div>
+    )
   }
 
   if (error || publicKeyError) {

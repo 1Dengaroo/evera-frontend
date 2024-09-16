@@ -137,7 +137,6 @@ export const OrderForm: React.FC<OrderFormProps> = ({
 
         <div className="flex justify-end space-x-4">
           <ButtonOne
-            className="px-6 py-3 text-sm font-medium text-white bg-gray-900 hover:bg-gray-700 transition-colors duration-300 rounded-full shadow-md"
             disabled={loading}
             label={loading ? 'Saving...' : 'Save Changes'}
             onClick={handleSubmit}

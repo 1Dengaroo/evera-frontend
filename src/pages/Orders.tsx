@@ -4,6 +4,7 @@ import { OrderCard } from '../components/Order'
 import { AuthContext } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import { UnderlineButton } from '../components/Button'
+import { LoadingSpinner } from '../components/LoadingSpinner'
 
 const Orders: React.FC = () => {
   const { isAuthenticated } = useContext(AuthContext)
@@ -26,7 +27,9 @@ const Orders: React.FC = () => {
       />
       {isAuthenticated ? (
         loading ? (
-          <p className="text-center text-gray-600">Loading...</p>
+          <div className="flex justify-center items-center">
+            <LoadingSpinner />
+          </div>
         ) : error ? (
           <p className="text-center text-red-600">Error: {error}</p>
         ) : orders.length === 0 ? (

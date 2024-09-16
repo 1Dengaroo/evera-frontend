@@ -150,11 +150,7 @@ export const OrderCard: React.FC<OrderCardProps> = ({ order, onEditClick }) => (
 
     {onEditClick && (
       <div className="text-right">
-        <ButtonOne
-          className="text-sm font-medium text-white bg-gray-900 hover:bg-gray-700 transition-colors duration-300 px-6 py-3 rounded-full shadow-md"
-          label="Edit Order"
-          onClick={onEditClick}
-        />
+        <ButtonOne label="Edit Order" onClick={onEditClick} />
       </div>
     )}
   </div>

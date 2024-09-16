@@ -38,6 +38,8 @@ import {
   ProductsList
 } from './components/Dashboard'
 
+import { DisclaimerModal } from './components/Modal'
+
 const App: React.FC = () => {
   return (
     <NotificationProvider>
@@ -45,6 +47,7 @@ const App: React.FC = () => {
         <AuthProvider>
           <div className="flex flex-col min-h-screen">
             <Router>
+              <DisclaimerModal />
               <Navbar />
               <SideCart />
 

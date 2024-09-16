@@ -76,7 +76,6 @@ export const Cart: React.FC = () => {
           {!isAuthenticated ? (
             <>
               <ButtonOne
-                className="px-6 py-3 text-sm font-medium text-white bg-gray-900 hover:bg-gray-700 transition-colors duration-300 rounded-full shadow-md"
                 label="Login and track your order"
                 onClick={() => navigate('/login')}
               />
@@ -87,11 +86,7 @@ export const Cart: React.FC = () => {
               />
             </>
           ) : (
-            <ButtonOne
-              className="px-6 py-3 text-sm font-medium text-white bg-gray-900 hover:bg-gray-700 transition-colors duration-300 rounded-full shadow-md"
-              label="Checkout"
-              onClick={() => navigate('/checkout')}
-            />
+            <ButtonOne label="Checkout" onClick={() => navigate('/checkout')} />
           )}
         </div>
       )}

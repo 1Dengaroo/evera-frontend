@@ -4,6 +4,7 @@ import { ProductImageSlider } from '../components/Slider'
 import { useGetProductById } from '../hooks/Products/useGetProductById'
 import { useGetSimilarProducts } from '../hooks/Products/useGetSimilarProducts'
 import { SimilarProducts, ProductDetails } from '../components/Product'
+import { LoadingSpinner } from '../components/LoadingSpinner'
 
 const ProductShow: React.FC = () => {
   const { id } = useParams<{ id: string }>()
@@ -26,7 +27,11 @@ const ProductShow: React.FC = () => {
   } = useGetSimilarProducts(id || '')
 
   if (productLoading) {
-    return <p className="text-center mt-8">Loading product...</p>
+    return (
+      <div className="flex justify-center items-center h-64">
+        <LoadingSpinner />
+      </div>
+    )
   }
 
   if (productError || !product) {
@@ -50,7 +55,9 @@ const ProductShow: React.FC = () => {
       </div>
 
       {similarLoading ? (
-        <p className="text-center mt-8">Loading similar products...</p>
+        <div className="flex justify-center items-center">
+          <LoadingSpinner />
+        </div>
       ) : similarError ? (
         <p className="text-center text-red-600">{similarError}</p>
       ) : (

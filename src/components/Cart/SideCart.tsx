@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useGetCartItemsDetails } from '../../hooks/Cart/useGetCartItemDetails'
 import { AuthContext } from '../../context/AuthContext'
 import { ButtonOne, UnderlineButton } from '../Button'
+import { LoadingSpinner } from '../LoadingSpinner'
 
 export const SideCart: React.FC = () => {
   const { items, showSideCart, hideSideCartView } = useCart()
@@ -17,18 +18,6 @@ export const SideCart: React.FC = () => {
     error: detailsError
   } = useGetCartItemsDetails(items)
 
-  if (!showSideCart) {
-    return null
-  }
-
-  if (detailsLoading) {
-    return <div>Loading...</div>
-  }
-
-  if (detailsError) {
-    return <div>Error: {detailsError}</div>
-  }
-
   const total = itemDetails.reduce((sum, detail) => {
     const item = items.find((i) => i.id === detail.id && i.size === detail.size)
     const quantity = item ? item.quantity : 0
@@ -39,10 +28,12 @@ export const SideCart: React.FC = () => {
 
   return (
     <>
-      <div
-        className="fixed inset-0 bg-black bg-opacity-50 z-40"
-        onClick={hideSideCartView}
-      ></div>
+      {showSideCart && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40"
+          onClick={hideSideCartView}
+        ></div>
+      )}
 
       <div
         className={`fixed top-0 right-0 h-screen md:w-116 w-96 bg-white shadow-lg p-4 pb-36 z-50 overflow-y-auto transform transition-transform duration-300 ease-in-out ${
@@ -58,8 +49,14 @@ export const SideCart: React.FC = () => {
 
         <h2 className="text-xl font-normal tracking-widest">Your Cart</h2>
 
-        {items.length === 0 ? (
-          <p>Your cart is empty.</p>
+        {detailsLoading ? (
+          <div className="flex justify-center items-center">
+            <LoadingSpinner />
+          </div>
+        ) : detailsError ? (
+          <p className="text-center text-red-500">Error loading cart details</p>
+        ) : items.length === 0 ? (
+          <p className="text-center">Your cart is empty</p>
         ) : (
           items.map((item) => {
             const details = itemDetails.find(
@@ -82,7 +79,7 @@ export const SideCart: React.FC = () => {
           })
         )}
 
-        {items.length > 0 && (
+        {!detailsLoading && !detailsError && items.length > 0 && (
           <>
             <p className="text-right mt-4 pr-10">
               Total: ${(total / 100).toFixed(2)}
@@ -93,7 +90,7 @@ export const SideCart: React.FC = () => {
                 {!isAuthenticated ? (
                   <>
                     <ButtonOne
-                      className="mt-8"
+                      className="mt-6"
                       label="Login and track your order"
                       onClick={() => {
                         hideSideCartView()
@@ -101,7 +98,7 @@ export const SideCart: React.FC = () => {
                       }}
                     />
                     <UnderlineButton
-                      className="text-sm cursor-pointer mt-2"
+                      className="text-sm mt-4 hover:underline"
                       label="Checkout as guest"
                       onClick={() => {
                         hideSideCartView()
@@ -110,15 +107,14 @@ export const SideCart: React.FC = () => {
                     />
                   </>
                 ) : (
-                  <button
-                    className="bg-black text-white py-2 px-4 mt-4 w-full"
+                  <ButtonOne
+                    className="mt-6"
+                    label="Checkout"
                     onClick={() => {
                       hideSideCartView()
                       navigate('/checkout')
                     }}
-                  >
-                    Checkout
-                  </button>
+                  />
                 )}
               </div>
             )}

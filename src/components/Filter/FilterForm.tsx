@@ -97,12 +97,7 @@ export const FilterForm: React.FC<FilterFormProps> = ({
                 )
               }
             })}
-            <ButtonOne
-              className="text-sm px-6 py-2 bg-gray-900 text-white tracking-wide rounded-full hover:bg-gray-700 transition-colors duration-300 shadow-md"
-              label="VIEW PRODUCTS"
-              onClick={closeSidebar}
-              type="submit"
-            />
+            <ButtonOne label="APPLY" onClick={closeSidebar} type="submit" />
           </div>
         </form>
       </div>

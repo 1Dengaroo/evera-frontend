@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useGetProducts } from '../../hooks/Dashboard/useGetProducts'
 import { ProductCard } from '../Product'
 import { FilterForm } from '../Filter'
+import { LoadingSpinner } from '../LoadingSpinner'
 
 export const ProductsList: React.FC = () => {
   const [productFilters, setProductFilters] = useState({
@@ -48,8 +49,8 @@ export const ProductsList: React.FC = () => {
   }
 
   return (
-    <div>
-      <h2 className="text-3xl text-center mb-6 font-thin tracking-wide mt-8">
+    <div className="w-full">
+      <h2 className="text-3xl text-center mb-6 font-thin tracking-wide mt-16">
         Your Products
       </h2>
 
@@ -83,7 +84,9 @@ export const ProductsList: React.FC = () => {
       />
 
       {loading ? (
-        <p className="text-center text-gray-600">Loading...</p>
+        <div className="flex justify-center items-center h-64">
+          <LoadingSpinner />
+        </div>
       ) : error ? (
         <p className="text-center text-red-600">Error: {error}</p>
       ) : products.length === 0 ? (
