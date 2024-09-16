@@ -37,8 +37,8 @@ export const useValidateProduct = (item: {
         })
         setIsValid(response.data.valid)
         setMessage(response.data.message || '')
-      } catch (error: any) {
-        setError(error.response?.data?.message || 'Failed to validate product.')
+      } catch (e: any) {
+        setError(e.response?.data?.message || 'Failed to validate product.')
       } finally {
         setLoading(false)
       }

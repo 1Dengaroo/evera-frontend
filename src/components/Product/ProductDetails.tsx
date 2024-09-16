@@ -53,6 +53,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
               selectedSize === size ? 'bg-black text-white' : ''
             }`}
             onClick={() => setSelectedSize(size)}
+            type="button"
           >
             {size}
           </button>
@@ -69,6 +70,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
       <button
         className="w-full h-12 py-2 tracking-wider border border-black rounded-sm hover:bg-gray-100 mb-12 transition duration-500"
         onClick={handleAddToCart}
+        type="button"
       >
         ADD TO BAG
       </button>

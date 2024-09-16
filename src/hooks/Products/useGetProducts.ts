@@ -28,8 +28,7 @@ export const useGetProducts = (params: ProductFilterParams = {}) => {
         const fullUrl = queryString ? `${url}?${queryString}` : url
         const response = await axios.get(fullUrl)
         setProducts(response.data)
-      } catch (error) {
-        console.error('Error fetching products:', error)
+      } catch {
         setError('Error fetching products')
         setProducts([])
       } finally {

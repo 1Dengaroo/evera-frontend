@@ -4,7 +4,7 @@ import { CartItem } from '../../types/'
 import { setAuthToken } from '../../utils/auth/setAuthToken'
 
 export const useCreateStripeCheckoutSession = () => {
-  const [sessionId, setSessionId] = useState<string | null>(null)
+  const [sessionUrl, setSessionUrl] = useState<string | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -26,7 +26,7 @@ export const useCreateStripeCheckoutSession = () => {
         items: filteredItems
       })
 
-      setSessionId(response.data.session_id)
+      setSessionUrl(response.data.session_url)
     } catch (err: any) {
       setError('Failed to create checkout session')
     } finally {
@@ -34,5 +34,5 @@ export const useCreateStripeCheckoutSession = () => {
     }
   }
 
-  return { sessionId, createCheckoutSession, loading, error }
+  return { sessionUrl, createCheckoutSession, loading, error }
 }

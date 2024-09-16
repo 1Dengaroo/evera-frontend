@@ -14,10 +14,8 @@ export const useRequestPasswordReset = () => {
       const response = await axios.post(url, { email })
       setMessage(response.data.message)
       return true
-    } catch (error: any) {
-      const errorMessage =
-        error.response?.data?.error || 'Something went wrong.'
-      setError(errorMessage)
+    } catch (e: any) {
+      setError(e.response?.data?.error || 'Something went wrong.')
       return false
     } finally {
       setLoading(false)

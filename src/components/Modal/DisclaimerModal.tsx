@@ -25,6 +25,7 @@ export const DisclaimerModal: React.FC = () => {
           aria-label="Close"
           className="absolute top-10 right-10 text-gray-500 hover:text-gray-700"
           onClick={handleClose}
+          type="button"
         >
           <svg
             className="w-6 h-6"

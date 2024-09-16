@@ -17,10 +17,8 @@ export const useUserSignup = () => {
       })
 
       return true
-    } catch (error: any) {
-      const errorMessage =
-        error.response?.data?.status?.message || 'Signup failed.'
-      setError(errorMessage)
+    } catch (e: any) {
+      setError(e.response?.data?.status?.message || 'Signup failed.')
       return false
     } finally {
       setLoading(false)

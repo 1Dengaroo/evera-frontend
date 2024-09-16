@@ -10,7 +10,7 @@ export const QuantityInput: React.FC<QuantityInputProps> = ({
   onChange
 }) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = parseInt(e.target.value)
+    const newValue = parseInt(e.target.value, 10)
     if (!isNaN(newValue) && newValue >= min) {
       onChange(newValue)
     }
@@ -26,6 +26,7 @@ export const QuantityInput: React.FC<QuantityInputProps> = ({
         className="px-2 py-1"
         disabled={value <= min}
         onClick={onDecrement}
+        type="button"
       >
         -
       </button>
@@ -43,7 +44,7 @@ export const QuantityInput: React.FC<QuantityInputProps> = ({
         type="number"
         value={value}
       />
-      <button className="px-2 py-1" onClick={onIncrement}>
+      <button className="px-2 py-1" onClick={onIncrement} type="button">
         +
       </button>
     </div>

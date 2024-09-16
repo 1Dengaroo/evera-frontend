@@ -30,13 +30,12 @@ export const ProductImageSlider: React.FC<ProductImageSliderProps> = ({
             />
           </div>
           {product.sub_images.map((url, index) => (
-            <div key={index}>
-              <img
-                alt={`Sub image ${index + 1}`}
-                className="w-full h-auto object-cover rounded-md mb-2"
-                src={url}
-              />
-            </div>
+            <img
+              key={url}
+              alt={`Sub image ${index + 1}`}
+              className="w-full h-auto object-cover rounded-md mb-2"
+              src={url}
+            />
           ))}
         </Slider>
       </div>
@@ -49,7 +48,7 @@ export const ProductImageSlider: React.FC<ProductImageSliderProps> = ({
         />
         {product.sub_images.map((url, index) => (
           <img
-            key={index}
+            key={url}
             alt={`Sub image ${index + 1}`}
             className="w-3/4 mx-auto h-auto object-cover rounded-md mb-2"
             src={url}

@@ -70,7 +70,7 @@ export const FilterForm: React.FC<FilterFormProps> = ({
               if (field.type === 'select') {
                 return (
                   <select
-                    key={index}
+                    key={field.name + index}
                     className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
                     name={field.name}
                     onChange={onFilterChange}
@@ -86,7 +86,7 @@ export const FilterForm: React.FC<FilterFormProps> = ({
               } else {
                 return (
                   <input
-                    key={index}
+                    key={field.name + index}
                     className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors placeholder:text-xs"
                     name={field.name}
                     onChange={onFilterChange}

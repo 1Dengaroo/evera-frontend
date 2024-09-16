@@ -10,7 +10,7 @@ const Payment: React.FC = () => {
   const [stripe, setStripe] = useState<Stripe | null>(null)
   const { items } = useCart()
 
-  const { sessionId, createCheckoutSession, loading, error } =
+  const { sessionUrl, createCheckoutSession, loading, error } =
     useCreateStripeCheckoutSession()
 
   const { publicKey, error: publicKeyError } = useGetStripePublicKey()
@@ -32,16 +32,13 @@ const Payment: React.FC = () => {
 
       await createCheckoutSession(items)
 
-      if (sessionId) {
-        const { error } = await stripe.redirectToCheckout({ sessionId })
-        if (error) {
-          console.error('Stripe Checkout error:', error)
-        }
+      if (sessionUrl) {
+        window.location.replace(sessionUrl)
       }
     }
 
     initializeCheckout()
-  }, [stripe, sessionId])
+  }, [stripe, sessionUrl, items, createCheckoutSession])
 
   if (items.length === 0) {
     return <>Your cart is empty</>
