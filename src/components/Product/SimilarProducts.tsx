@@ -12,7 +12,7 @@ export const SimilarProducts: React.FC<SimilarProductsProps> = ({
       <h2 className="text-md font-thin tracking-wider mb-4 md:text-left text-center">
         YOU MAY ALSO LIKE
       </h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-center">
         {similarProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}

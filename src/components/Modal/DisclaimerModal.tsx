@@ -44,19 +44,17 @@ export const DisclaimerModal: React.FC = () => {
         </button>
 
         <h3 className="text-xl font-medium tracking-wider mb-4">
-          Website Under Construction
+          We Are Moving!
         </h3>
         <p className="text-md text-gray-500 mb-6">
-          This website is still under construction. The products you see are{' '}
-          <span className="font-semibold">NOT for sale</span> and this is a
-          showcase website <span className="font-semibold">ONLY</span>. Any
-          orders placed will immediately be cancelled and refunded. The website
-          images and content are placeholders and{' '}
-          <span className="font-semibold">do not represent</span> our actual
-          products.
-          <br />
-          <br />
-          For any inquiries, please email us directly at{' '}
+          We are currently in the process of migrating our platform to a newer
+          and more performant system. During this transition, some features may
+          be temporarily unavailable. We appreciate your patience and
+          understanding as we work to bring you a better experience.
+        </p>
+        <p className="text-md text-gray-500 mb-6">
+          Please check back soon, and if you have any urgent issues, feel free
+          to contact our support team at{' '}
           <a className="text-blue-500" href="mailto:support@everafashion.com">
             <UnderlineButton
               className="text-blue-500"
