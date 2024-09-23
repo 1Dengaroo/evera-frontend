@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useGetOrders } from '../hooks/Orders/useGetOrders'
+import { useGetOrders } from '../hooks/API/Orders/useGetOrders'
 import { OrderCard } from '../components/Order'
 import { AuthContext } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'

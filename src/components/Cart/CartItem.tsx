@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useCart } from '../../hooks/Cart/useCart'
+import { useCart } from '../../hooks/useCart'
 import { UnderlineButton } from '../Button'
 import { ExtendedCartItem } from './types'
 import { CiTrash } from 'react-icons/ci'

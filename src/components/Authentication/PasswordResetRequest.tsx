@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useRequestPasswordReset } from '../../hooks/Users/usePasswordResetRequest'
+import { useRequestPasswordReset } from '../../hooks/API/Users/usePasswordResetRequest'
 import { Section } from '../Section'
 import { useNotification } from '../../context/NotificationContext'
 import { ButtonOne } from '../Button'

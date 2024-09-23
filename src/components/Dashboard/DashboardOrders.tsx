@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useGetOrders } from '../../hooks/Dashboard/useGetOrders'
+import { useGetOrders } from '../../hooks/API/Dashboard/useGetOrders'
 import { Order } from '../../types'
 import { OrderCard } from '../Order'
 import { OrderForm } from './OrderForm'

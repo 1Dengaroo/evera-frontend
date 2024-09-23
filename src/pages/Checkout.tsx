@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { useCart } from '../hooks/Cart/useCart'
+import { useCart } from '../hooks/useCart'
 import { loadStripe, Stripe } from '@stripe/stripe-js'
-import { useGetStripePublicKey } from '../hooks/Payments/useGetStripePublicKey'
-import { useCreateStripeCheckoutSession } from '../hooks/Payments/useCreateStripeCheckoutSession'
+import { useGetStripePublicKey } from '../hooks/API/Payments/useGetStripePublicKey'
+import { useCreateStripeCheckoutSession } from '../hooks/API/Payments/useCreateStripeCheckoutSession'
 import { Section } from '../components/Section'
 import { LoadingSpinner } from '../components/LoadingSpinner'
 

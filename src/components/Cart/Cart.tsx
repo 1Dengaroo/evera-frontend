@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import { useCart } from '../../hooks/Cart/useCart'
-import { useGetCartItemsDetails } from '../../hooks/Cart/useGetCartItemDetails'
+import { useCart } from '../../hooks/useCart'
+import { useGetCartItemsDetails } from '../../hooks/API/Cart/useGetCartItemDetails'
 import { CartSummary } from './CartSummary'
 import { AuthContext } from '../../context/AuthContext'
 import { CartItem } from './CartItem'

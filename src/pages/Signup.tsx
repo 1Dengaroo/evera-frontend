@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useUserSignup } from '../hooks/Users/useUserSignup'
+import { useUserSignup } from '../hooks/API/Users/useUserSignup'
 import { Section } from '../components/Section'
 import { useNavigate } from 'react-router-dom'
 import { useNotification } from '../context/NotificationContext'

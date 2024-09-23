@@ -20,6 +20,7 @@ import NotFound from './pages/404'
 import OrderCancel from './pages/OrderCancel'
 import OrderSuccess from './pages/OrderSuccess'
 import OrderSearch from './pages/TrackOrder'
+import { Account } from './components/Account/Account'
 
 import { CartProvider } from './context/CartContext'
 import { AuthProvider } from './context/AuthContext'
@@ -88,6 +89,7 @@ const App: React.FC = () => {
                       element={<ProductEditPage />}
                       path="/dashboard/products/edit/:productId"
                     />
+                    <Route element={<Account />} path="/account" />
                   </Route>
 
                   <Route element={<NotFound />} path="*" />

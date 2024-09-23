@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useGetProducts } from '../hooks/Products/useGetProducts'
+import { useGetProducts } from '../hooks/API/Products/useGetProducts'
 import { ProductCard } from '../components/Product'
 import { FilterForm } from '../components/Filter'
 import { LoadingSpinner } from '../components/LoadingSpinner'

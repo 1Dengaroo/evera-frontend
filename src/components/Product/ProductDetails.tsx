@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { QuantityInput } from '../Input'
-import { useCart } from '../../hooks/Cart/useCart'
+import { useCart } from '../../hooks/useCart'
 import { useNotification } from '../../context/NotificationContext'
 import { ProductDetailsProps } from './types'
 import { ButtonOne } from '../Button'

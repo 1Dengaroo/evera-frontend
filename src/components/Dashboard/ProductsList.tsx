@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useGetProducts } from '../../hooks/Dashboard/useGetProducts'
+import { useGetProducts } from '../../hooks/API/Dashboard/useGetProducts'
 import { ProductCard } from '../Product'
 import { FilterForm } from '../Filter'
 import { LoadingSpinner } from '../LoadingSpinner'

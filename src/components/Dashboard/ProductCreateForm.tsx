@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useCreateProduct } from '../../hooks/Dashboard/useCreateProduct'
+import { useCreateProduct } from '../../hooks/API/Dashboard/useCreateProduct'
 import { useNotification } from '../../context/NotificationContext'
 import { ButtonOne, UnderlineButton } from '../Button'
 

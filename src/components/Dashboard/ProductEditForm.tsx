@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { ProductFormProps } from './types'
-import { useUpdateProduct } from '../../hooks/Dashboard/useUpdateProduct'
+import { useUpdateProduct } from '../../hooks/API/Dashboard/useUpdateProduct'
 import { useNotification } from '../../context/NotificationContext'
 import { UnderlineButton } from '../Button'
 import { useNavigate } from 'react-router-dom'

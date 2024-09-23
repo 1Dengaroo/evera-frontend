@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
-import { useResetPassword } from '../../hooks/Users/usePasswordReset'
+import { useResetPassword } from '../../hooks/API/Users/usePasswordReset'
 import { Section } from '../Section'
 import { useNotification } from '../../context/NotificationContext'
 import { ButtonOne } from '../Button'

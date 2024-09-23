@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 import { ProductImageSlider } from '../components/Slider'
-import { useGetProductById } from '../hooks/Products/useGetProductById'
-import { useGetSimilarProducts } from '../hooks/Products/useGetSimilarProducts'
+import { useGetProductById } from '../hooks/API/Products/useGetProductById'
+import { useGetSimilarProducts } from '../hooks/API/Products/useGetSimilarProducts'
 import { SimilarProducts, ProductDetails } from '../components/Product'
 import { LoadingSpinner } from '../components/LoadingSpinner'
 

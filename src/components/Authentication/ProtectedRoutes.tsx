@@ -1,6 +1,6 @@
 import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
-import { useGetAdminStatus } from '../../hooks/Users/useGetAdminStatus'
+import { useGetAdminStatus } from '../../hooks/API/Users/useGetAdminStatus'
 
 export const ProtectedRoutes: React.FC = () => {
   const { isAdmin, loading } = useGetAdminStatus()

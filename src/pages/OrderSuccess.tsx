@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { Section } from '../components/Section'
-import { useGetOrderFromCS } from '../hooks/Orders/useGetOrderFromCS'
+import { useGetOrderFromCS } from '../hooks/API/Orders/useGetOrderFromCS'
 import { OrderCard } from '../components/Order'
-import { useCart } from '../hooks/Cart/useCart'
+import { useCart } from '../hooks/useCart'
 
 export const OrderSuccess: React.FC = () => {
   const { clearCart } = useCart()

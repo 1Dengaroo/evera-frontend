@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Product } from '../../types'
 import { ProductForm } from './ProductEditForm'
-import { useGetProduct } from '../../hooks/Dashboard/useGetProduct'
+import { useGetProduct } from '../../hooks/API/Dashboard/useGetProduct'
 
 export const ProductEditPage: React.FC = () => {
   const { productId } = useParams<{ productId: string }>()

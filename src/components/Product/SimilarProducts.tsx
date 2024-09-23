@@ -1,6 +1,6 @@
 import React from 'react'
 import { ProductCard } from './ProductCard'
-import { SimilarProductsProps } from '../../hooks/Products/types'
+import { SimilarProductsProps } from '../../hooks/API/Products/types'
 
 export const SimilarProducts: React.FC<SimilarProductsProps> = ({
   similarProducts

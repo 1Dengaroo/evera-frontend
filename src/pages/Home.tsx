@@ -1,5 +1,5 @@
 import React from 'react'
-import { useGetFrontPageProducts } from '../hooks/Products/useGetFrontPageProducts'
+import { useGetFrontPageProducts } from '../hooks/API/Products/useGetFrontPageProducts'
 import { ProductCard } from '../components/Product'
 import { Hero } from '../components/Hero'
 

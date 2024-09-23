@@ -1,5 +1,5 @@
 import React from 'react'
-import { useUpdateOrder } from '../../hooks/Dashboard/useUpdateOrder'
+import { useUpdateOrder } from '../../hooks/API/Dashboard/useUpdateOrder'
 import { OrderFormProps } from './types'
 import { ButtonOne, UnderlineButton } from '../Button'
 
