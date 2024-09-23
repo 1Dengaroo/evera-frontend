@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import { CartItem } from '../../types'
+import _ from 'lodash'
 
 interface CartItemDetails {
   id: string
@@ -15,14 +16,8 @@ export const useGetCartItemsDetails = (items: CartItem[]) => {
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
 
-  useEffect(() => {
-    if (items.length === 0) {
-      setItemDetails([])
-      setLoading(false)
-      return
-    }
-
-    const fetchItemDetails = async () => {
+  const debouncedFetchItemDetails = useCallback(
+    _.debounce(async (items: CartItem[]) => {
       setLoading(true)
       setError(null)
       try {
@@ -40,10 +35,23 @@ export const useGetCartItemsDetails = (items: CartItem[]) => {
       } finally {
         setLoading(false)
       }
+    }, 500),
+    []
+  )
+
+  useEffect(() => {
+    if (items.length === 0) {
+      setItemDetails([])
+      setLoading(false)
+      return
     }
 
-    fetchItemDetails()
-  }, [items])
+    debouncedFetchItemDetails(items)
+
+    return () => {
+      debouncedFetchItemDetails.cancel()
+    }
+  }, [items, debouncedFetchItemDetails])
 
   return { itemDetails, loading, error }
 }

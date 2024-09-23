@@ -73,7 +73,7 @@ export const OrderForm: React.FC<OrderFormProps> = ({
   return (
     <div className="mb-4 border rounded-3xl p-10 shadow-lg bg-white space-y-6 max-w-4xl mx-auto transition-all duration-500 hover:shadow-2xl">
       <div className="flex justify-between items-center border-b pb-6 border-gray-300">
-        <h3 className="text-2xl font-thin text-gray-900">
+        <h3 className="text-2xl font-light text-gray-900">
           Edit Order #{order.id}
         </h3>
       </div>

@@ -7,7 +7,7 @@ export const ProtectedRoutes: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="text-center tracking-wide font-thin text-lg">
+      <div className="text-center tracking-wide font-light text-lg">
         Loading...
       </div>
     )

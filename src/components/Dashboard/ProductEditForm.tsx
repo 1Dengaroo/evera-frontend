@@ -119,7 +119,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
       onSubmit={handleSubmit}
     >
       <div className="flex justify-between items-center border-b pb-6 border-gray-300">
-        <h3 className="text-2xl font-thin text-gray-900">
+        <h3 className="text-2xl font-light text-gray-900">
           Edit Product #{product.id}
         </h3>
       </div>

@@ -11,7 +11,7 @@ const DashboardButton: React.FC<{
       className="cursor-pointer p-6 bg-white shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-300"
       onClick={onClick}
     >
-      <h3 className="text-2xl font-thin tracking-wide text-gray-800 mb-2">
+      <h3 className="text-2xl font-light tracking-wide text-gray-800 mb-2">
         {title}
       </h3>
       <p className="text-sm text-gray-600">{description}</p>
@@ -29,7 +29,7 @@ const Dashboard: React.FC = () => {
     <div className="mx-auto md:px-16 px-4 mt-12">
       {!isChildRoute && (
         <>
-          <h2 className="text-4xl font-thin text-center mb-10 tracking-wide text-gray-900">
+          <h2 className="text-4xl font-light text-center mb-10 tracking-wide text-gray-900">
             Dashboard
           </h2>
 

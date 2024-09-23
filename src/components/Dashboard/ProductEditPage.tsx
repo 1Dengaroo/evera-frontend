@@ -55,7 +55,7 @@ export const ProductEditPage: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white space-y-6">
-      <h2 className="text-3xl font-thin text-center mb-6">Edit Product</h2>
+      <h2 className="text-3xl font-light text-center mb-6">Edit Product</h2>
       <ProductForm
         editForm={editForm}
         handleUpdateSuccess={handleProductUpdateSuccess}

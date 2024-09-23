@@ -8,7 +8,7 @@ export const OrderCancel: React.FC = () => {
   return (
     <Section
       title="Order Canceled"
-      titleClassName="text-3xl font-thin tracking-wide my-8 mt-12"
+      titleClassName="text-3xl font-light tracking-wide my-8 mt-12"
       shortHeight
     >
       <div className="flex flex-col items-center w-full">

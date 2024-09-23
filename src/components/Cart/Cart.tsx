@@ -1,14 +1,12 @@
 import React, { useContext } from 'react'
 import { useCart } from '../../hooks/Cart/useCart'
-import { CartItem } from './CartItem'
-import { useNavigate } from 'react-router-dom'
-import { AuthContext } from '../../context/AuthContext'
-import { ButtonOne, UnderlineButton } from '../Button'
 import { useGetCartItemsDetails } from '../../hooks/Cart/useGetCartItemDetails'
+import { CartSummary } from './CartSummary'
+import { AuthContext } from '../../context/AuthContext'
+import { CartItem } from './CartItem'
 
 export const Cart: React.FC = () => {
   const { items } = useCart()
-  const navigate = useNavigate()
   const { isAuthenticated } = useContext(AuthContext)
 
   const {
@@ -16,10 +14,6 @@ export const Cart: React.FC = () => {
     loading: detailsLoading,
     error: detailsError
   } = useGetCartItemsDetails(items)
-
-  if (items.length === 0) {
-    return <p className="text-center mt-8">Your cart is empty</p>
-  }
 
   if (detailsLoading) {
     return <p className="text-center mt-8">Loading...</p>
@@ -43,53 +37,39 @@ export const Cart: React.FC = () => {
   const cartIsValid = itemDetails.every((item) => item.isValid)
 
   return (
-    <div className="container">
-      <div className="w-full">
-        {items.map((item) => {
-          const details = itemDetails.find(
-            (detail) => detail.id === item.id && detail.size === item.size
-          )
-          return (
-            <CartItem
-              key={`${item.id}-${item.size}`}
-              id={item.id}
-              imageUrl={item.imageUrl}
-              isValid={details?.isValid}
-              name={item.name}
-              price={details?.price}
-              quantity={item.quantity}
-              size={item.size}
-              validationMessage={details?.validationMessage}
-            />
-          )
-        })}
-      </div>
-      <div className="text-right">
-        <p className="font-gray-500">Subtotal: ${(total / 100).toFixed(2)}</p>
-        <p className="text-gray-500 italic">Tax: TBD</p>
-        <p className="text-gray-500 italic">Shipping: TBD</p>
-        <p className="font-semibold">Total: ${(total / 100).toFixed(2)}</p>
-      </div>
+    <div className="py-12">
+      <div className="container mx-auto max-w-screen-xl px-2">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] mt-12">
+          <div className="flex flex-col bg-white justify-between lg:mr-16 mb-16">
+            <h2 className="text-3xl font-medium mb-4">Your Cart</h2>
+            {items.map((item) => {
+              const details = itemDetails.find(
+                (detail) => detail.id === item.id && detail.size === item.size
+              )
+              return (
+                <CartItem
+                  key={`${item.id}-${item.size}`}
+                  id={item.id}
+                  imageUrl={item.imageUrl}
+                  isValid={details?.isValid}
+                  name={item.name}
+                  price={details?.price}
+                  quantity={item.quantity}
+                  size={item.size}
+                  validationMessage={details?.validationMessage}
+                />
+              )
+            })}
+          </div>
 
-      {cartIsValid && (
-        <div className="w-full flex flex-col items-center mt-8">
-          {!isAuthenticated ? (
-            <>
-              <ButtonOne
-                label="Login and track your order"
-                onClick={() => navigate('/login')}
-              />
-              <UnderlineButton
-                className="text-sm mt-4 hover:underline transition-all"
-                label="Checkout as guest"
-                onClick={() => navigate('/checkout')}
-              />
-            </>
-          ) : (
-            <ButtonOne label="Checkout" onClick={() => navigate('/checkout')} />
-          )}
+          {/* Right Side: Summary and Checkout */}
+          <div className="">
+            <div className="flex flex-col">
+              <CartSummary total={total} cartIsValid={cartIsValid} />
+            </div>
+          </div>
         </div>
-      )}
+      </div>
     </div>
   )
 }

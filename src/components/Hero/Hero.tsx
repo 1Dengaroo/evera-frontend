@@ -24,7 +24,7 @@ export const Hero = ({
     >
       <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-center small:p-32 gap-6">
         <span>
-          <h1 className="text-6xl leading-10 text-white font-thin tracking-widest font-serif">
+          <h1 className="text-6xl leading-10 text-white font-light tracking-widest font-serif">
             {heading}
           </h1>
           <h2 className="text-md leading-9 text-white font-light tracking-wide mt-6">

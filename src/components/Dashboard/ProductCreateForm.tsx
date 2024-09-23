@@ -86,7 +86,7 @@ export const ProductCreateForm: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <h2 className="text-3xl text-center mb-6 font-thin tracking-wide mt-8">
+      <h2 className="text-3xl text-center mb-6 font-light tracking-wide mt-8">
         Create New Product
       </h2>
 

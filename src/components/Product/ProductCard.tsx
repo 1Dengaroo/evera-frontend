@@ -31,7 +31,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         src={product.cover_image}
       />
       <p className="text-sm text-gray-700 mb-2 tracking-wide">{product.name}</p>
-      <p className="text-gray-500 font-serif font-thin tracking-widest text-sm px-4 mb-2">
+      <p className="text-gray-500 font-serif font-light tracking-widest text-sm px-4 mb-2">
         Evera
       </p>
       <p className="text-gray-700 mb-4 text-xs font-light px-4  pb-6">

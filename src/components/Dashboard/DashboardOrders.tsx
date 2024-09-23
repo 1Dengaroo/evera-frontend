@@ -68,7 +68,7 @@ export const DashboardOrders: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto w-full">
-      <h2 className="text-3xl text-center mb-6 font-thin tracking-wide mt-8">
+      <h2 className="text-3xl text-center mb-6 font-light tracking-wide mt-8">
         Your Orders
       </h2>
 

@@ -26,7 +26,7 @@ export const PasswordResetRequest: React.FC = () => {
     <Section
       descriptionClassName="w-full"
       title="Reset Password"
-      titleClassName="text-3xl font-thin tracking-wide my-8 w-full mt-12"
+      titleClassName="text-3xl font-light tracking-wide my-8 w-full mt-12"
       shortHeight
     >
       <form

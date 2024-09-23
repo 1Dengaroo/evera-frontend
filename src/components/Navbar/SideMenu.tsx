@@ -6,9 +6,11 @@ import { Fragment } from 'react'
 const SideMenuItems = {
   Home: '/',
   Shop: '/shop',
+  Orders: '/orders',
   FAQ: '/faq',
   About: '/about',
-  Cart: '/cart'
+  Cart: '/cart',
+  Account: '/account'
 }
 
 const SideMenu = () => {
@@ -68,7 +70,7 @@ const SideMenu = () => {
                           <li key={name}>
                             <a
                               href={href}
-                              className="text-3xl leading-10 hover:text-ui-fg-disabled"
+                              className="text-3xl leading-10 text-gray-600 hover:text-ui-fg-disabled"
                               onClick={close}
                               data-testid={`${name.toLowerCase()}-link`}
                             >
@@ -78,7 +80,7 @@ const SideMenu = () => {
                         )
                       })}
                     </ul>
-                    <div className="flex flex-col gap-y-6 p-4 mt-auto">
+                    <div className="flex flex-col gap-y-6 p-4 pb-8 mt-auto">
                       <p className="flex justify-between txt-compact-small">
                         © {new Date().getFullYear()} Evera Corp. All rights
                         reserved.

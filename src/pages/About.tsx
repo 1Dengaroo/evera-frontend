@@ -5,7 +5,7 @@ const About: React.FC = () => {
   return (
     <Section
       title="About Us"
-      titleClassName="text-3xl font-thin tracking-wide my-8"
+      titleClassName="text-3xl font-light tracking-wide my-8"
       shortHeight
     >
       <div className="max-w-3xl mx-auto px-4 lg:px-8">

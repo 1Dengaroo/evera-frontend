@@ -6,7 +6,7 @@ const FAQ: React.FC = () => {
   return (
     <Section
       title="Frequently Asked Questions"
-      titleClassName="text-3xl tracking-wide font-thin my-8 pt-8"
+      titleClassName="text-3xl tracking-wide font-light my-8 pt-8"
       shortHeight
     >
       <div className="max-w-3xl mx-auto px-4 lg:px-8 pt-8">

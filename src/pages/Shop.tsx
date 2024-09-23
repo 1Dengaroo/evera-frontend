@@ -39,8 +39,8 @@ const Shop: React.FC = () => {
   }
 
   return (
-    <div className="w-full px-8 text-center">
-      <h2 className="text-3xl mb-6 font-thin tracking-wide mt-16">
+    <div className="w-full px-8 text-center container mx-auto">
+      <h2 className="text-3xl mb-6 font-light tracking-wide mt-16">
         Our Products
       </h2>
       <p className="font-light mb-8">SHOP ALL</p>

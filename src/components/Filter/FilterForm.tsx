@@ -62,7 +62,7 @@ export const FilterForm: React.FC<FilterFormProps> = ({
           <IoClose />
         </button>
 
-        <h2 className="text-xl font-thin mb-4">Filter & Sort</h2>
+        <h2 className="text-xl font-light mb-4">Filter & Sort</h2>
 
         <form onSubmit={onFilterSubmit}>
           <div className="flex flex-col space-y-4">
