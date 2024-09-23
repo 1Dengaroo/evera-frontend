@@ -20,7 +20,7 @@ export const ProductImageSlider: React.FC<ProductImageSliderProps> = ({
 
   return (
     <>
-      <div className="block lg:hidden">
+      <div className="block md:hidden">
         <Slider {...sliderSettings}>
           <div>
             <img
@@ -40,17 +40,17 @@ export const ProductImageSlider: React.FC<ProductImageSliderProps> = ({
         </Slider>
       </div>
 
-      <div className="hidden lg:block">
+      <div className="hidden md:block">
         <img
           alt={product.name}
-          className="w-3/4 mx-auto h-auto object-cover rounded-md mb-2"
+          className="w-full h-auto object-cover rounded-md"
           src={product.cover_image}
         />
         {product.sub_images.map((url, index) => (
           <img
             key={url}
             alt={`Sub image ${index + 1}`}
-            className="w-3/4 mx-auto h-auto object-cover rounded-md mb-2"
+            className="w-full h-auto object-cover rounded-md"
             src={url}
           />
         ))}

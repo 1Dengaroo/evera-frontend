@@ -29,7 +29,7 @@ export const Section: React.FC<SectionProps> = ({
   return (
     <section
       aria-labelledby={id ? `${id}-heading` : undefined}
-      className={`relative py-8 px-4 sm:px-6 lg:px-8 flex items-center justify-center ${className} ${heightClasses}`}
+      className={`relative py-8 sm:px-6 lg:px-8 flex items-center justify-center ${className} ${heightClasses}`}
       id={id}
       style={backgroundStyles}
     >

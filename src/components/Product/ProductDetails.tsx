@@ -3,6 +3,7 @@ import { QuantityInput } from '../Input'
 import { useCart } from '../../hooks/Cart/useCart'
 import { useNotification } from '../../context/NotificationContext'
 import { ProductDetailsProps } from './types'
+import { ButtonOne } from '../Button'
 
 export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
   const [selectedSize, setSelectedSize] = useState<string>('')
@@ -37,20 +38,25 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
   }
 
   return (
-    <div className="lg:sticky top-28 self-start p-8">
-      <h1 className="text-2xl tracking-wider my-4">{product.name}</h1>
-      <p className="text-md font-light text-gray-700 mb-4">
+    <div className="md:sticky md:top-56 self-start py-8">
+      <h1 className="text-3xl leading-10 tracking-wide my-4 font-serif">
+        {product.name}
+      </h1>
+      <p className="text-gray-500 mb-4 tracking-wide text-sm md:w-3/4">
+        {product.description}
+      </p>
+      <p className="text-sm font-light text-gray-500 mb-4">
         ${Number(product.price / 100).toFixed(2)} USD
       </p>
       {product.sizes.length > 0 && (
-        <p className="text-sm font-thin text-gray-700 mb-4">Size</p>
+        <p className="text-sm font-light text-gray-700 mb-2">Select Size</p>
       )}
-      <div className="flex space-x-2 mb-4">
+      <div className="flex space-x-2 mb-4 justify-between">
         {product.sizes.map((size) => (
           <button
             key={size}
-            className={`px-4 py-2 text-xs rounded-sm border border-black ${
-              selectedSize === size ? 'bg-black text-white' : ''
+            className={`px-4 py-2 text-xs rounded-lg bg-gray-100 border w-full max-w-36 ${
+              selectedSize === size ? 'border-black border-1' : ''
             }`}
             onClick={() => setSelectedSize(size)}
             type="button"
@@ -59,29 +65,20 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
           </button>
         ))}
       </div>
-      <p className="text-sm font-thin text-gray-700 mb-2">Quantity</p>
+      <p className="text-sm font-light text-gray-700 mb-2">Quantity</p>
       <QuantityInput
-        className="mb-2 border-black"
+        className="mb-2 border-gray-200 bg-gray-100 rounded-xl"
         onChange={setQuantity}
         onDecrement={handleQuantityDecrement}
         onIncrement={handleQuantityIncrement}
         value={quantity}
       />
-      <button
-        className="w-full h-12 py-2 tracking-wider border border-black rounded-sm hover:bg-gray-100 mb-12 transition duration-500"
+      <ButtonOne
+        label="Add to Cart"
+        className="w-full h-12 py-2 tracking-wide hover:bg-gray-100 mt-6 transition duration-500"
         onClick={handleAddToCart}
         type="button"
-      >
-        ADD TO BAG
-      </button>
-      <p className="text-gray-700 mb-4 tracking-wide font-thin text-sm">
-        {product.description}
-      </p>
-      <p className="text-gray-700 mb-4 tracking-wide text-sm italic">
-        *Size one up for a better oversized fit if you prefer a bigger hoodie.
-        Keep regular size if you prefer the boxy and cropped fit of your hoodie.
-        Refer to size chart for any sizing questions.
-      </p>
+      />
     </div>
   )
 }

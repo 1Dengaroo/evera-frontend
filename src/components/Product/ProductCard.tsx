@@ -27,17 +27,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     >
       <img
         alt={product.name}
-        className="w-full h-116 object-cover mb-2 rounded"
+        className="object-cover mb-2 rounded border border-gray-300 rounded-2xl mb-6"
         src={product.cover_image}
       />
-      <UnderlineButton
-        className="text-sm font-light text-gray-700 mb-2 tracking-wide"
-        label={product.name}
-      />
+      <p className="text-sm text-gray-700 mb-2 tracking-wide">{product.name}</p>
       <p className="text-gray-500 font-serif font-thin tracking-widest text-sm px-4 mb-2">
         Evera
       </p>
-      <p className="text-gray-700 mb-4 text-xs font-light px-4">
+      <p className="text-gray-700 mb-4 text-xs font-light px-4  pb-6">
         ${Number(product.price / 100).toFixed(2)}
       </p>
       {onEditClick && (

@@ -17,7 +17,7 @@ const OrderDetailItem: React.FC<{
   value: string
   className?: string
 }> = ({ label, value, className }) => (
-  <p className={`text-gray-800 font-light leading-relaxed ${className}`}>
+  <p className={`text-gray-800 leading-relaxed ${className}`}>
     {label}: {value}
   </p>
 )
@@ -31,7 +31,7 @@ const OrderItem: React.FC<{ item: any }> = ({ item }) => (
         src={item.product.cover_image}
       />
       <div className="ml-6">
-        <h3 className="text-md font-thin tracking-wider">
+        <h3 className="text-md tracking-wider">
           {item.size
             ? `${item.product.name} (${item.size})`
             : item.product.name}
@@ -49,10 +49,10 @@ const OrderItem: React.FC<{ item: any }> = ({ item }) => (
 
 const DeliveryAddress: React.FC<{ address: any }> = ({ address }) => (
   <>
-    <h4 className="text-lg font-thin text-gray-900 tracking-wide mb-4">
+    <h4 className="text-lg text-gray-900 tracking-wide mb-4">
       Delivery Address
     </h4>
-    <p className="text-gray-900 font-light">
+    <p className="text-gray-900">
       {address.name}
       <br />
       {address.line1}
@@ -73,14 +73,12 @@ const DeliveryAddress: React.FC<{ address: any }> = ({ address }) => (
 export const OrderCard: React.FC<OrderCardProps> = ({ order, onEditClick }) => (
   <div className="mb-4 border rounded-3xl p-10 shadow-lg bg-white space-y-10 max-w-4xl mx-auto transition-all duration-500 hover:shadow-2xl">
     <div className="flex justify-between items-center border-b pb-6 border-gray-300">
-      <h3 className="text-2xl font-thin text-gray-900">Order #{order.id}</h3>
+      <h3 className="text-2xl text-gray-900">Order #{order.id}</h3>
       <OrderStatusBadge paid={order.paid} />
     </div>
 
     <div>
-      <h4 className="text-lg font-thin text-gray-900 tracking-wide">
-        Order Items
-      </h4>
+      <h4 className="text-lg text-gray-900 tracking-wide">Order Items</h4>
       <ul className="divide-y divide-gray-300">
         {order.order_items.map((item) => (
           <OrderItem key={item.product_id} item={item} />
@@ -123,7 +121,7 @@ export const OrderCard: React.FC<OrderCardProps> = ({ order, onEditClick }) => (
         )}
 
         <div className="md:w-1/2 md:text-right text-left">
-          <h4 className="text-lg font-thin text-gray-900 tracking-wide mb-4">
+          <h4 className="text-lg text-gray-900 tracking-wide mb-4">
             Delivery Information
           </h4>
           <OrderDetailItem

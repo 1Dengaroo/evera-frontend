@@ -43,13 +43,13 @@ const ProductShow: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto lg:p-4 mt-8">
-      <div className="flex flex-col lg:flex-row">
-        <div className="lg:w-1/2 mb-6 lg:mb-0">
+    <div className="mx-6 sm:mx-0 flex flex-col pb-6 relative">
+      <div className="flex flex-col md:flex-row">
+        <div className="w-full relative flex-1">
           <ProductImageSlider product={product} />
         </div>
 
-        <div className="lg:w-1/2 p-8">
+        <div className="md:w-1/2 md:p-8">
           <ProductDetails product={product} />
         </div>
       </div>
@@ -61,7 +61,9 @@ const ProductShow: React.FC = () => {
       ) : similarError ? (
         <p className="text-center text-red-600">{similarError}</p>
       ) : (
-        <SimilarProducts similarProducts={similarProducts} />
+        <div className="mt-8 container mx-auto">
+          <SimilarProducts similarProducts={similarProducts} />
+        </div>
       )}
     </div>
   )

@@ -3,16 +3,25 @@ module.exports = {
   theme: {
     extend: {
       fontSize: {
-        '2xs': '0.625rem',
+        '2xs': '0.625rem'
       },
       fontFamily: {
-        sans: ['"Open Sans"', 'sans-serif'],
+        sans: [
+          'Inter',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'Segoe UI',
+          'Roboto',
+          'Helvetica Neue',
+          'Ubuntu',
+          'sans-serif'
+        ]
       },
       spacing: {
-        '108': '27rem',
-        '116': '29rem',
-      },
-    },
+        108: '27rem',
+        116: '29rem'
+      }
+    }
   },
   plugins: []
 }

@@ -51,7 +51,7 @@ const App: React.FC = () => {
               <Navbar />
               <SideCart />
 
-              <div className="flex-grow mt-16">
+              <div className="flex-grow">
                 <Routes>
                   <Route element={<Home />} path="/" />
                   <Route element={<FAQ />} path="/faq" />

@@ -1,72 +1,36 @@
 import React from 'react'
-import { Section } from '../components/Section'
-import { useNavigate } from 'react-router-dom'
 import { useGetFrontPageProducts } from '../hooks/Products/useGetFrontPageProducts'
 import { ProductCard } from '../components/Product'
-import { LoadingSpinner } from '../components/LoadingSpinner'
+import { Hero } from '../components/Hero'
 
 const Home: React.FC = () => {
-  const navigate = useNavigate()
-  const { products, loading, error } = useGetFrontPageProducts()
-
-  const handleShopButtonClick = () => {
-    navigate('/shop')
-  }
-
-  const handleAboutButtonClick = () => {
-    navigate('/about')
-  }
+  const { products } = useGetFrontPageProducts()
 
   return (
     <>
-      <Section
-        backgroundImage="images/home_1.webp"
-        descriptionClassName="text-md font-thin text-white"
-        title="Evera"
-        titleClassName="text-6xl font-serif font-thin tracking-widest text-white mb-4"
-      >
-        <p>Elegance redefined</p>
-        <button
-          className="mt-6 bg-white text-black tracking-wide py-2 px-4 rounded shadow hover:bg-gray-200 transition duration-300"
-          onClick={handleShopButtonClick}
-        >
-          Shop Now
-        </button>
-      </Section>
+      <Hero
+        backgroundImageUrl="https://www.everafashion.com/images/home_1.webp"
+        heading="Evera"
+        subHeading="Elegance Redefined"
+        buttonText="Shop Now"
+        buttonUrl="/shop"
+      />
 
-      <Section
-        descriptionClassName="text-lg text-gray-800"
-        title="New Arrivals"
-        titleClassName="text-2xl font-thin text-gray-900 mb-4 tracking-wider mb-8"
-        shortHeight
-      >
-        {loading ? (
-          <div className="flex justify-center items-center">
-            <LoadingSpinner />
-          </div>
-        ) : error ? (
-          <p className="text-center text-red-600">Error: {error}</p>
-        ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        )}
-      </Section>
+      <div className="py-12 sm:py-24 container mx-auto">
+        <div className="flex justify-between mb-8 px-2">
+          <p className="text-xl font-light tracking-wide">New Arrivals</p>
+          <a className="text-blue-500 text-sm" href={`/shop`}>
+            View all
+          </a>
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2 px-2">
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </div>
 
-      <Section
-        backgroundImage="images/home_2.webp"
-        title="Evera's Story"
-        titleClassName="text-5xl font-serif font-thin text-white pb-4 mb-12 tracking-wide"
-      >
-        <button
-          className="bg-white text-black tracking-wide py-2 px-4 rounded shadow hover:bg-gray-200 transition duration-300"
-          onClick={handleAboutButtonClick}
-        >
-          Our Story
-        </button>
-      </Section>
+      <Hero backgroundImageUrl="https://www.everafashion.com/images/home_2.webp" />
     </>
   )
 }

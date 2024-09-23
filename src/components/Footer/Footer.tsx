@@ -1,80 +1,66 @@
-import React from 'react'
-import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa'
-
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-white text-black py-12">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="flex flex-col md:flex-row items-center mb-4 md:mb-0 space-x-6">
-            <a className="text-sm text-gray-600 hover:text-black mx-2" href="/">
-              Home
-            </a>
-            <a className="text-sm text-gray-600 hover:text-black" href="/shop">
-              Products
-            </a>
+    <footer className="border-t border-gray-200 w-full h-96 py-12">
+      <div className="container mx-auto px-4 flex flex-col justify-between h-full">
+        <div className="flex flex-col gap-6 sm:flex-row items-start justify-between py-10">
+          <div>
             <a
-              className="text-sm text-gray-600 hover:text-black"
-              href="/orders"
+              href="/"
+              className="text-xl font-light tracking-wider hover:text-gray-900 uppercase"
             >
-              Orders
-            </a>
-            <a className="text-sm text-gray-600 hover:text-black" href="/faq">
-              FAQ
-            </a>
-            <a
-              className="text-sm text-gray-600 hover:text-black"
-              href="mailto:support@everafashion.com"
-            >
-              Support
-            </a>
-            <a
-              className="text-sm text-gray-600 hover:text-black"
-              href="/dashboard"
-            >
-              Dashboard
+              Evera Store
             </a>
           </div>
-
-          <div className="flex items-center mb-4 md:mb-0">
-            <a
-              className="text-gray-600 hover:text-black mx-2"
-              href="https://facebook.com"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <FaFacebook size={24} />
-            </a>
-            <a
-              className="text-gray-600 hover:text-black mx-2"
-              href="https://twitter.com"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <FaTwitter size={24} />
-            </a>
-            <a
-              className="text-gray-600 hover:text-black mx-2"
-              href="https://instagram.com"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <FaInstagram size={24} />
-            </a>
+          <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 text-sm text-gray-600">
+            <div className="flex flex-col gap-2">
+              <span className="font-semibold text-gray-900">Evera</span>
+              <ul className="space-y-2">
+                <li>
+                  <a
+                    href="/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-gray-900"
+                  >
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/shop"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-gray-900"
+                  >
+                    Shop
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/faq"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-gray-900"
+                  >
+                    FAQ
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/account"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-gray-900"
+                  >
+                    Account
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-
-        <div className="mt-4 text-center text-sm text-gray-500">
-          Built by{' '}
-          <a
-            className="text-gray-600 hover:underline"
-            href="https://www.linkedin.com/in/andydeng-/"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Andy Deng
-          </a>
-          . © 2024 Evera. All rights reserved.
+        <div className="text-sm text-gray-500 mb-8">
+          <p>© {new Date().getFullYear()} Evera Corp. All rights reserved.</p>
         </div>
       </div>
     </footer>
