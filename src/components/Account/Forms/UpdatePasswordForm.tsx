@@ -35,10 +35,10 @@ export const PasswordForm: React.FC = () => {
         </label>
         <input
           className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
-          type="password"
-          placeholder="Current Password"
-          value={currentPassword}
           onChange={(e) => setCurrentPassword(e.target.value)}
+          placeholder="Current Password"
+          type="password"
+          value={currentPassword}
           required
         />
       </div>
@@ -49,10 +49,10 @@ export const PasswordForm: React.FC = () => {
         </label>
         <input
           className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
-          type="password"
-          placeholder="New Password"
-          value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
+          placeholder="New Password"
+          type="password"
+          value={newPassword}
           required
         />
       </div>
@@ -63,10 +63,10 @@ export const PasswordForm: React.FC = () => {
         </label>
         <input
           className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
-          type="password"
-          placeholder="Confirm New Password"
-          value={passwordConfirmation}
           onChange={(e) => setPasswordConfirmation(e.target.value)}
+          placeholder="Confirm New Password"
+          type="password"
+          value={passwordConfirmation}
           required
         />
       </div>

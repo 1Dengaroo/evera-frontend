@@ -31,8 +31,8 @@ export const PhoneNumberForm: React.FC<PhoneNumberFormProps> = ({
         <input
           className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
           name="phone_number"
-          type="tel"
           onChange={(e) => setPhoneNumber(e.target.value)}
+          type="tel"
           value={phoneNumber}
         />
       </div>

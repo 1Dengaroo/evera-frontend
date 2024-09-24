@@ -74,8 +74,8 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
         value={quantity}
       />
       <ButtonOne
-        label="Add to Cart"
         className="w-full h-12 py-2 tracking-wide hover:bg-gray-100 mt-6 transition duration-500"
+        label="Add to Cart"
         onClick={handleAddToCart}
         type="button"
       />

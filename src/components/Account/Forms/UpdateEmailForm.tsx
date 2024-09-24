@@ -25,8 +25,8 @@ export const EmailForm: React.FC<EmailFormProps> = ({ fetchProfile }) => {
         <input
           className="w-full px-4 py-2 border rounded-full text-sm text-gray-900 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
           name="email"
-          type="email"
           onChange={(e) => setEmail(e.target.value)}
+          type="email"
           value={email}
           required
         />

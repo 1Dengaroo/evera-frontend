@@ -46,8 +46,8 @@ export const CartItem: React.FC<CartItemProps> = ({
             <td className="py-4 w-1/2 pr-6">
               <div className="flex items-center">
                 <a
-                  href={`/shop/${id}`}
                   className="flex min-w-16 min-h-24 w-16 h-24"
+                  href={`/shop/${id}`}
                 >
                   <img
                     alt={name}
@@ -67,21 +67,21 @@ export const CartItem: React.FC<CartItemProps> = ({
             <td className="py-4 w-1/6">
               <div className="flex items-center gap-x-2">
                 <button
-                  onClick={() => removeItem(id, size)}
                   className="text-red-500"
+                  onClick={() => removeItem(id, size)}
                 >
                   <CiTrash />
                 </button>
                 <div className="flex items-center">
                   <select
-                    value={quantity}
+                    className="w-12 h-8 p-2 border text-xs rounded"
                     onChange={(e) =>
                       handleQuantityChange(parseInt(e.target.value))
                     }
-                    className="w-12 h-8 p-2 border text-xs rounded"
+                    value={quantity}
                   >
                     {Array.from({ length: 10 }, (_, i) => (
-                      <option value={i + 1} key={i}>
+                      <option key={i} value={i + 1}>
                         {i + 1}
                       </option>
                     ))}

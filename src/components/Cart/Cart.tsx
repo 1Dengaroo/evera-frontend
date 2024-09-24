@@ -65,7 +65,7 @@ export const Cart: React.FC = () => {
           {/* Right Side: Summary and Checkout */}
           <div className="">
             <div className="flex flex-col">
-              <CartSummary total={total} cartIsValid={cartIsValid} />
+              <CartSummary cartIsValid={cartIsValid} total={total} />
             </div>
           </div>
         </div>

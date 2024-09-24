@@ -32,7 +32,7 @@ export const Hero = ({
           </h2>
         </span>
         {buttonUrl && (
-          <a href={buttonUrl} target="_blank" rel="noreferrer">
+          <a href={buttonUrl} rel="noreferrer" target="_blank">
             <button className="bg-white text-black tracking-wide py-2 px-4 rounded shadow hover:bg-gray-200 transition duration-300">
               {buttonText}
             </button>

@@ -40,7 +40,7 @@ export const Account: React.FC = () => {
             </span>
           </div>
           <div>
-            <a href="/faq" className="text-blue-500 group">
+            <a className="text-blue-500 group" href="/faq">
               <span className="text-sm flex items-center gap-x-1">
                 Customer Service
                 <IoArrowForwardSharp className="transition-transform duration-150 group-hover:-rotate-45 text-md" />

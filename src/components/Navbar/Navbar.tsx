@@ -18,9 +18,9 @@ export const Navbar = () => {
 
           <div className="flex items-center h-full">
             <a
-              href="/"
               className="uppercase text-lg hover:text-ui-fg-base font-serif tracking-widest"
               data-testid="nav-store-link"
+              href="/"
             >
               Evera
             </a>

@@ -11,20 +11,20 @@ const Home: React.FC = () => {
     <>
       <Hero
         backgroundImageUrl="https://www.everafashion.com/images/home_1.webp"
-        heading="Evera"
-        subHeading="Elegance Redefined"
         buttonText="Shop Now"
         buttonUrl="/shop"
+        heading="Evera"
+        subHeading="Elegance Redefined"
       />
 
       <div className="py-12 sm:py-24 container mx-auto">
         <div className="flex justify-between mb-8 px-2">
           <p className="text-xl font-light tracking-wide">New Arrivals</p>
           <a
-            href="/shop"
             className="text-blue-500 group"
-            target="_blank"
+            href="/shop"
             rel="noreferrer"
+            target="_blank"
           >
             <span className="text-sm flex items-center gap-x-1">
               View All

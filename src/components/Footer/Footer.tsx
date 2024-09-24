@@ -5,8 +5,8 @@ export const Footer: React.FC = () => {
         <div className="flex flex-col gap-6 sm:flex-row items-start justify-between py-10">
           <div>
             <a
-              href="/"
               className="text-xl font-light tracking-wider hover:text-gray-900 uppercase"
+              href="/"
             >
               Evera Store
             </a>
@@ -17,40 +17,40 @@ export const Footer: React.FC = () => {
               <ul className="space-y-2">
                 <li>
                   <a
-                    href="/"
-                    target="_blank"
-                    rel="noreferrer"
                     className="hover:text-gray-900"
+                    href="/"
+                    rel="noreferrer"
+                    target="_blank"
                   >
                     Home
                   </a>
                 </li>
                 <li>
                   <a
-                    href="/shop"
-                    target="_blank"
-                    rel="noreferrer"
                     className="hover:text-gray-900"
+                    href="/shop"
+                    rel="noreferrer"
+                    target="_blank"
                   >
                     Shop
                   </a>
                 </li>
                 <li>
                   <a
-                    href="/faq"
-                    target="_blank"
-                    rel="noreferrer"
                     className="hover:text-gray-900"
+                    href="/faq"
+                    rel="noreferrer"
+                    target="_blank"
                   >
                     FAQ
                   </a>
                 </li>
                 <li>
                   <a
-                    href="/account"
-                    target="_blank"
-                    rel="noreferrer"
                     className="hover:text-gray-900"
+                    href="/account"
+                    rel="noreferrer"
+                    target="_blank"
                   >
                     Account
                   </a>

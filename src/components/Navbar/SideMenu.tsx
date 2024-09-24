@@ -22,8 +22,8 @@ const SideMenu = () => {
             <>
               <div className="relative flex h-full">
                 <Popover.Button
-                  data-testid="nav-menu-button"
                   className="relative h-full flex items-center transition-all ease-out duration-200 focus:outline-none hover:text-ui-fg-base"
+                  data-testid="nav-menu-button"
                 >
                   Menu
                 </Popover.Button>
@@ -31,7 +31,6 @@ const SideMenu = () => {
 
               {/* Overlay */}
               <Transition
-                show={open}
                 as={Fragment}
                 enter="transition-opacity ease-linear duration-300"
                 enterFrom="opacity-0"
@@ -39,6 +38,7 @@ const SideMenu = () => {
                 leave="transition-opacity ease-linear duration-300"
                 leaveFrom="opacity-50"
                 leaveTo="opacity-0"
+                show={open}
               >
                 <div
                   className="fixed inset-0 bg-black opacity-50"
@@ -48,7 +48,6 @@ const SideMenu = () => {
 
               {/* Side Menu */}
               <Transition
-                show={open}
                 as={Fragment}
                 enter="transition ease-out duration-300 transform"
                 enterFrom="-translate-x-full"
@@ -56,6 +55,7 @@ const SideMenu = () => {
                 leave="transition ease-in duration-300 transform"
                 leaveFrom="translate-x-0"
                 leaveTo="-translate-x-full"
+                show={open}
               >
                 <Popover.Panel className="fixed inset-y-0 left-0 z-30 w-96 bg-white shadow-xl h-full">
                   <div className="relative flex flex-col h-full">
@@ -69,10 +69,10 @@ const SideMenu = () => {
                         return (
                           <li key={name}>
                             <a
-                              href={href}
                               className="text-3xl leading-10 text-gray-600 hover:text-ui-fg-disabled"
-                              onClick={close}
                               data-testid={`${name.toLowerCase()}-link`}
+                              href={href}
+                              onClick={close}
                             >
                               {name}
                             </a>

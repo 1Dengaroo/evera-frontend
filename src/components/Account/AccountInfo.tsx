@@ -46,13 +46,13 @@ export const AccountInfo = () => {
               </Disclosure.Button>
             </div>
             <Disclosure.Panel
-              static
               className={clx(
                 'transition-[max-height,opacity] duration-300 ease-in-out',
                 open
                   ? 'max-h-[1000px] opacity-100 overflow-visible pointer-events-auto'
                   : 'max-h-0 opacity-0 overflow-hidden pointer-events-none'
               )}
+              static
             >
               <div className="flex flex-col space-y-2">
                 <NameForm fetchProfile={fetchProfile} />
@@ -77,13 +77,13 @@ export const AccountInfo = () => {
               </Disclosure.Button>
             </div>
             <Disclosure.Panel
-              static
               className={clx(
                 'transition-[max-height,opacity] duration-300 ease-in-out',
                 open
                   ? 'max-h-[1000px] opacity-100 overflow-visible pointer-events-auto'
                   : 'max-h-0 opacity-0 overflow-hidden pointer-events-none'
               )}
+              static
             >
               <div className="flex flex-col space-y-2">
                 <EmailForm fetchProfile={fetchProfile} />
@@ -111,13 +111,13 @@ export const AccountInfo = () => {
               </Disclosure.Button>
             </div>
             <Disclosure.Panel
-              static
               className={clx(
                 'transition-[max-height,opacity] duration-300 ease-in-out',
                 open
                   ? 'max-h-[1000px] opacity-100 overflow-visible pointer-events-auto'
                   : 'max-h-0 opacity-0 overflow-hidden pointer-events-none'
               )}
+              static
             >
               <div className="flex flex-col space-y-2">
                 <PhoneNumberForm fetchProfile={fetchProfile} />
@@ -143,7 +143,6 @@ export const AccountInfo = () => {
               </Disclosure.Button>
             </div>
             <Disclosure.Panel
-              static
               className={clx(
                 'transition-[max-height,opacity] duration-300 ease-in-out overflow-visible',
                 {
@@ -151,6 +150,7 @@ export const AccountInfo = () => {
                   'max-h-0 opacity-0': !open
                 }
               )}
+              static
             >
               <div className="flex flex-col space-y-2">
                 <PasswordForm />
