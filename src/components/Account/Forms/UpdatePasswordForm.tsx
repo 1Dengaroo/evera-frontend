@@ -74,6 +74,7 @@ export const PasswordForm: React.FC = () => {
       <ButtonOne
         disabled={loading}
         label={loading ? 'Updating...' : 'Update Password'}
+        onClick={handleSubmit}
       />
     </form>
   )

@@ -35,7 +35,6 @@ export const useUpdatePassword = (): UseUpdatePasswordReturn => {
           password_confirmation: passwordConfirmation
         }
       })
-      console.log(response)
       setMessage(response.data.message)
       return true
     } catch (e: any) {
