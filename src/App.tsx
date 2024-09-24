@@ -1,6 +1,10 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { ProtectedRoutes, PublicRoutes } from './components/Authentication'
+import {
+  ProtectedRoutes,
+  PublicRoutes,
+  UserRoutes
+} from './components/Authentication'
 
 import { Navbar } from './components/Navbar'
 import { Footer } from './components/Footer'
@@ -65,7 +69,10 @@ const App: React.FC = () => {
                   <Route element={<OrderCancel />} path="/orders/cancel" />
                   <Route element={<OrderSuccess />} path="/orders/success" />
                   <Route element={<OrderSearch />} path="/orders/track" />
-                  <Route element={<Account />} path="/account" />
+
+                  <Route element={<UserRoutes />}>
+                    <Route element={<Account />} path="/account" />
+                  </Route>
 
                   <Route element={<PublicRoutes />}>
                     <Route element={<Login />} path="/login" />

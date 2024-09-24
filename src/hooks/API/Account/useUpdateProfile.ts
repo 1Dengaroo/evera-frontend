@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { setAuthToken } from '../../../utils/auth/setAuthToken'
 import axiosInstance from '../../../utils/axios/axiosInstance'
 
 export interface UserProfile {

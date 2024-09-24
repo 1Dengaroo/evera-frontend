@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import axiosInstance from '../../../utils/axios/axiosInstance'
 import { Product } from '../../../types'
 
 export const useGetSimilarProducts = (id: string) => {
@@ -18,8 +18,9 @@ export const useGetSimilarProducts = (id: string) => {
       setLoading(true)
       setError(null)
       try {
-        const url = `${process.env.REACT_APP_API_URL}/products/${id}/similar_products`
-        const response = await axios.get(url)
+        const response = await axiosInstance.get(
+          `/products/${id}/similar_products`
+        )
         setSimilarProducts(response.data)
       } catch (err: any) {
         setError('Failed to fetch similar products')

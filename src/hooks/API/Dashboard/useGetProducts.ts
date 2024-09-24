@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import axios from 'axios'
+import axiosInstance from '../../../utils/axios/axiosInstance'
 import { Product } from '../../../types'
-import { setAuthToken } from '../../../utils/auth/setAuthToken'
 import { GetProductsParams } from './types'
 
 export const useGetProducts = () => {
@@ -13,28 +12,22 @@ export const useGetProducts = () => {
     setLoading(true)
     setError(null)
     try {
-      const url = `${process.env.REACT_APP_API_URL}/products/admin_index`
-      const token = localStorage.getItem('jwtToken')
-      setAuthToken(token)
-
-      const queryParams: Record<string, string | boolean | undefined> = {}
-      if (params?.active !== undefined) queryParams.active = params.active
-      if (params?.name) queryParams.name = params.name
-      if (params?.startDate) {
-        queryParams['created_at[start_date]'] = params.startDate
+      const queryParams = {
+        ...(params?.active !== undefined && { active: String(params.active) }),
+        ...(params?.name && { name: params.name }),
+        ...(params?.startDate && {
+          'created_at[start_date]': params.startDate
+        }),
+        ...(params?.endDate && { 'created_at[end_date]': params.endDate }),
+        ...(params?.sortByDate && { sort_by_date: params.sortByDate })
       }
-      if (params?.endDate) {
-        queryParams['created_at[end_date]'] = params.endDate
-      }
-      if (params?.sortByDate) queryParams.sort_by_date = params.sortByDate
 
-      const queryString = new URLSearchParams(
-        queryParams as Record<string, string>
-      ).toString()
+      const queryString = new URLSearchParams(queryParams).toString()
+      const finalUrl = queryString
+        ? `/products/admin_index?${queryString}`
+        : `/products/admin_index`
 
-      const finalUrl = queryString ? `${url}?${queryString}` : url
-
-      const response = await axios.get(finalUrl)
+      const response = await axiosInstance.get(finalUrl)
       setProducts(response.data)
     } catch (err: any) {
       setError(err.message || 'Unknown error')

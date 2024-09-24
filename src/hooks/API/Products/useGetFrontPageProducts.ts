@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import axiosInstance from '../../../utils/axios/axiosInstance'
 import { Product } from '../../../types'
 
 export const useGetFrontPageProducts = () => {
@@ -10,8 +10,9 @@ export const useGetFrontPageProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const url = `${process.env.REACT_APP_API_URL}/products/front_page_products`
-        const response = await axios.get(url)
+        const response = await axiosInstance.get(
+          '/products/front_page_products'
+        )
         setProducts(response.data)
       } catch (err: any) {
         setError('Failed to fetch products')

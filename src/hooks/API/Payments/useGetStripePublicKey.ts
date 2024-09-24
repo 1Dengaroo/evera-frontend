@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import axiosInstance from '../../../utils/axios/axiosInstance'
 
 export const useGetStripePublicKey = () => {
   const [publicKey, setPublicKey] = useState<string>('')
@@ -9,8 +9,9 @@ export const useGetStripePublicKey = () => {
   useEffect(() => {
     const fetchPublicKey = async () => {
       try {
-        const url = `${process.env.REACT_APP_API_URL}/configurations/stripe_public_key`
-        const response = await axios.get(url)
+        const response = await axiosInstance.get(
+          `/configurations/stripe_public_key`
+        )
         setPublicKey(response.data.stripe_public_key)
       } catch (err: any) {
         setError('Failed to fetch Stripe public key')

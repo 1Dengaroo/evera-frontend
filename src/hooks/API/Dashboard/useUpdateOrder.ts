@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import axios from 'axios'
+import axiosInstance from '../../../utils/axios/axiosInstance'
 import { Order } from '../../../types'
-import { setAuthToken } from '../../../utils/auth/setAuthToken'
 import { UpdateOrderParams } from './types'
 
 export const useUpdateOrder = () => {
@@ -15,10 +14,7 @@ export const useUpdateOrder = () => {
     setLoading(true)
     setError(null)
     try {
-      const url = `${process.env.REACT_APP_API_URL}/orders/${orderId}`
-      const token = localStorage.getItem('jwtToken')
-      setAuthToken(token)
-      const response = await axios.patch(url, {
+      const response = await axiosInstance.patch(`/orders/${orderId}`, {
         order: {
           delivery_attributes: delivery
         }

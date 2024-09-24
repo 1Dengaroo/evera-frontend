@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import axios from 'axios'
+import axiosInstance from '../../../utils/axios/axiosInstance'
 import { UserCredentials } from './types'
 
 export const useUserSignup = () => {
@@ -10,9 +10,7 @@ export const useUserSignup = () => {
     setLoading(true)
     setError(null)
     try {
-      const url = `${process.env.REACT_APP_API_URL}/signup`
-
-      await axios.post(url, {
+      await axiosInstance.post('/signup', {
         user: credentials
       })
 

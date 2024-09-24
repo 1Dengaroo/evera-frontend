@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import axiosInstance from '../../../utils/axios/axiosInstance'
 import { CartItem } from '../../../types'
 
 export const useValidateCart = (
@@ -21,8 +21,7 @@ export const useValidateCart = (
       setError(null)
 
       try {
-        const url = `${process.env.REACT_APP_API_URL}/carts/validate_cart`
-        const response = await axios.post(url, {
+        const response = await axiosInstance.post('/carts/validate_cart', {
           items: items.map((item) => ({
             id: item.id,
             quantity: item.quantity,

@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import axios from 'axios'
+import axiosInstance from '../../../utils/axios/axiosInstance'
 import { Product } from '../../../types'
-import { setAuthToken } from '../../../utils/auth/setAuthToken'
 
 export const useUpdateProduct = () => {
   const [loading, setLoading] = useState<boolean>(false)
@@ -14,10 +13,7 @@ export const useUpdateProduct = () => {
     setLoading(true)
     setError(null)
     try {
-      const url = `${process.env.REACT_APP_API_URL}/products/${id}`
-      const token = localStorage.getItem('jwtToken')
-      setAuthToken(token)
-      const response = await axios.patch(url, updatedData)
+      const response = await axiosInstance.patch(`/products/${id}`, updatedData)
       return response.data
     } catch (err: any) {
       setError(err.message || 'Unknown error')

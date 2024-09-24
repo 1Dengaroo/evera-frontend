@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import axiosInstance from '../../../utils/axios/axiosInstance'
 import { CartItem } from '../../../types'
 
 export const useGetCartTotal = (
@@ -21,8 +21,7 @@ export const useGetCartTotal = (
       setError(null)
 
       try {
-        const url = `${process.env.REACT_APP_API_URL}/carts/cart_total`
-        const response = await axios.post(url, {
+        const response = await axiosInstance.post('/carts/cart_total', {
           items: items.map((item) => ({ id: item.id, quantity: item.quantity }))
         })
         setTotal(Number(response.data.total))

@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { IoArrowForwardSharp } from 'react-icons/io5'
+import { AuthContext } from '../../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 import { AccountNav } from './AccountNav'
 import { AccountInfo } from './AccountInfo'
@@ -8,6 +10,13 @@ import { AccountOverview } from './AccountOverview'
 
 export const Account: React.FC = () => {
   const [activeTab, setActiveTab] = useState('')
+  const { isAuthenticated } = useContext(AuthContext)
+  const navigate = useNavigate()
+
+  if (!isAuthenticated) {
+    navigate('/login')
+    return null
+  }
 
   return (
     <div className="flex-1 sm:py-12" data-testid="account-page">

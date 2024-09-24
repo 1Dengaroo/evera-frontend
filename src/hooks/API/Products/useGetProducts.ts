@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import axiosInstance from '../../../utils/axios/axiosInstance'
 import { Product } from '../../../types'
 import { ProductFilterParams } from './types'
 
@@ -15,18 +15,14 @@ export const useGetProducts = (params: ProductFilterParams = {}) => {
       setLoading(true)
       setError(null)
       try {
-        const url = `${process.env.REACT_APP_API_URL}/products/`
-
-        const queryParams: Record<string, string> = {}
-
-        if (name) queryParams.name = name
-        if (sort_by) queryParams.sort_by = sort_by
-        if (sort_direction) queryParams.sort_direction = sort_direction
-
+        const queryParams = {
+          ...(name && { name }),
+          ...(sort_by && { sort_by }),
+          ...(sort_direction && { sort_direction })
+        }
         const queryString = new URLSearchParams(queryParams).toString()
-
-        const fullUrl = queryString ? `${url}?${queryString}` : url
-        const response = await axios.get(fullUrl)
+        const fullUrl = queryString ? `/products/?${queryString}` : `/products/`
+        const response = await axiosInstance.get(fullUrl)
         setProducts(response.data)
       } catch {
         setError('Error fetching products')

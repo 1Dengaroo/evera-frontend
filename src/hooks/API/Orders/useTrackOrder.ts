@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import axios from 'axios'
+import axiosInstance from '../../../utils/axios/axiosInstance'
 import { Order } from '../../../types'
 
 export const useTrackOrder = () => {
@@ -11,8 +11,7 @@ export const useTrackOrder = () => {
     setLoading(true)
     setError(null)
     try {
-      const url = `${process.env.REACT_APP_API_URL}/orders/${id}/track_order`
-      const response = await axios.get(url)
+      const response = await axiosInstance.get(`/orders/${id}/track_order`)
       setOrder(response.data)
     } catch (err: any) {
       setError('Failed to track order')

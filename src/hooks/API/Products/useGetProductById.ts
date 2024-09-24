@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import axiosInstance from '../../../utils/axios/axiosInstance'
 import { Product } from '../../../types'
 
 export const useGetProductById = (id: string) => {
@@ -18,8 +18,7 @@ export const useGetProductById = (id: string) => {
       setLoading(true)
       setError(null)
       try {
-        const url = `${process.env.REACT_APP_API_URL}/products/${id}`
-        const response = await axios.get(url)
+        const response = await axiosInstance.get(`/products/${id}`)
         setProduct(response.data)
       } catch (err: any) {
         setError('Failed to fetch product')

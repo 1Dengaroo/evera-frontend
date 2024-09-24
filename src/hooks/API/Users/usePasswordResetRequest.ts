@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import axios from 'axios'
+import axiosInstance from '../../../utils/axios/axiosInstance'
 
 export const useRequestPasswordReset = () => {
   const [loading, setLoading] = useState<boolean>(false)
@@ -10,8 +10,7 @@ export const useRequestPasswordReset = () => {
     setLoading(true)
     setError(null)
     try {
-      const url = `${process.env.REACT_APP_API_URL}/password`
-      const response = await axios.post(url, { email })
+      const response = await axiosInstance.post('/password', { email })
       setMessage(response.data.message)
       return true
     } catch (e: any) {

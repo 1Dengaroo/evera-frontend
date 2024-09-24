@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import axios from 'axios'
+import axiosInstance from '../../../utils/axios/axiosInstance'
 import { CartItem } from '../../../types'
-import { setAuthToken } from '../../../utils/auth/setAuthToken'
 
 export const useCreateStripeCheckoutSession = () => {
   const [sessionUrl, setSessionUrl] = useState<string | null>(null)
@@ -18,11 +17,7 @@ export const useCreateStripeCheckoutSession = () => {
         size: item.size
       }))
 
-      const url = `${process.env.REACT_APP_API_URL}/orders`
-      const token = localStorage.getItem('jwtToken')
-      setAuthToken(token)
-
-      const response = await axios.post(url, {
+      const response = await axiosInstance.post(`/orders`, {
         items: filteredItems
       })
 

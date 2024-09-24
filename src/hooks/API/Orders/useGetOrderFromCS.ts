@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import axiosInstance from '../../../utils/axios/axiosInstance'
 import { Order } from '../../../types'
-import { setAuthToken } from '../../../utils/auth/setAuthToken'
 
 export const useGetOrderFromCS = (sessionId: string | null) => {
   const [order, setOrder] = useState<Order | null>(null)
@@ -16,11 +15,9 @@ export const useGetOrderFromCS = (sessionId: string | null) => {
         return
       }
       try {
-        const url = `${process.env.REACT_APP_API_URL}/orders/success?session_id=${sessionId}`
-        const token = localStorage.getItem('jwtToken')
-        setAuthToken(token)
-
-        const response = await axios.get(url)
+        const response = await axiosInstance.get(
+          `/orders/success?session_id=${sessionId}`
+        )
         setOrder(response.data)
       } catch (err: any) {
         setError('Failed to load order details.')

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import axiosInstance from '../../../utils/axios/axiosInstance'
 
 interface ValidateProductResponse {
   valid: boolean
@@ -27,14 +27,16 @@ export const useValidateProduct = (item: {
       setLoading(true)
       setError(null)
       try {
-        const url = `${process.env.REACT_APP_API_URL}/carts/validate_product`
-        const response = await axios.post<ValidateProductResponse>(url, {
-          item: {
-            id: item.id,
-            quantity: item.quantity,
-            size: item.size
+        const response = await axiosInstance.post<ValidateProductResponse>(
+          '/carts/validate_product',
+          {
+            item: {
+              id: item.id,
+              quantity: item.quantity,
+              size: item.size
+            }
           }
-        })
+        )
         setIsValid(response.data.valid)
         setMessage(response.data.message || '')
       } catch (e: any) {

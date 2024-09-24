@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import axiosInstance from '../../../utils/axios/axiosInstance'
 
 export const useGetProductPriceById = (id: string) => {
   const [price, setPrice] = useState<number | null>(null)
@@ -17,8 +17,7 @@ export const useGetProductPriceById = (id: string) => {
       setLoading(true)
       setError(null)
       try {
-        const url = `${process.env.REACT_APP_API_URL}/products/${id}/price_by_id`
-        const response = await axios.get(url)
+        const response = await axiosInstance.get(`/products/${id}/price_by_id`)
         setPrice(Number(response.data.price))
       } catch {
         setError('Product is no longer available.')

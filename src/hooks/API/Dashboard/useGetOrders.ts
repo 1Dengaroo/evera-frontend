@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import axios from 'axios'
+import axiosInstance from '../../../utils/axios/axiosInstance'
 import { Order } from '../../../types'
-import { setAuthToken } from '../../../utils/auth/setAuthToken'
 import { AdminGetOrdersParams } from './types'
 
 export const useGetOrders = () => {
@@ -13,22 +12,13 @@ export const useGetOrders = () => {
     setLoading(true)
     setError(null)
     try {
-      const url = new URL(`${process.env.REACT_APP_API_URL}/orders/admin_index`)
-      const token = localStorage.getItem('jwtToken')
+      const url = `/orders/admin_index?${new URLSearchParams({
+        ...(params?.id && { id: params.id }),
+        ...(params?.email && { email: params.email }),
+        ...(params?.status && { status: params.status })
+      }).toString()}`
 
-      setAuthToken(token)
-
-      if (params?.id) {
-        url.searchParams.append('id', params.id)
-      }
-      if (params?.email) {
-        url.searchParams.append('email', params.email)
-      }
-      if (params?.status) {
-        url.searchParams.append('status', params.status)
-      }
-
-      const response = await axios.get(url.toString())
+      const response = await axiosInstance.get(url.toString())
       setOrders(response.data)
     } catch (err: any) {
       setError(err.message || 'Unknown error')

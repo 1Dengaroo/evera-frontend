@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import axios from 'axios'
+import axiosInstance from '../../../utils/axios/axiosInstance'
 import { CartItem } from '../../../types'
 import _ from 'lodash'
 
@@ -21,14 +21,15 @@ export const useGetCartItemsDetails = (items: CartItem[]) => {
       setLoading(true)
       setError(null)
       try {
-        const url = `${process.env.REACT_APP_API_URL}/carts/cart_item_details`
         const filteredItems = items.map(({ id, size, quantity }) => ({
           id,
           size,
           quantity
         }))
 
-        const response = await axios.post(url, { items: filteredItems })
+        const response = await axiosInstance.post('/carts/cart_item_details', {
+          items: filteredItems
+        })
         setItemDetails(response.data.itemDetails)
       } catch (err: any) {
         setError('Failed to fetch cart item details')
