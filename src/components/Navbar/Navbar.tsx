@@ -7,7 +7,7 @@ export const Navbar = () => {
   const { getCartSize } = useContext(CartContext)
 
   return (
-    <div className="sticky top-0 inset-x-0 z-50 group">
+    <div className="sticky top-0 inset-x-0 z-49 group">
       <header className="relative h-16 border-b duration-200 bg-white border-ui-border-base">
         <nav className="container mx-auto text-xs flex items-center justify-between w-full h-full px-8">
           <div className="flex-1 basis-0 h-full flex items-center">
