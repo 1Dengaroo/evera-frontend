@@ -23,10 +23,7 @@ export const PhoneNumberForm: React.FC<PhoneNumberFormProps> = ({
   }
 
   return (
-    <form
-      className="mb-6 p-6 border rounded-3xl shadow-lg space-y-4"
-      onSubmit={handleSubmit}
-    >
+    <form className="mb-6 py-6 space-y-4" onSubmit={handleSubmit}>
       <div>
         <label className="block text-gray-600 mb-1 font-semibold">
           Phone Number:

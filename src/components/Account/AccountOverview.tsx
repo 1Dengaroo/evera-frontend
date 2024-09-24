@@ -25,7 +25,7 @@ export const AccountOverview = () => {
   return (
     <div className="flex flex-col space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl">Hello Andy</h1>
+        <h1 className="text-3xl">Hello {profile.name?.split(' ')[0]}</h1>
         <p className="text-xs">
           Signed in as: <span className="font-semibold">{profile.email}</span>
         </p>

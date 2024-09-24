@@ -1,7 +1,7 @@
 import { Disclosure } from '@headlessui/react'
 import { Divider } from '../Divider'
 import clx from 'classnames'
-import { NameForm, EmailForm, PhoneNumberForm } from './Forms'
+import { NameForm, EmailForm, PhoneNumberForm, PasswordForm } from './Forms'
 import { useGetProfile } from '../../hooks/API/Account/useGetProfile'
 import { AuthContext } from '../../context/AuthContext'
 import { useContext } from 'react'
@@ -153,13 +153,7 @@ export const AccountInfo = () => {
               )}
             >
               <div className="flex flex-col space-y-2">
-                <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  className="p-2 border border-gray-300 rounded"
-                />
+                <PasswordForm />
               </div>
             </Disclosure.Panel>
           </>

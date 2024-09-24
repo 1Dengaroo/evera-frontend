@@ -33,7 +33,10 @@ export const Navbar = () => {
                 </a>
               )}
             </div>
-            <a className="hover:text-ui-fg-base" href="/account">
+            <a
+              className="hover:text-ui-fg-base hidden md:block"
+              href="/account"
+            >
               Account
             </a>
             <a className="hover:text-ui-fg-base flex gap-2" href="/cart">
