@@ -144,11 +144,10 @@ export const AccountInfo = () => {
             </div>
             <Disclosure.Panel
               className={clx(
-                'transition-[max-height,opacity] duration-300 ease-in-out overflow-visible',
-                {
-                  'max-h-[1000px] opacity-100': open,
-                  'max-h-0 opacity-0': !open
-                }
+                'transition-[max-height,opacity] duration-300 ease-in-out',
+                open
+                  ? 'max-h-[1000px] opacity-100 overflow-visible pointer-events-auto'
+                  : 'max-h-0 opacity-0 overflow-hidden pointer-events-none'
               )}
               static
             >

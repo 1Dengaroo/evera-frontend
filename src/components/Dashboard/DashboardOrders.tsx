@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useGetOrders } from '../../hooks/API/Dashboard/useGetOrders'
 import { Order } from '../../types'
-import { OrderCard } from '../Order'
+import { OrderCard, OrderDetails } from '../Order'
 import { OrderForm } from './OrderForm'
 import { FilterForm } from '../Filter'
 import { LoadingSpinner } from '../LoadingSpinner'

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Section } from '../components/Section'
 import { useGetOrderFromCS } from '../hooks/API/Orders/useGetOrderFromCS'
-import { OrderCard } from '../components/Order'
+import { OrderDetails } from '../components/Order'
 import { useCart } from '../hooks/useCart'
 
 export const OrderSuccess: React.FC = () => {
@@ -36,17 +36,10 @@ export const OrderSuccess: React.FC = () => {
   }
 
   return (
-    <div className="px-4">
-      <h2 className="text-3xl font-light tracking-wide my-8 text-center mt-12">
-        Order Success
-      </h2>
-      <p className="max-w-4xl text-lg justify-center mx-auto mt-8 text-center">
-        Thank you for your purchase! You should receive an email confirmation
-        shortly with your order details.
-      </p>
-      <div className="mx-auto justify-center mt-8">
+    <div className="px-8 my-16">
+      <div className="mx-auto justify-center max-w-4xl px-8">
         {order ? (
-          <OrderCard order={order} />
+          <OrderDetails order={order} />
         ) : (
           <p className="text-center">No order details available.</p>
         )}

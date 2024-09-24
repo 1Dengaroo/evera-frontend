@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { Divider } from '../Divider'
 import { useGetOrders } from '../../hooks/API/Orders/useGetOrders'
 import { AuthContext } from '../../context/AuthContext'
-import { OrderPreview } from '../Order'
+import { RecentOrderPreview } from '../Order'
 import { useGetProfile } from '../../hooks/API/Account/useGetProfile'
 
 export const AccountOverview = () => {
@@ -59,8 +59,8 @@ export const AccountOverview = () => {
         <p>You have no orders.</p>
       ) : (
         <div className="flex flex-col gap-y-2">
-          {orders.map((order) => (
-            <OrderPreview key={order.id} order={order} />
+          {orders.slice(0, 4).map((order) => (
+            <RecentOrderPreview key={order.id} order={order} />
           ))}
         </div>
       )}

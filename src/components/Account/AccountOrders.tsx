@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useGetOrders } from '../../hooks/API/Orders/useGetOrders'
 import { AuthContext } from '../../context/AuthContext'
-import { OrderCard } from '../Order'
+import { OrderPreview } from '../Order'
 
 export const AccountOrders = () => {
   const { isAuthenticated } = useContext(AuthContext)
@@ -15,7 +15,9 @@ export const AccountOrders = () => {
         or exchanges for your orders if needed.
       </p>
       {orders.map((order) => (
-        <OrderCard key={order.id} order={order} />
+        <div className="mb-16">
+          <OrderPreview key={order.id} order={order} />
+        </div>
       ))}
     </>
   )

@@ -6,10 +6,9 @@ import { Fragment } from 'react'
 const SideMenuItems = {
   Home: '/',
   Shop: '/shop',
-  Orders: '/orders',
+  Track: '/orders/track',
   FAQ: '/faq',
   About: '/about',
-  Cart: '/cart',
   Account: '/account'
 }
 

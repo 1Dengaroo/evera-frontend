@@ -9,7 +9,7 @@ export const Navbar = () => {
   return (
     <div className="sticky top-0 inset-x-0 z-40 group">
       <header className="relative h-16 border-b duration-200 bg-white border-ui-border-base">
-        <nav className="container mx-auto text-xs flex items-center justify-between w-full h-full px-8">
+        <nav className="container mx-auto max-w-screen-xl text-xs flex items-center justify-between w-full h-full px-8">
           <div className="flex-1 basis-0 h-full flex items-center">
             <div className="h-full">
               <SideMenu />

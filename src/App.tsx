@@ -18,13 +18,18 @@ import About from './pages/About'
 import ProductShow from './pages/ProductShow'
 import CartPage from './pages/Cart'
 import Checkout from './pages/Checkout'
-import Orders from './pages/Orders'
 import Dashboard from './pages/Dashboard'
 import NotFound from './pages/404'
 import OrderCancel from './pages/OrderCancel'
 import OrderSuccess from './pages/OrderSuccess'
 import OrderSearch from './pages/TrackOrder'
-import { Account } from './components/Account/Account'
+import {
+  Account,
+  AccountInfo,
+  AccountOrders,
+  AccountOverview,
+  AccountOrderDetails
+} from './components/Account'
 
 import { CartProvider } from './context/CartContext'
 import { AuthProvider } from './context/AuthContext'
@@ -65,13 +70,22 @@ const App: React.FC = () => {
                   <Route element={<About />} path="/about" />
                   <Route element={<CartPage />} path="/cart" />
                   <Route element={<Checkout />} path="/checkout" />
-                  <Route element={<Orders />} path="/orders" />
                   <Route element={<OrderCancel />} path="/orders/cancel" />
                   <Route element={<OrderSuccess />} path="/orders/success" />
                   <Route element={<OrderSearch />} path="/orders/track" />
 
                   <Route element={<UserRoutes />}>
-                    <Route element={<Account />} path="/account" />
+                    <Route element={<Account />} path="/account/*">
+                      <Route element={<AccountOverview />} index />
+                      <Route element={<AccountOverview />} path="overview" />
+                      <Route element={<AccountInfo />} path="profile" />
+                      <Route element={<AccountOrders />} path="orders" />
+                      <Route
+                        element={<AccountOrderDetails />}
+                        path="orders/details/:orderId"
+                      />
+                      <Route element={<AccountOverview />} path="*" />
+                    </Route>
                   </Route>
 
                   <Route element={<PublicRoutes />}>

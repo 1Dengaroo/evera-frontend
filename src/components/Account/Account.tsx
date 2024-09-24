@@ -1,37 +1,48 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { IoArrowForwardSharp } from 'react-icons/io5'
 import { AuthContext } from '../../context/AuthContext'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Outlet } from 'react-router-dom'
+import { MdKeyboardArrowLeft } from 'react-icons/md'
 
 import { AccountNav } from './AccountNav'
-import { AccountInfo } from './AccountInfo'
-import { AccountOrders } from './AccountOrders'
-import { AccountOverview } from './AccountOverview'
 
 export const Account: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('')
   const { isAuthenticated } = useContext(AuthContext)
   const navigate = useNavigate()
+  const [showOutlet, setShowOutlet] = useState(false)
 
   if (!isAuthenticated) {
     navigate('/login')
     return null
   }
 
+  const handleNavItemClick = () => {
+    setShowOutlet(true)
+  }
+
+  const handleBackClick = () => {
+    setShowOutlet(false)
+  }
+
   return (
-    <div className="flex-1 sm:py-12" data-testid="account-page">
+    <div className="flex-1 md:py-12 p-6" data-testid="account-page">
       <div className="flex-1 content-container h-full max-w-5xl mx-auto bg-white flex flex-col">
-        <div className="grid grid-cols-1 sm:grid-cols-[240px_1fr] py-12">
-          <div>
-            <AccountNav activeTab={activeTab} setActiveTab={setActiveTab} />
+        <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] py-12">
+          <div className={`${showOutlet ? 'hidden' : ''} md:block`}>
+            <AccountNav onNavItemClick={handleNavItemClick} />
           </div>
-          <div className="flex-1">
-            {activeTab === 'profile' && <AccountInfo />}
-            {activeTab === 'orders' && <AccountOrders />}
-            {activeTab === '' && <AccountOverview />}
+          <div className={`${!showOutlet ? 'hidden' : ''} md:block flex-1`}>
+            <button className="md:hidden mb-4" onClick={handleBackClick}>
+              <div className="flex items-center gap-x-1 text-xs">
+                <MdKeyboardArrowLeft className="text-lg" />
+                <span>Account</span>
+              </div>
+            </button>
+            <Outlet />
           </div>
         </div>
-        <div className="flex flex-col sm:flex-row items-end justify-between sm:border-t border-gray-200 py-12 gap-8">
+        {/* Footer Section */}
+        <div className="flex flex-col md:flex-row items-end justify-between md:border-t border-gray-200 py-12 gap-8">
           <div>
             <h3 className="text-xl font-semibold mb-4">Got questions?</h3>
             <span className="text-sm">
