@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
+import { IoArrowForwardSharp } from 'react-icons/io5'
 
 import { AccountNav } from './AccountNav'
 import { AccountInfo } from './AccountInfo'
+import { AccountOrders } from './AccountOrders'
+import { AccountOverview } from './AccountOverview'
 
 export const Account: React.FC = () => {
   const [activeTab, setActiveTab] = useState('')
@@ -15,21 +18,24 @@ export const Account: React.FC = () => {
           </div>
           <div className="flex-1">
             {activeTab === 'profile' && <AccountInfo />}
-            {activeTab === 'orders' && 'Orders'}
-            {activeTab === '' && "Welcome to your account. Let's get started."}
+            {activeTab === 'orders' && <AccountOrders />}
+            {activeTab === '' && <AccountOverview />}
           </div>
         </div>
         <div className="flex flex-col sm:flex-row items-end justify-between sm:border-t border-gray-200 py-12 gap-8">
           <div>
-            <h3 className="text-xl-semi mb-4">Got questions?</h3>
-            <span className="txt-medium">
+            <h3 className="text-xl font-semibold mb-4">Got questions?</h3>
+            <span className="text-sm">
               You can find frequently asked questions and answers on our
               customer service page.
             </span>
           </div>
           <div>
-            <a href="/faq" className="text-blue-500">
-              Customer Service
+            <a href="/faq" className="text-blue-500 group">
+              <span className="text-sm flex items-center gap-x-1">
+                Customer Service
+                <IoArrowForwardSharp className="transition-transform duration-150 group-hover:-rotate-45 text-md" />
+              </span>
             </a>
           </div>
         </div>

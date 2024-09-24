@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import axiosInstance from '../../../utils/axios/axiosInstance'
 import { Order } from '../../../types'
-import { setAuthToken } from '../../../utils/auth/setAuthToken'
 
 export const useGetOrders = (isAuthenticated: boolean) => {
   const [orders, setOrders] = useState<Order[]>([])
@@ -17,10 +16,7 @@ export const useGetOrders = (isAuthenticated: boolean) => {
       setLoading(true)
       setError(null)
       try {
-        const url = `${process.env.REACT_APP_API_URL}/orders`
-        const token = localStorage.getItem('jwtToken')
-        setAuthToken(token)
-        const response = await axios.get(url)
+        const response = await axiosInstance.get('/orders')
         setOrders(response.data)
       } catch (err: any) {
         setError(err.message || 'Failed to fetch orders')
