@@ -32,6 +32,8 @@ or
 npm run lint:fix
 ```
 
+to autofix errors
+
 ### Jest
 
 We will implement this in the near future
