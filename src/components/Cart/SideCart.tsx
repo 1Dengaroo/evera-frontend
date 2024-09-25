@@ -41,7 +41,7 @@ export const SideCart: React.FC = () => {
         }`}
       >
         <button
-          className="absolute top-4 right-4 text-black text-2xl font-bold font-light"
+          className="absolute top-4 right-4 text-black text-2xl font-light"
           onClick={hideSideCartView}
         >
           &times;

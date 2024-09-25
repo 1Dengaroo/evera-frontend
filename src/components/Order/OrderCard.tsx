@@ -23,8 +23,8 @@ const OrderDetailItem: React.FC<{
 )
 
 const OrderItem: React.FC<{ item: any }> = ({ item }) => (
-  <div className="flex items-start items-center justify-between py-6 border-b w-full">
-    <div className="flex items-start items-center">
+  <div className="flex items-center justify-between py-6 border-b w-full">
+    <div className="flex items-center">
       <img
         alt={item.name}
         className="w-24 h-32 object-cover rounded-md mb-2"

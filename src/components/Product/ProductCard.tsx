@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ProductCardProps } from './types'
-import { UnderlineButton, ButtonOne } from '../Button'
+import { ButtonOne } from '../Button'
 
 export const ProductCard: React.FC<ProductCardProps> = ({
   product,
@@ -27,7 +27,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     >
       <img
         alt={product.name}
-        className="object-cover mb-2 rounded border border-gray-300 rounded-2xl mb-6"
+        className="object-cover border border-gray-300 rounded-2xl mb-6"
         src={product.cover_image}
       />
       <p className="text-sm text-gray-700 mb-2 tracking-wide">{product.name}</p>
