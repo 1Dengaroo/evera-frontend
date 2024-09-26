@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react'
-import { IoArrowForwardSharp } from 'react-icons/io5'
 import { AuthContext } from '../../context/AuthContext'
 import { useNavigate, Outlet } from 'react-router-dom'
 import { MdKeyboardArrowLeft } from 'react-icons/md'
 
 import { AccountNav } from './AccountNav'
+import { InteractiveLink } from '../Link'
 
 export const Account: React.FC = () => {
   const { isAuthenticated } = useContext(AuthContext)
@@ -32,7 +32,11 @@ export const Account: React.FC = () => {
             <AccountNav onNavItemClick={handleNavItemClick} />
           </div>
           <div className={`${!showOutlet ? 'hidden' : ''} md:block flex-1`}>
-            <button className="md:hidden mb-4" onClick={handleBackClick}>
+            <button
+              className="md:hidden mb-4"
+              onClick={handleBackClick}
+              type="button"
+            >
               <div className="flex items-center gap-x-1 text-xs">
                 <MdKeyboardArrowLeft className="text-lg" />
                 <span>Account</span>
@@ -51,12 +55,7 @@ export const Account: React.FC = () => {
             </span>
           </div>
           <div>
-            <a className="text-blue-500 group" href="/faq">
-              <span className="text-sm flex items-center gap-x-1">
-                Customer Service
-                <IoArrowForwardSharp className="transition-transform duration-150 group-hover:-rotate-45 text-md" />
-              </span>
-            </a>
+            <InteractiveLink href="/faq">Customer Service</InteractiveLink>
           </div>
         </div>
       </div>

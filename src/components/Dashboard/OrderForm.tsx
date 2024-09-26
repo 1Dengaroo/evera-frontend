@@ -65,8 +65,6 @@ export const OrderForm: React.FC<OrderFormProps> = ({
 
     if (updatedOrder) {
       handleUpdateSuccess(updatedOrder)
-    } else {
-      console.error('Failed to update order')
     }
   }
 

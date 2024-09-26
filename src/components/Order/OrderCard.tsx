@@ -1,3 +1,5 @@
+// DEPRECATED: This component is no longer used in the application. It was replaced by the OrderPreview component
+
 import React from 'react'
 import { OrderCardProps } from './types'
 import { ButtonOne } from '../Button'

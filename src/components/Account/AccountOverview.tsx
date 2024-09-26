@@ -22,6 +22,32 @@ export const AccountOverview = () => {
     100
   ).toFixed(0)
 
+  const renderOrders = () => {
+    if (loading) {
+      return (
+        <div className="flex justify-center items-center">
+          <p>Loading...</p>
+        </div>
+      )
+    }
+
+    if (error) {
+      return <p>Error: {error}</p>
+    }
+
+    if (orders.length === 0) {
+      return <p>You have no orders.</p>
+    }
+
+    return (
+      <div className="flex flex-col gap-y-2">
+        {orders.slice(0, 4).map((order) => (
+          <RecentOrderPreview key={order.id} order={order} />
+        ))}
+      </div>
+    )
+  }
+
   return (
     <div className="flex flex-col space-y-6">
       <div className="flex justify-between items-center">
@@ -49,21 +75,7 @@ export const AccountOverview = () => {
       </div>
 
       <h2 className="text-md font-semibold pt-8">Recent Orders</h2>
-      {loading ? (
-        <div className="flex justify-center items-center">
-          <p>Loading...</p>
-        </div>
-      ) : error ? (
-        <p>Error: {error}</p>
-      ) : orders.length === 0 ? (
-        <p>You have no orders.</p>
-      ) : (
-        <div className="flex flex-col gap-y-2">
-          {orders.slice(0, 4).map((order) => (
-            <RecentOrderPreview key={order.id} order={order} />
-          ))}
-        </div>
-      )}
+      {renderOrders()}
     </div>
   )
 }

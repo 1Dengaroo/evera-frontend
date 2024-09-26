@@ -25,7 +25,7 @@ export const Thumbnail: React.FC<ThumbnailProps> = ({
 
   return (
     <div
-      className={`relative border border-gray-300 w-full overflow-hidden p-4 rounded-lg ease-in-out duration-150 ${className} ${
+      className={`relative border border-gray-300 overflow-hidden p-4 rounded-lg ease-in-out duration-150 ${className} ${
         isFeatured
           ? 'aspect-[11/14]'
           : size !== 'square'
@@ -64,7 +64,7 @@ const getSizeClasses = (size: ThumbnailProps['size']) => {
     case 'medium':
       return 'w-[290px]'
     case 'large':
-      return 'w-[440px]'
+      return 'w-[360px]'
     case 'full':
       return 'w-full'
     case 'square':

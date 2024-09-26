@@ -59,7 +59,11 @@ const SideMenu = () => {
                 <Popover.Panel className="fixed inset-y-0 left-0 z-30 w-96 bg-white shadow-xl h-full">
                   <div className="relative flex flex-col h-full">
                     <div className="flex justify-end p-4">
-                      <button data-testid="close-menu-button" onClick={close}>
+                      <button
+                        data-testid="close-menu-button"
+                        onClick={close}
+                        type="button"
+                      >
                         X
                       </button>
                     </div>

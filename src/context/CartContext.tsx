@@ -3,7 +3,8 @@ import React, {
   useReducer,
   useEffect,
   ReactNode,
-  useState
+  useState,
+  useMemo
 } from 'react'
 import { CartItem } from '../types'
 
@@ -116,18 +117,19 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
     setShowSideCart(false)
   }
 
+  const contextValue = useMemo(
+    () => ({
+      state,
+      dispatch,
+      getCartSize,
+      showSideCart,
+      showSideCartView,
+      hideSideCartView
+    }),
+    [state, showSideCart, getCartSize]
+  )
+
   return (
-    <CartContext.Provider
-      value={{
-        state,
-        dispatch,
-        getCartSize,
-        showSideCart,
-        showSideCartView,
-        hideSideCartView
-      }}
-    >
-      {children}
-    </CartContext.Provider>
+    <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>
   )
 }

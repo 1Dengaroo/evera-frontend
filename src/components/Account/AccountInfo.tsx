@@ -40,7 +40,10 @@ export const AccountInfo = () => {
                 <span className="text-sm font-semibold">{profile.name}</span>
               </div>
               <Disclosure.Button>
-                <button className="text-sm border rounded-lg bg-gray-50 px-12 py-1 font-medium shadow-sm">
+                <button
+                  className="text-sm border rounded-lg bg-gray-50 px-12 py-1 font-medium shadow-sm"
+                  type="button"
+                >
                   Edit
                 </button>
               </Disclosure.Button>
@@ -71,7 +74,10 @@ export const AccountInfo = () => {
                 <span className="text-sm font-semibold">{profile.email}</span>
               </div>
               <Disclosure.Button>
-                <button className="text-sm border rounded-lg bg-gray-50 px-12 py-1 font-medium shadow-sm">
+                <button
+                  className="text-sm border rounded-lg bg-gray-50 px-12 py-1 font-medium shadow-sm"
+                  type="button"
+                >
                   Edit
                 </button>
               </Disclosure.Button>
@@ -105,7 +111,10 @@ export const AccountInfo = () => {
                 </span>
               </div>
               <Disclosure.Button>
-                <button className="text-sm border rounded-lg bg-gray-50 px-12 py-1 font-medium shadow-sm">
+                <button
+                  className="text-sm border rounded-lg bg-gray-50 px-12 py-1 font-medium shadow-sm"
+                  type="button"
+                >
                   Edit
                 </button>
               </Disclosure.Button>
@@ -137,7 +146,10 @@ export const AccountInfo = () => {
                 <span className="text-sm font-semibold">********</span>
               </div>
               <Disclosure.Button>
-                <button className="text-sm border rounded-lg bg-gray-50 px-12 py-1 font-medium shadow-sm">
+                <button
+                  className="text-sm border rounded-lg bg-gray-50 px-12 py-1 font-medium shadow-sm"
+                  type="button"
+                >
                   Edit
                 </button>
               </Disclosure.Button>

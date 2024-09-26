@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useCart } from '../../hooks/useCart'
-import { UnderlineButton } from '../Button'
 import { ExtendedCartItem } from './types'
 import { CiTrash } from 'react-icons/ci'
 
@@ -69,6 +68,7 @@ export const CartItem: React.FC<CartItemProps> = ({
                 <button
                   className="text-red-500"
                   onClick={() => removeItem(id, size)}
+                  type="button"
                 >
                   <CiTrash />
                 </button>
@@ -76,7 +76,7 @@ export const CartItem: React.FC<CartItemProps> = ({
                   <select
                     className="w-12 h-8 p-2 border text-xs rounded"
                     onChange={(e) =>
-                      handleQuantityChange(parseInt(e.target.value))
+                      handleQuantityChange(parseInt(e.target.value, 10))
                     }
                     value={quantity}
                   >

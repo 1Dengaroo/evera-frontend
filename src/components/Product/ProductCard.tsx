@@ -22,21 +22,23 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     <div
-      className="group rounded-lg shadow-sm hover:shadow-lg transition-shadow cursor-pointer text-center"
+      className="group rounded-lg cursor-pointer text-center"
       onClick={handleNavigate}
     >
       <img
         alt={product.name}
-        className="object-cover border border-gray-300 rounded-2xl mb-6"
+        className="object-cover border border-gray-300 rounded-2xl mb-4 shadow-sm group-hover:shadow-lg transition-shadow"
         src={product.cover_image}
       />
-      <p className="text-sm text-gray-700 mb-2 tracking-wide">{product.name}</p>
-      <p className="text-gray-500 font-serif font-light tracking-widest text-sm px-4 mb-2">
-        Evera
-      </p>
-      <p className="text-gray-700 mb-4 text-xs font-light px-4  pb-6">
-        ${Number(product.price / 100).toFixed(2)}
-      </p>
+      <div className="flex justify-between px-1">
+        <p className="text-sm text-gray-700 mb-2 tracking-wide w-3/4 text-left">
+          {product.name}
+        </p>
+
+        <p className="text-gray-700 text-xs font-light w-1/4 text-right">
+          ${Number(product.price / 100).toFixed(2)}
+        </p>
+      </div>
       {onEditClick && (
         <div className="p-4">
           <ButtonOne label="Edit" onClick={handleEditClick} />

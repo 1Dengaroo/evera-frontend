@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useGetOrders } from '../../hooks/API/Dashboard/useGetOrders'
 import { Order } from '../../types'
-import { OrderCard, OrderDetails } from '../Order'
+import { AdminOrderDetails } from '../Order'
 import { OrderForm } from './OrderForm'
 import { FilterForm } from '../Filter'
 import { LoadingSpinner } from '../LoadingSpinner'
@@ -114,10 +114,12 @@ export const DashboardOrders: React.FC = () => {
                   setIsEditing={setIsEditingOrder}
                 />
               ) : (
-                <OrderCard
-                  onEditClick={() => handleOrderEditClick(order)}
-                  order={order}
-                />
+                <div className="max-w-4xl border rounded-lg p-8">
+                  <AdminOrderDetails
+                    onEditClick={() => handleOrderEditClick(order)}
+                    order={order}
+                  />
+                </div>
               )}
             </div>
           ))}

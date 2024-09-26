@@ -19,7 +19,6 @@ export type StateType = [boolean, () => void, () => void, () => void] & {
  *  const { state, open, close, toggle } = useToggleState()
  * ```
  */
-
 export const useToggleState = (initialState = false) => {
   const [state, setState] = useState<boolean>(initialState)
 

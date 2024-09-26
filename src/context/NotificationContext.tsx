@@ -1,5 +1,4 @@
-// NotificationContext.tsx
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useState, useMemo } from 'react'
 import Notification from '../components/Notification/Notification'
 import {
   NotificationProps,
@@ -40,8 +39,10 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({
     setNotification(null)
   }
 
+  const contextValue = useMemo(() => ({ showNotification }), [])
+
   return (
-    <NotificationContext.Provider value={{ showNotification }}>
+    <NotificationContext.Provider value={contextValue}>
       {notification && (
         <Notification
           duration={notification.duration}

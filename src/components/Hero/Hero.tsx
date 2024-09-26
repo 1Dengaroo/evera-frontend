@@ -33,7 +33,10 @@ export const Hero = ({
         </span>
         {buttonUrl && (
           <a href={buttonUrl} rel="noreferrer" target="_blank">
-            <button className="bg-white text-black tracking-wide py-2 px-4 rounded shadow hover:bg-gray-200 transition duration-300">
+            <button
+              className="bg-white text-black tracking-wide py-2 px-4 rounded shadow hover:bg-gray-200 transition duration-300"
+              type="button"
+            >
               {buttonText}
             </button>
           </a>

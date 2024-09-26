@@ -5,7 +5,7 @@ import { OrderPreview } from '../Order'
 
 export const AccountOrders = () => {
   const { isAuthenticated } = useContext(AuthContext)
-  const { orders, loading, error } = useGetOrders(isAuthenticated)
+  const { orders } = useGetOrders(isAuthenticated)
 
   return (
     <>
@@ -15,7 +15,7 @@ export const AccountOrders = () => {
         or exchanges for your orders if needed.
       </p>
       {orders.map((order) => (
-        <div className="mb-16">
+        <div key={order.id} className="mb-16">
           <OrderPreview key={order.id} order={order} />
         </div>
       ))}

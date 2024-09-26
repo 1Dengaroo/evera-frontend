@@ -86,7 +86,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    const updatedProduct = await updateProduct(product.id, editForm) // Use the function from the hook
+    const updatedProduct = await updateProduct(product.id, editForm)
     if (!updatedProduct) {
       showNotification('Failed to update product', 'error')
       return

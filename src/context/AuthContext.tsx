@@ -1,4 +1,10 @@
-import React, { createContext, useState, useContext, useEffect } from 'react'
+import React, {
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+  useMemo
+} from 'react'
 import { AuthContextType } from './types'
 import axios from 'axios'
 import { isJwtExpired } from '../utils/auth/isJwtExpired'
@@ -42,10 +48,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     showNotification('You have been logged out', 'info', 5000)
   }
 
+  const contextValue = useMemo(
+    () => ({ isAuthenticated, login, logout }),
+    [isAuthenticated, logout]
+  )
+
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   )
 }
 

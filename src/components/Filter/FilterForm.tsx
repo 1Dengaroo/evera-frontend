@@ -58,6 +58,7 @@ export const FilterForm: React.FC<FilterFormProps> = ({
         <button
           className="absolute top-6 right-4 text-black text-2xl font-bold"
           onClick={closeSidebar}
+          type="button"
         >
           <IoClose />
         </button>

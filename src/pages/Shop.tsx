@@ -23,6 +23,14 @@ const Shop: React.FC = () => {
     sort_direction: submittedFilters.sort_direction as 'asc' | 'desc'
   })
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <LoadingSpinner />
+      </div>
+    )
+  }
+
   const handleProductFilterChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -70,15 +78,10 @@ const Shop: React.FC = () => {
         onFilterChange={handleProductFilterChange}
         onFilterSubmit={handleProductFilterSubmit}
       />
-
-      {loading ? (
-        <div className="flex justify-center items-center">
-          <LoadingSpinner size={48} />
-        </div>
-      ) : error ? (
+      {error ? (
         <p className="text-red-600">{error}</p>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 gap-y-8 mb-16">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

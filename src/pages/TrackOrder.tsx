@@ -20,7 +20,7 @@ const TrackOrder: React.FC = () => {
           </h2>
           <div className="flex items-center justify-center space-x-2 mb-8">
             <input
-              className="border border-gray-300 w-1/2 rounded-l px-4 py-2 placeholder:text-sm text-sm"
+              className="border border-gray-300 w-1/2 rounded-full text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors px-4 py-2 placeholder:text-sm"
               onChange={(e) => setOrderId(e.target.value)}
               placeholder="Enter Order ID"
               type="text"

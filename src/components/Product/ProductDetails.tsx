@@ -51,7 +51,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
       {product.sizes.length > 0 && (
         <p className="text-sm font-light text-gray-700 mb-2">Select Size</p>
       )}
-      <div className="flex space-x-2 mb-4 justify-between">
+      <div className="flex space-x-2 mb-4">
         {product.sizes.map((size) => (
           <button
             key={size}

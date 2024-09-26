@@ -4,6 +4,9 @@ import { useGetCartItemsDetails } from '../../hooks/API/Cart/useGetCartItemDetai
 import { CartSummary } from './CartSummary'
 import { AuthContext } from '../../context/AuthContext'
 import { CartItem } from './CartItem'
+import { EmptyCartMessage } from './EmptyCartMessage'
+import { SignInPrompt } from './SignInPrompt'
+import { Divider } from '../Divider'
 
 export const Cart: React.FC = () => {
   const { items } = useCart()
@@ -38,37 +41,49 @@ export const Cart: React.FC = () => {
 
   return (
     <div className="py-12">
-      <div className="container mx-auto max-w-screen-xl px-2">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] mt-12">
-          <div className="flex flex-col bg-white justify-between lg:mr-16 mb-16">
-            <h2 className="text-3xl font-medium mb-4">Your Cart</h2>
-            {items.map((item) => {
-              const details = itemDetails.find(
-                (detail) => detail.id === item.id && detail.size === item.size
-              )
-              return (
-                <CartItem
-                  key={`${item.id}-${item.size}`}
-                  id={item.id}
-                  imageUrl={item.imageUrl}
-                  isValid={details?.isValid}
-                  name={item.name}
-                  price={details?.price}
-                  quantity={item.quantity}
-                  size={item.size}
-                  validationMessage={details?.validationMessage}
-                />
-              )
-            })}
-          </div>
+      <div className="container mx-auto max-w-7xl px-2">
+        {items.length ? (
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] mt-12">
+            <div className="flex flex-col bg-white justify-between lg:mr-16 mb-16">
+              {!isAuthenticated && (
+                <div className="flex flex-col gap-y-4 mb-8">
+                  <SignInPrompt />
+                  <Divider />
+                </div>
+              )}
+              <h2 className="text-3xl font-medium">Cart</h2>
+              {items.map((item) => {
+                const details = itemDetails.find(
+                  (detail) => detail.id === item.id && detail.size === item.size
+                )
+                return (
+                  <CartItem
+                    key={`${item.id}-${item.size}`}
+                    id={item.id}
+                    imageUrl={item.imageUrl}
+                    isValid={details?.isValid}
+                    name={item.name}
+                    price={details?.price}
+                    quantity={item.quantity}
+                    size={item.size}
+                    validationMessage={details?.validationMessage}
+                  />
+                )
+              })}
+            </div>
 
-          {/* Right Side: Summary and Checkout */}
-          <div className="">
-            <div className="flex flex-col">
-              <CartSummary cartIsValid={cartIsValid} total={total} />
+            {/* Right Side: Summary and Checkout */}
+            <div className="">
+              <div className="flex flex-col">
+                <CartSummary cartIsValid={cartIsValid} total={total} />
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div>
+            <EmptyCartMessage />
+          </div>
+        )}
       </div>
     </div>
   )

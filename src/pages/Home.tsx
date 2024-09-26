@@ -2,7 +2,7 @@ import React from 'react'
 import { useGetFrontPageProducts } from '../hooks/API/Products/useGetFrontPageProducts'
 import { ProductCard } from '../components/Product'
 import { Hero } from '../components/Hero'
-import { IoArrowForwardSharp } from 'react-icons/io5'
+import { InteractiveLink } from '../components/Link'
 
 const Home: React.FC = () => {
   const { products } = useGetFrontPageProducts()
@@ -20,17 +20,7 @@ const Home: React.FC = () => {
       <div className="py-12 sm:py-24 container mx-auto">
         <div className="flex justify-between mb-8 px-2">
           <p className="text-xl font-light tracking-wide">New Arrivals</p>
-          <a
-            className="text-blue-500 group"
-            href="/shop"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <span className="text-sm flex items-center gap-x-1">
-              View All
-              <IoArrowForwardSharp className="transition-transform duration-150 group-hover:-rotate-45 text-md" />
-            </span>
-          </a>
+          <InteractiveLink href="/shop">View all</InteractiveLink>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2 px-2">
           {products.map((product) => (
