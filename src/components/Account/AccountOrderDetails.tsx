@@ -13,7 +13,7 @@ export const AccountOrderDetails = () => {
     if (isAuthenticated && orderId) {
       trackOrder(orderId)
     }
-  }, [isAuthenticated, orderId, trackOrder])
+  }, [])
 
   if (loading) {
     return <div>Loading...</div>
